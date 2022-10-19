@@ -1,0 +1,7 @@
+<%= turbo_frame_tag id="new_post" do %>
+  <%= form_with model: @post do |f| %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.text_area :text %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
