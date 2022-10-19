@@ -1,0 +1,36 @@
+header {
+  background-color: azure;
+  grid-row: 1;
+  grid-column: 1 / 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header-middle-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header-right-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+/* 
+
+
+<div id="header-logo"></div>
+  
+<div id="header-middle-options">
+  <div id="header-middle-posts">Home</div>
+  <div id="header-middle-communities">Communities</div>
+</div>
+
+<div id="header-right-options">
+  <div id="header-right-messages">Messages</div>
+  <div id="header-right-notifications">Notifications</div>
+  <div id="header-right-profile">Profile</div>
+</div> */
