@@ -16,13 +16,15 @@
 
 * {
   box-sizing: border-box;
+  --header-size: 40px;
+  --post-width: 460px;
 }
 
 body {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-rows: 40px 1fr;
+  grid-template-rows: var(--header-size) calc(100vh - var(--header-size));
   grid-template-columns: 240px 1fr 240px;
 }
 
