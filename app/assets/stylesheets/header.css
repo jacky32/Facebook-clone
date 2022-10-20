@@ -2,22 +2,28 @@ header {
   background-color: azure;
   grid-row: 1;
   grid-column: 1 / 4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-#header-middle-options {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#header-right-options {
+header > div {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+
+#header-logo {
+  padding-left: 16px;
+  justify-content: flex-start;
+}
+
+/* #header-middle-options {
+} */
+
+#header-right-options {
+  justify-content: right;
+  padding-right: 16px;
 }
 /* 
 
