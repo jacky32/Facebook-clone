@@ -121,10 +121,21 @@
 .post-comments {
 }
 
-.post-comments > .post-new-comment {
+.post-comments > #new-comment {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+}
+
+.post-comments > #new-comment > form {
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 240px;
+  overflow: auto;
 }
 
 .comments > .post-comment {
