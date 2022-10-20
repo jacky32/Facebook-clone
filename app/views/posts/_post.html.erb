@@ -18,19 +18,11 @@
     <div class="post-share-button">Share</div>
   </div>
   <div class="post-comments">
-    <div class="post-new-comment">input for a new comment</div>
-    <div class="post-comment">
-      <div class="post-comment-user-pic">User Pic</div>
-      <div class="post-comment-body">
-        <div class="post-comment-user-name">User Name</div>
-        <div class="post-comment-text">Comment text</div>
-      </div>
-      <div class="post-comment-edit">Edit</div>
-      <div class="post-comment-actions">
-        <div class="post-comment-like">Like</div>
-        <div class="post-comment-reply">Reply</div>
-        <div class="post-comment-created-at">12:12 12/12/1212</div>
-      </div>
+    <%= turbo_frame_tag id="new-comment", src:new_post_comment_path(post.id) %>
+    <div id="<%= dom_id post%> comments" class="comments">
+      <% post.comments.each do |comment| %>
+        <%= render comment%>
+      <% end  %>
     </div>
   </div>
 </div>
