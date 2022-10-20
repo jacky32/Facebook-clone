@@ -97,11 +97,11 @@
   justify-content: space-between;
   align-items: center;
 }
-
+/* 
 .post-actions > .post-likes-number {
 }
 .post-actions > .post-comments-number {
-}
+} */
 
 .post-buttons {
   display: flex;
@@ -110,7 +110,7 @@
   align-items: center;
   gap: 8px;
 }
-
+/* 
 .post-buttons > .post-like-button {
 }
 .post-buttons > .post-comment-button {
@@ -119,6 +119,16 @@
 }
 
 .post-comments {
+} */
+
+#new-post {
+  width: 360px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+}
+
+#new-post > form {
+  display: flex;
 }
 
 .post-comments > #new-comment {
@@ -153,12 +163,12 @@
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
-
+/* 
 .comments > .post-comment > .post-comment-body > .post-comment-user-name {
 }
 
 .comments > .post-comment > .post-comment-body > .post-comment-text {
-}
+} */
 
 .comments > .post-comment > .post-comment-edit {
   grid-column: 3 / 4;
@@ -171,7 +181,7 @@
   display: flex;
   gap: 8px;
 }
-
+/* 
 .comments > .post-comment > .post-comment-actions > .post-comment-like {
 }
 
@@ -179,17 +189,4 @@
 }
 
 .comments > .post-comment > .post-comment-actions > .post-comment-created-at {
-}
-
-#new-post {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-}
-
-#new-post > form {
-  display: flex;
-}
-
-#new-post > form > textarea {
-  width: 100%;
-}
+} */
