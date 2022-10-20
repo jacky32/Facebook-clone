@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-  validates :text, presence: true
+  validates_presence_of :text, :user, :post
 end
