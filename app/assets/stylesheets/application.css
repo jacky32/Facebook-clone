@@ -45,3 +45,7 @@ input[type="submit"] {
   height: 30px;
   align-self: flex-end;
 }
+
+.error {
+  border: 2px solid rgb(175, 46, 46);
+}

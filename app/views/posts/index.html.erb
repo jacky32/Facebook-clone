@@ -1,4 +1,8 @@
 <div id="main-feed">
+
+  <%= turbo_frame_tag "flash" do %>
+    <%= render "layouts/flash" %>
+  <% end %>
   <%= turbo_frame_tag id="new-post", src:new_post_path %>
   <div id="posts">
     <%= render @posts %>

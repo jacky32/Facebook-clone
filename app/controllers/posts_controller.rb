@@ -13,9 +13,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.merge(user: current_user))
     respond_to do |format|
       if @post.save
-        format.turbo_stream
+        format.html { redirect_to post_path, notice: 'Post created! ' }
+        format.turbo_stream { flash.now[:notice] = 'Post created!' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, alert: 'Post was not created' }
+        format.turbo_stream { flash.now[:alert] = 'Post was not created' } # returns status OK
       end
     end
   end

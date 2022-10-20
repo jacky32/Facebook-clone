@@ -1,1 +1,6 @@
-<%= turbo_stream.prepend "posts", @post %>
+<% if notice %>
+  <%= turbo_stream.prepend "posts", @post %>
+  <%= render_turbo_stream_flash_messages %>
+<% elsif alert %>
+  <%= render_turbo_stream_flash_messages %>
+<% end %>

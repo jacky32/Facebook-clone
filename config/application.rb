@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,5 +18,12 @@ module FacebookClone
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # config.action_view.field_error_proc = proc do |html_tag, _instance|
+    #   html_tag
+    # end
+    config.action_view.field_error_proc = proc do |html_tag, _instance|
+      first_tag_end_index = html_tag.index('>')
+      html_tag.insert(first_tag_end_index, 'class=error')
+    end
   end
 end
