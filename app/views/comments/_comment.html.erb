@@ -1,5 +1,5 @@
-<div id="<%= dom_id comment %>" class="comment">
-  <div class="comment-user-pic">User Pic</div>
+<div id="<%= dom_id comment %>" class="comment" data-controller="comment">
+  <div class="user-pic"><%= show_svg("avatar.svg") %></div>
   <div class="comment-body">
     <div class="comment-user-name"><%= comment.user.name %></div>
     <div class="comment-text"><%= comment.text %></div>
@@ -7,10 +7,10 @@
   <div class="comment-edit">Edit</div>
   <div class="comment-actions">
     <div class="comment-like">Like</div>
-    <div class="comment-reply">Reply</div>
+    <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
     <div class="comment-created-at">12:12 12/12/1212</div>
   </div>
-  <%= turbo_frame_tag id="new-comment", src:new_comment_comment_path(comment.id), class: 'new-comment-comment' %>
+  <%= turbo_frame_tag id="new-comment", src:new_comment_comment_path(comment.id), class: 'new-comment-comment hidden', data: { 'comment-target': "reply" } %>
   <div id="<%= dom_id comment%> comments" class="comment-comments">
     <%= render partial: 'comments/comment', collection: comment.comments %>
   </div>

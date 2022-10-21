@@ -1,6 +1,6 @@
 <div class="post" id="<%= dom_id post %>">
   <div class="post-info">
-    <div class="user-pic">Pic</div>
+    <div class="user-pic"><%= show_svg("avatar.svg") %></div>
     <div class="user-name"><%= post.user.name %></div>
     <div class="post-date"> <%= post.created_at %></div>
     <div class="post-edit">Edit</div>

@@ -13,11 +13,14 @@
  *= require_tree .
  *= require_self
  */
+:root {
+  --header-size: 40px;
+  --post-width: 460px;
+  --comment-body-color: brown;
+}
 
 * {
   box-sizing: border-box;
-  --header-size: 40px;
-  --post-width: 460px;
 }
 
 body {
@@ -31,21 +34,24 @@ body {
 textarea {
   padding: 8px;
   border: 2px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #f8f8f8;
   width: 100%;
   min-height: 40px;
   max-height: 160px;
-  height: auto;
+  height: 46px;
   resize: none;
 }
 
 input[type="submit"] {
-  width: 80px;
+  width: 30px;
   height: 30px;
-  align-self: flex-end;
 }
 
 .error {
   border: 2px solid rgb(175, 46, 46);
+}
+
+.hidden {
+  display: none !important;
 }

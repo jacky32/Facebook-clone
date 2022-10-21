@@ -26,36 +26,10 @@
   flex-direction: column;
 }
 
-.post > * {
-  border: 1px solid lightgrey;
-}
-
-.post-info > * {
-  border: 1px solid lightgrey;
-}
-
-.post-actions > * {
-  border: 1px solid lightgrey;
-}
-
-.post-comments > * {
-  border: 1px solid lightgrey;
-}
-
-.post-buttons > * {
-  border: 1px solid lightgrey;
-}
-
-.post-comment > * {
-  border: 1px solid lightgrey;
-}
-
-.post-comment-body > * {
-  border: 1px solid lightgrey;
-}
-
-.post-comment-actions > * {
-  border: 1px solid lightgrey;
+.user-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .post-info {
@@ -67,9 +41,6 @@
 .post-info > .user-pic {
   grid-row: 1 / 3;
   grid-column: 1 / 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .post-info > .user-name {
@@ -123,6 +94,11 @@
 .post-comments {
 } */
 
+.post-comments > #new-comment {
+  grid-template-columns: 46px 1fr;
+  grid-template-rows: 1fr 46px 1fr;
+}
+
 #new-post {
   width: var(--post-width);
   display: grid;
@@ -131,18 +107,39 @@
 
 #new-post > form {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.post-comments > #new-comment {
+#new-comment {
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 25px 1fr;
+  grid-template-rows: 1fr 25px 1fr;
 }
 
-.post-comments > #new-comment > form {
+#new-comment > form {
+  grid-column: 2 / 3;
+  grid-row: 1 / 4;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#new-comment > .user-pic {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.comment > #new-comment {
+  padding-left: 24px;
+}
+
+.new-comment-comment > form > textarea {
+  min-height: 26px;
 }
 
 .comments {
+  padding: 4px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -160,14 +157,12 @@
   padding-left: 16px;
 }
 
-.comment-user-pic {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
 .comment-body {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: var(--comment-body-color);
 }
 /* 
 .comment-user-name {

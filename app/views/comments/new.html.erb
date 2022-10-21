@@ -1,5 +1,5 @@
 <%= turbo_frame_tag id="new-comment" do %>
-  <div class="user-pic">Usr pic</div>
+  <div class="user-pic"><%= show_svg("avatar.svg") %></div>
   <%= form_with model: [@commentable, @comment], data: { controller: "form", action: "turbo:submit-end->form#clear" } do |f| %>
     <%= f.text_area :text, data: { controller: "textarea", action: "input->textarea#resize" } %>
     <%= f.submit %>
