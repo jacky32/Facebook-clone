@@ -1,13 +1,17 @@
-<div class="post-comment">
-  <div class="post-comment-user-pic">User Pic</div>
-  <div class="post-comment-body">
-    <div class="post-comment-user-name"><%= comment.user.name %></div>
-    <div class="post-comment-text"><%= comment.text %></div>
+<div id="<%= dom_id comment %>" class="comment">
+  <div class="comment-user-pic">User Pic</div>
+  <div class="comment-body">
+    <div class="comment-user-name"><%= comment.user.name %></div>
+    <div class="comment-text"><%= comment.text %></div>
   </div>
-  <div class="post-comment-edit">Edit</div>
-  <div class="post-comment-actions">
-    <div class="post-comment-like">Like</div>
-    <div class="post-comment-reply">Reply</div>
-    <div class="post-comment-created-at">12:12 12/12/1212</div>
+  <div class="comment-edit">Edit</div>
+  <div class="comment-actions">
+    <div class="comment-like">Like</div>
+    <div class="comment-reply">Reply</div>
+    <div class="comment-created-at">12:12 12/12/1212</div>
+  </div>
+  <%= turbo_frame_tag id="new-comment", src:new_comment_comment_path(comment.id), class: 'new-comment-comment' %>
+  <div id="<%= dom_id comment%> comments" class="comment-comments">
+    <%= render partial: 'comments/comment', collection: comment.comments %>
   </div>
 </div>

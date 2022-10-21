@@ -20,9 +20,7 @@
   <div class="post-comments">
     <%= turbo_frame_tag id="new-comment", src:new_post_comment_path(post.id) %>
     <div id="<%= dom_id post%> comments" class="comments">
-      <% post.comments.each do |comment| %>
-        <%= render comment%>
-      <% end  %>
+      <%= render partial: 'comments/comment', collection: post.comments %>
     </div>
   </div>
 </div>

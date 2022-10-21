@@ -7,4 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 @user = User.create(name: 'Test name', email: 'a@a.cz', password: 'aaaaaa')
 @post = Post.create(user: @user.id, text: 'Text text text')
-@comment = Comment.create(user: @user.id, post: @post.id, text: 'Comment text')
+@comment = Comment.create(user: @user.id, commentable: @post, text: 'Comment text')

@@ -150,45 +150,59 @@
   overflow: auto;
 }
 
-.comments > .post-comment {
+.comment {
   display: grid;
   grid-template-columns: 40px 1fr 40px;
-  grid-template-rows: 1fr 20px;
+  grid-template-rows: auto 20px auto auto;
 }
 
-.comments > .post-comment > .post-comment-user-pic {
+.comment-comments {
+  padding-left: 16px;
+}
+
+.comment-user-pic {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
 
-.comments > .post-comment > .post-comment-body {
+.comment-body {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
 /* 
-.comments > .post-comment > .post-comment-body > .post-comment-user-name {
+.comment-user-name {
 }
 
-.comments > .post-comment > .post-comment-body > .post-comment-text {
+.comment-text {
 } */
 
-.comments > .post-comment > .post-comment-edit {
+.comment-edit {
   grid-column: 3 / 4;
   grid-row: 1 / 3;
 }
 
-.comments > .post-comment > .post-comment-actions {
+.comment-actions {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   display: flex;
   gap: 8px;
 }
 /* 
-.comments > .post-comment > .post-comment-actions > .post-comment-like {
+.comment-like {
 }
 
-.comments > .post-comment > .post-comment-actions > .post-comment-reply {
+.comment-reply {
 }
 
-.comments > .post-comment > .post-comment-actions > .post-comment-created-at {
+.comment-created-at {
 } */
+
+.new-comment-comment {
+  grid-row: 3 / 4;
+  grid-column: 1 / 4;
+}
+
+.comment-comments {
+  grid-row: 4 / 5;
+  grid-column: 1 / 4;
+}
