@@ -1,4 +1,4 @@
-<div class="post" id="<%= dom_id post %>">
+<div class="post" id="<%= dom_id post %>" data-controller="post">
   <div class="post-info">
     <div class="user-pic"><%= show_svg("avatar.svg") %></div>
     <div class="user-name"><%= post.user.name %></div>
@@ -10,17 +10,18 @@
   </div>
   <div class="post-actions">
     <div class="post-likes-number">12 likes</div>
-    <div class="post-comments-number">12 comments</div>
+    <div class="post-comments-number" data-action="click->post#toggleComments">12 comments</div>
   </div>
   <div class="post-buttons">
     <div class="post-like-button">Like</div>
-    <div class="post-comment-button">Comment</div>
+    <div class="post-comment-button" data-action="click->post#showComments">Comment</div>
     <div class="post-share-button">Share</div>
   </div>
-  <div class="post-comments">
+  <div class="post-comments " data-post-target="comments">
     <%= turbo_frame_tag id="new-comment", src:new_post_comment_path(post.id) %>
-    <div id="<%= dom_id post%> comments" class="comments">
+    <div id="<%= dom_id post%> comments" class="comments" data-post-target="commentOverflow">
       <%= render partial: 'comments/comment', collection: post.comments %>
     </div>
+    <div class="post-comments-display-all" data-action="click->post#toggleOverflow" data-post-target="displayComments">Display all comments</div>
   </div>
 </div>

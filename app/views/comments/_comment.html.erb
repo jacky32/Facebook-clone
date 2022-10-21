@@ -8,7 +8,7 @@
   <div class="comment-actions">
     <div class="comment-like">Like</div>
     <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
-    <div class="comment-created-at">12:12 12/12/1212</div>
+    <div class="comment-created-at"><%= comment.created_at %></div>
   </div>
   <%= turbo_frame_tag id="new-comment", src:new_comment_comment_path(comment.id), class: 'new-comment-comment hidden', data: { 'comment-target': "reply" } %>
   <div id="<%= dom_id comment%> comments" class="comment-comments">
