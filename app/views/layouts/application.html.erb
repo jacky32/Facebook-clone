@@ -12,7 +12,11 @@
 
   <body>
     <%= render 'layouts/header'%>
-    <div id="left-panel"></div>
+    <div id="left-panel">
+    <%= turbo_frame_tag "flash" do %>
+      <%= render "layouts/flash" %>
+    <% end %>
+    </div>
     <%= yield %>
     <div id="friends-panel"></div>
   </body>
