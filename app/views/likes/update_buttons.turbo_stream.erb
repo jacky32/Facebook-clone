@@ -5,7 +5,7 @@
 
 <%# Updates the like count %>
 <%= turbo_stream.update "#{@likeable.class.name.downcase}_#{@likeable.id}_like_count" do %>
-  <%= render partial: 'likes/like_count', locals: { likeable: @likable } %>
+  <%= render partial: 'likes/like_count', locals: { likeable: @likeable } %>
 <% end %>
 
 
