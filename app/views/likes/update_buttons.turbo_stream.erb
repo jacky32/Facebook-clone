@@ -1,4 +1,7 @@
 <%= turbo_stream.update "#{@likeable.class.name.downcase}_#{@likeable.id}_like" do %>
   <%= render partial: 'likes/like_buttons', locals: { likeable: @likeable } %>
 <% end %>
+<%= turbo_stream.update "#{@likeable.class.name.downcase}_#{@likeable.id}_like_count" do %>
+  <%= @likeable.likes.count %>
+<% end %>
 <%= render_turbo_stream_flash_messages %>
