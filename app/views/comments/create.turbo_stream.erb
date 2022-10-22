@@ -1,1 +1,8 @@
-<%= turbo_stream.prepend ("#{@commentable.class.name.downcase}_#{@commentable.id.to_s} comments"), @comment %>
+<%# Adds comment to commentable after posting %>
+<%= turbo_stream.prepend ("#{@commentable.class.name.downcase}_#{@commentable.id} comments"), @comment %>
+
+<%# Updates post comment count %>
+<% post = get_parent_post(@commentable) %>
+<%= turbo_stream.update "post_#{post.id}_comment_count" do %>
+  <%= render partial: 'comments/comment_count', locals: { post: post } %>
+<% end %>

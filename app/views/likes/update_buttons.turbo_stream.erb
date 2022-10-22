@@ -1,7 +1,12 @@
+<%# Changes the like/unlike buttons after clicking %>
 <%= turbo_stream.update "#{@likeable.class.name.downcase}_#{@likeable.id}_like" do %>
   <%= render partial: 'likes/like_buttons', locals: { likeable: @likeable } %>
 <% end %>
+
+<%# Updates the like count %>
 <%= turbo_stream.update "#{@likeable.class.name.downcase}_#{@likeable.id}_like_count" do %>
-  <%= @likeable.likes.count %>
+  <%= render partial: 'likes/like_count', locals: { likeable: @likable } %>
 <% end %>
+
+
 <%= render_turbo_stream_flash_messages %>

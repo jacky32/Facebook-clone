@@ -12,7 +12,11 @@
     <%= turbo_frame_tag "#{dom_id(post)}_like_count", class: "post-like-number" do %>
       <%= render partial: 'likes/like_count', locals: { likeable: post } %>
     <% end%>
-    <div class="post-comments-number" data-action="click->post#toggleComments">12 comments</div>
+    <div class="post-comments-number" data-action="click->post#toggleComments">
+      <%= turbo_frame_tag "#{dom_id(post)}_comment_count" do %>
+        <%= render partial: 'comments/comment_count', locals: { post: post } %>
+      <% end%>
+    </div>
   </div>
   <div class="post-buttons">
     <%= turbo_frame_tag dom_id(post) + "_like", class: "post-like-button" do %>

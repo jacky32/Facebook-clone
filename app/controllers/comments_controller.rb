@@ -1,21 +1,18 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :decide_commentable, only: :create
+  before_action :decide_commentable_for_new, only: :new
 
   def index
     @comments = Comments.all.order('created_at DESC')
   end
 
   def new
-    decide_commentable_for_new
     @comment = Comment.new
     @post = Post.find(params[:post_id]) if params[:post_id]
   end
 
   def create
-    decide_commentable
-    @post = Post.find(params[:post_id]) if params[:post_id]
-    @commented = Comment.find(params[:comment_id]) if params[:comment_id]
-    # @comment = Comment.new(comment_params.merge(user: current_user, post: @post))
     @comment = @commentable.comments.new(comment_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @comment.save
