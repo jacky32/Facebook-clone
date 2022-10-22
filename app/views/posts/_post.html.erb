@@ -25,7 +25,7 @@
     <div class="post-comment-button" data-action="click->post#showComments">Comment</div>
     <div class="post-share-button">Share</div>
   </div>
-  <div class="post-comments " data-post-target="comments">
+  <div class="post-comments hidden" data-post-target="comments">
     <%= turbo_frame_tag id="new-comment", src:new_post_comment_path(post.id) %>
     <div id="<%= dom_id post%> comments" class="comments" data-post-target="commentOverflow">
       <%= render partial: 'comments/comment', collection: post.comments %>
