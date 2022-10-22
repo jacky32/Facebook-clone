@@ -1,9 +1,1 @@
-<%= turbo_stream.prepend ("#{
-  if params[:post_id]
-    pp "post_" + @post.id.to_s
-    "post_" + @post.id.to_s
-  elsif params[:comment_id]
-    pp "comment_" + @commented.id.to_s
-    "comment_" + @commented.id.to_s
-  end
-  } comments"), @comment %>
+<%= turbo_stream.prepend ("#{@commentable.class.name.downcase}_#{@commentable.id.to_s} comments"), @comment %>

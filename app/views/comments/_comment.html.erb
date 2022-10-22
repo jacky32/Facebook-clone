@@ -1,12 +1,19 @@
 <div id="<%= dom_id comment %>" class="comment" data-controller="comment">
   <div class="user-pic"><%= show_svg("avatar.svg") %></div>
   <div class="comment-body">
-    <div class="comment-user-name"><%= comment.user.name %></div>
+    <div class="comment-user-name"><%= comment.user.name %></div> <%# TODO: N+1 ? %>
     <div class="comment-text"><%= comment.text %></div>
+  </div>
+  <div class="comment-likes">
+    <%= turbo_frame_tag "#{dom_id(comment)}_likes"%>
   </div>
   <div class="comment-edit">Edit</div>
   <div class="comment-actions">
-    <div class="comment-like">Like</div>
+    <div class="comment-like">
+      <%= turbo_frame_tag dom_id(comment) + "_like" do %>
+        <%= render partial: 'likes/like_buttons', locals: { likeable: comment } %>
+      <% end %>
+    </div>
     <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
     <div class="comment-created-at"><%= comment.created_at %></div>
   </div>

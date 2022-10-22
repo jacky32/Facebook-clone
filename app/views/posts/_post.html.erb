@@ -1,7 +1,7 @@
 <div class="post" id="<%= dom_id post %>" data-controller="post">
   <div class="post-info">
     <div class="user-pic"><%= show_svg("avatar.svg") %></div>
-    <div class="user-name"><%= post.user.name %></div>
+    <div class="user-name"><%= post.user.name %></div> <%# TODO: n+1? %>
     <div class="post-date"> <%= post.created_at %></div>
     <div class="post-edit">Edit</div>
   </div>
@@ -9,11 +9,17 @@
     <%= post.text %>
   </div>
   <div class="post-actions">
-    <div class="post-likes-number">12 likes</div>
+    <div class="post-likes-number">
+      <%= render partial: 'likes/like_count', locals: { likeable: post } %>
+    </div>
     <div class="post-comments-number" data-action="click->post#toggleComments">12 comments</div>
   </div>
   <div class="post-buttons">
-    <div class="post-like-button">Like</div>
+    <div class="post-like-button">
+      <%= turbo_frame_tag dom_id(post) + "_like" do %>
+        <%= render partial: 'likes/like_buttons', locals: { likeable: post } %>
+      <% end %>
+    </div>
     <div class="post-comment-button" data-action="click->post#showComments">Comment</div>
     <div class="post-share-button">Share</div>
   </div>

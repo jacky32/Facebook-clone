@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 @user = User.create(name: 'Test name', email: 'a@a.cz', password: 'aaaaaa')
-@post = Post.create(user: @user.id, text: 'Text text text')
-@comment = Comment.create(user: @user.id, commentable: @post, text: 'Comment text')
+@post = Post.create(user: @user, text: 'Text text text')
+@comment = Comment.create(user: @user, commentable: @post, text: 'Comment text')
