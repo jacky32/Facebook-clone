@@ -8,12 +8,12 @@
     <%= turbo_frame_tag "#{dom_id(comment)}_like_count", class: "comment-likes" do %>
       <%= render partial: 'likes/like_count', locals: { likeable: comment } %>
     <% end %>
-    <div class="comment-edit">Edit</div>
+    <div class="comment-edit clickable-text"><%= show_svg('icons/more-horizontal.svg') %></div>
     <div class="comment-actions">
-      <%= turbo_frame_tag dom_id(comment) + "_like", class: "comment-like" do %>
+      <%= turbo_frame_tag dom_id(comment) + "_like", class: "comment-like clickable-text" do %>
         <%= render partial: 'likes/like_buttons', locals: { likeable: comment } %>
       <% end %>
-      <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
+      <div class="comment-reply clickable-text" data-action="click->comment#toggleReply">Reply</div>
       <div class="created-at"><%= comment.time_difference %>
         <span class="created-at-hovered"> <%= comment.hover_date %> </span>
       </div>

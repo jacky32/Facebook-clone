@@ -1,5 +1,9 @@
 <header>
-  <div id="header-logo">Logo</div>
+  <div id="header-logo">
+      <%= link_to root_path, data: { turbo_frame: "main" } do %>
+        <%= show_svg('icons/facebook-circle.svg') %>
+      <% end %>
+  </div>
   
   <div id="header-middle-options">
     <div id="header-middle-posts">

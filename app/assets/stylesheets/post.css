@@ -86,12 +86,58 @@
 .post-buttons {
   border-top: 1px solid var(--comment-body-color);
   border-bottom: 1px solid var(--comment-body-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.post-buttons > div {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.post-buttons > turbo-frame > form {
+  width: 100%;
+  height: 100%;
+}
+
+.post-buttons > turbo-frame > form > button {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
 }
+
+.post-buttons svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.post-buttons > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-out;
+  font-weight: 600;
+}
+
+.post-buttons > *:hover {
+  background-color: var(--post-hover-color);
+}
+
+.liked-button {
+  color: var(--very-dark-green);
+}
+
 /* 
 .post-buttons > .post-like-button {
 }
@@ -229,10 +275,22 @@
   background-color: var(--dark-green);
 }
 
+.form-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-button svg {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
 /* .comment-reply {
 } */
 
 .created-at {
+  cursor: default;
   position: relative;
   width: 100px;
   white-space: nowrap;

@@ -14,8 +14,14 @@ header > div {
 }
 
 #header-logo {
-  padding-left: 16px;
+  padding-left: 8px;
   justify-content: flex-start;
+}
+
+#header-logo svg {
+  width: 40px;
+  height: 40px;
+  fill: var(--dark-green);
 }
 
 /* #header-middle-options {

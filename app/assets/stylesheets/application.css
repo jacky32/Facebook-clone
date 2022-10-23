@@ -14,13 +14,17 @@
  *= require_self
  */
 :root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --light-yellow: #f6fedb;
   --light-wheat: #d8d174;
   --dark-green: #91972a;
+  --very-dark-green: #315811;
 
   --header-size: 40px;
 
   --post-color: #b6c454;
+  --post-hover-color: #c1d158;
   --post-width: 460px;
 
   --comment-body-color: #dfdb96;
@@ -70,5 +74,8 @@ input[type="submit"] {
 
 button {
   all: unset;
+}
+
+.clickable-text {
   cursor: pointer;
 }

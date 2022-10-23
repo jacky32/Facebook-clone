@@ -1,4 +1,6 @@
 <%= form_with model: [commentable, Comment.new], data: { controller: "form", action: "turbo:submit-end->form#clear turbo:submit-end->comment#toggleReply" } do |f| %>
   <%= f.text_area :text, data: { controller: "textarea", action: "input->textarea#resize" } %>
-  <%= f.submit %>
+  <%= f.button nil, class:"form-button" do %>
+    <%= show_svg('icons/arrow-circle-right.svg') %>
+  <% end %>
 <% end %>

@@ -1,5 +1,9 @@
 <% if liked(likeable) %>
-  <%= button_to 'Unlike', decide_destroy_path(likeable), method: :delete %>
+  <%= button_to decide_destroy_path(likeable), method: :delete, class: 'liked-button' do%>
+   <%= show_svg('icons/thumb-up.svg') %> Like
+  <% end %>
 <% else %>
-  <%= button_to 'Like', decide_create_path(likeable) %>
+  <%= button_to decide_create_path(likeable) do %>
+   <%= show_svg('icons/thumb-up.svg') %> Like
+  <% end %>
 <% end %>
