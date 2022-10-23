@@ -1,19 +1,21 @@
 <div id="<%= dom_id comment %>" class="comment" data-controller="comment">
-  <div class="user-pic"><%= show_svg("avatar.svg") %></div>
-  <div class="comment-body">
-    <div class="comment-user-name"><%= comment.user.name %></div>
-    <div class="comment-text"><%= comment.text %></div>
-  </div>
-  <%= turbo_frame_tag "#{dom_id(comment)}_like_count", class: "comment-likes" do %>
-    <%= render partial: 'likes/like_count', locals: { likeable: comment } %>
-  <% end %>
-  <div class="comment-edit">Edit</div>
-  <div class="comment-actions">
-    <%= turbo_frame_tag dom_id(comment) + "_like", class: "comment-like" do %>
-      <%= render partial: 'likes/like_buttons', locals: { likeable: comment } %>
+  <div class="comment-self">
+    <div class="user-pic"><%= show_svg("avatar.svg") %></div>
+    <div class="comment-body">
+      <div class="comment-user-name"><%= comment.user.name %></div>
+      <div class="comment-text"><%= comment.text %></div>
+    </div>
+    <%= turbo_frame_tag "#{dom_id(comment)}_like_count", class: "comment-likes" do %>
+      <%= render partial: 'likes/like_count', locals: { likeable: comment } %>
     <% end %>
-    <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
-    <div class="comment-created-at"><%= comment.created_at %></div>
+    <div class="comment-edit">Edit</div>
+    <div class="comment-actions">
+      <%= turbo_frame_tag dom_id(comment) + "_like", class: "comment-like" do %>
+        <%= render partial: 'likes/like_buttons', locals: { likeable: comment } %>
+      <% end %>
+      <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
+      <div class="comment-created-at"><%= comment.created_at %></div>
+    </div>
   </div>
   <div class="new-comment hidden" data-comment-target="reply" >
     <div class="user-pic"><%= show_svg("avatar.svg") %></div>

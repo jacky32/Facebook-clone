@@ -34,7 +34,7 @@
       <div class="user-pic"><%= show_svg("avatar.svg") %></div>
       <%= render partial: 'comments/form', locals: { commentable: post } %>
     </div>
-    <div id="<%= dom_id post %> comments" class="comments" data-post-target="CommentOverflow">
+    <div id="<%= dom_id post %> comments" class="comments" data-post-target="commentOverflow">
       <%= render partial: 'comments/comment', collection: post.comments.includes(:comments, :user, :likes) %>
     </div>
     
