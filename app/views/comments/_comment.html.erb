@@ -1,7 +1,7 @@
 <div id="<%= dom_id comment %>" class="comment" data-controller="comment">
   <div class="user-pic"><%= show_svg("avatar.svg") %></div>
   <div class="comment-body">
-    <div class="comment-user-name"><%= comment.user.name %></div> <%# TODO: N+1 ? %>
+    <div class="comment-user-name"><%= comment.user.name %></div>
     <div class="comment-text"><%= comment.text %></div>
   </div>
   <%= turbo_frame_tag "#{dom_id(comment)}_like_count", class: "comment-likes" do %>
@@ -15,8 +15,11 @@
     <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
     <div class="comment-created-at"><%= comment.created_at %></div>
   </div>
-  <%= turbo_frame_tag id="new-comment", src:new_comment_comment_path(comment.id), class: 'new-comment-comment hidden', data: { 'comment-target': "reply" } %>
+  <div class="new-comment hidden" data-comment-target="reply" >
+    <div class="user-pic"><%= show_svg("avatar.svg") %></div>
+    <%= render partial: 'comments/form', locals: { commentable: comment } %>
+  </div>
   <div id="<%= dom_id comment%> comments" class="comment-comments">
-    <%= render partial: 'comments/comment', collection: comment.comments %>
+    <%= render partial: 'comments/comment', collection: comment.comments.includes(:comments, :user, :likes) %>
   </div>
 </div>

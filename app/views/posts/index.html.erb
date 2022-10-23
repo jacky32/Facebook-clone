@@ -1,5 +1,8 @@
 <div id="main-feed">
-  <%= turbo_frame_tag id="new-post", src:new_post_path, loading: :lazy %>
+  <div id="new-post">
+    <div class="user-pic"><%= show_svg("avatar.svg") %></div>
+    <%= render 'posts/form'%>
+  </div>
   <div id="posts">
     <%= render @posts %>
   </div>

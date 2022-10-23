@@ -1,7 +1,11 @@
 <div class="post" id="<%= dom_id post %>" data-controller="post">
   <div class="post-info">
     <div class="user-pic"><%= show_svg("avatar.svg") %></div>
-    <div class="user-name"><%= post.user.name %></div> <%# TODO: n+1? %>
+    <div class="user-name">
+      <%= link_to user_path(post.user) do %>
+        <%= post.user.name %>
+      <% end %>
+    </div>
     <div class="post-date"> <%= post.created_at %></div>
     <div class="post-edit">Edit</div>
   </div>
@@ -26,10 +30,14 @@
     <div class="post-share-button">Share</div>
   </div>
   <div class="post-comments hidden" data-post-target="comments">
-    <%= turbo_frame_tag id="new-comment", src:new_post_comment_path(post.id) %>
-    <div id="<%= dom_id post%> comments" class="comments" data-post-target="commentOverflow">
-      <%= render partial: 'comments/comment', collection: post.comments %>
+    <div class="new-comment" >
+      <div class="user-pic"><%= show_svg("avatar.svg") %></div>
+      <%= render partial: 'comments/form', locals: { commentable: post } %>
     </div>
+    <div id="<%= dom_id post %> comments" class="comments" data-post-target="CommentOverflow">
+      <%= render partial: 'comments/comment', collection: post.comments.includes(:comments, :user, :likes) %>
+    </div>
+    
     <div class="post-comments-display-all" data-action="click->post#toggleOverflow" data-post-target="displayComments">Display all comments</div>
   </div>
 </div>

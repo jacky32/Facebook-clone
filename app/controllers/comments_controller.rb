@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :decide_commentable, only: %i[create new]
 
   def index
-    @comments = Comments.all.order('created_at DESC')
+    @comments = Comments.all.order('created_at DESC').includes(:user, :comments)
   end
 
   def new

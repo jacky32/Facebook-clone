@@ -19,23 +19,19 @@
 
 .post {
   width: var(--post-width);
-  background-color: bisque;
+  background-color: var(--post-color);
   border-radius: 8px;
-  padding: 4px;
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
-}
-
-.user-pic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 4px;
 }
 
 .post-info {
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   grid-template-rows: 20px 20px;
+  gap: 4px;
 }
 
 .post-info > .user-pic {
@@ -46,6 +42,12 @@
 .post-info > .user-name {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
+}
+
+.user-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .post-info > .post-date {
@@ -70,13 +72,16 @@
   justify-content: space-between;
   align-items: center;
 }
-/* 
-.post-actions > .post-likes-number {
-}
-.post-actions > .post-comments-number {
+
+/* .post-actions > .post-likes-number {
+
+} */
+/* .post-actions > .post-comments-number {
 } */
 
 .post-buttons {
+  border-top: 1px solid var(--comment-body-color);
+  border-bottom: 1px solid var(--comment-body-color);
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -94,14 +99,13 @@
 .post-comments {
 } */
 
-.post-comments > #new-comment {
-  grid-template-columns: 46px 1fr;
-  grid-template-rows: 1fr 46px 1fr;
-}
-
 #new-post {
+  background-color: var(--post-color);
   width: var(--post-width);
+  padding: 4px 8px;
+  border-radius: 8px;
   display: grid;
+  gap: 4px;
   grid-template-columns: 40px 1fr;
 }
 
@@ -109,15 +113,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 }
 
-#new-comment {
+.post-comments > .new-comment {
+  grid-template-columns: 46px 1fr;
+  grid-template-rows: 1fr 46px 1fr;
+}
+
+.new-comment {
   display: grid;
   grid-template-columns: 25px 1fr;
   grid-template-rows: 1fr 25px 1fr;
 }
 
-#new-comment > form {
+.new-comment > form {
   grid-column: 2 / 3;
   grid-row: 1 / 4;
   display: flex;
@@ -125,17 +135,22 @@
   align-items: center;
 }
 
-#new-comment > .user-pic {
+.new-comment > .user-pic {
   grid-column: 1;
   grid-row: 2;
 }
 
-.comment > #new-comment {
+.comment > .new-comment {
   padding-left: 24px;
 }
 
-.new-comment-comment > form > textarea {
+.comment > .new-comment > form > textarea {
   min-height: 26px;
+}
+
+.comment > .new-comment {
+  grid-row: 3 / 4;
+  grid-column: 1 / 4;
 }
 
 .comments {
@@ -191,11 +206,6 @@
 
 .comment-created-at {
 } */
-
-.new-comment-comment {
-  grid-row: 3 / 4;
-  grid-column: 1 / 4;
-}
 
 .comment-comments {
   grid-row: 4 / 5;

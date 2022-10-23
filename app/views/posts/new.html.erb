@@ -1,7 +1,0 @@
-<%= turbo_frame_tag id="new-post" do %>
-  <div class="user-pic"><%= show_svg("avatar.svg") %></div>
-  <%= form_with model: @post, data: { controller: "form", action: "turbo:submit-end->form#clear" } do |f| %>
-    <%= f.text_area :text, data: { controller: "textarea", action: "input->textarea#resize" } %>
-    <%= f.submit %>
-  <% end %>
-<% end %>

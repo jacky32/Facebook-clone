@@ -14,9 +14,18 @@
  *= require_self
  */
 :root {
+  --light-yellow: #f6fedb;
+  --light-wheat: #d8d174;
+  --dark-green: #91972a;
+
   --header-size: 40px;
+
+  --post-color: #b6c454;
   --post-width: 460px;
-  --comment-body-color: brown;
+
+  --comment-body-color: #dfdb96;
+
+  --body-background-color: #aeab72;
 }
 
 * {
@@ -29,13 +38,14 @@ body {
   display: grid;
   grid-template-rows: var(--header-size) calc(100vh - var(--header-size));
   grid-template-columns: 240px 1fr 240px;
+  background-color: var(--body-background-color);
 }
 
 textarea {
-  padding: 8px;
-  border: 2px solid #ccc;
+  padding: 6px;
+  border: 1x solid var(--dark-green);
   border-radius: 8px;
-  background-color: #f8f8f8;
+  background-color: var(--comment-body-color);
   width: 100%;
   min-height: 40px;
   max-height: 160px;
@@ -44,6 +54,8 @@ textarea {
 }
 
 input[type="submit"] {
+  all: unset;
+  cursor: pointer;
   width: 30px;
   height: 30px;
 }
@@ -54,4 +66,9 @@ input[type="submit"] {
 
 .hidden {
   display: none !important;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
 }
