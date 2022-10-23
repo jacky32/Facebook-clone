@@ -165,7 +165,8 @@
   flex-direction: column;
   gap: 8px;
   max-height: 240px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .comment {
@@ -231,8 +232,32 @@
 /* .comment-reply {
 } */
 
-/* .comment-created-at {
-} */
+.created-at {
+  position: relative;
+  width: 100px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.created-at .created-at-hovered {
+  visibility: hidden;
+  z-index: 200;
+  position: absolute;
+  width: auto;
+  top: 100%;
+  left: 50%;
+  margin-left: -160px;
+  width: 320px;
+  text-align: center;
+  white-space: nowrap;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: var(--light-yellow);
+}
+
+.created-at:hover .created-at-hovered {
+  visibility: visible;
+}
 
 .comment-comments {
   grid-row: 4 / 5;

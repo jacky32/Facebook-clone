@@ -14,7 +14,9 @@
         <%= render partial: 'likes/like_buttons', locals: { likeable: comment } %>
       <% end %>
       <div class="comment-reply" data-action="click->comment#toggleReply">Reply</div>
-      <div class="comment-created-at"><%= comment.created_at %></div>
+      <div class="created-at"><%= comment.time_difference %>
+        <span class="created-at-hovered"> <%= comment.hover_date %> </span>
+      </div>
     </div>
   </div>
   <div class="new-comment hidden" data-comment-target="reply" >

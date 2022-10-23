@@ -6,7 +6,9 @@
         <%= post.user.name %>
       <% end %>
     </div>
-    <div class="post-date"> <%= post.created_at %></div>
+      <div class="created-at"><%= post.time_difference %>
+        <span class="created-at-hovered"> <%= post.hover_date %> </span>
+      </div>
     <div class="post-edit">Edit</div>
   </div>
   <div class="post-body">
@@ -29,7 +31,7 @@
     <div class="post-comment-button" data-action="click->post#showComments">Comment</div>
     <div class="post-share-button">Share</div>
   </div>
-  <div class="post-comments hidden" data-post-target="comments">
+  <div class="post-comments " data-post-target="comments">
     <div class="new-comment" >
       <div class="user-pic"><%= show_svg("avatar.svg") %></div>
       <%= render partial: 'comments/form', locals: { commentable: post } %>
