@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes, dependent: :destroy
   validates_presence_of :name
+
+  def get_profile_picture
+    'avatar.svg'
+  end
 end
