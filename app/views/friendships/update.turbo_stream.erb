@@ -1,6 +1,17 @@
 <% if notice %>
   <%# Adds comment to commentable after posting %>
-  <%= turbo_stream.remove ("#{dom_id @friendship}") %>
+  <%= turbo_stream.remove "#{dom_id @friendship}" %>
+  <%= turbo_stream.replace "friend-list" do %>
+    <%= turbo_frame_tag "friend-list" do %>
+      <% current_user.friends.each do |friend| %>
+        <div class="friend-name"> 
+          <%= link_to friend, data: { turbo_frame: "main" } do %>
+            <%= friend.name %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
 
   <%# TODO: show number of friend requests, update ?  %>
 

@@ -1,11 +1,25 @@
 <div id="friend-requests">
-  <% current_user.friend_requests.each do |friend_request| %>
+  <% current_user.friend_requests.includes(:user).each do |friend_request| %>
     <%= turbo_frame_tag dom_id(friend_request), class: "friend-request" do %>
       <%= button_to "Accept", friendship_path(friend_request), method: :patch %>
-      <%= friend_request.user.name %>
+      <%= link_to friend_request.user, data: { turbo_frame: "main" } do %>
+        <%= friend_request.user.name %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
+
+<hr>
+
+<%= turbo_frame_tag "friend-list" do %>
+  <% current_user.friends.each do |friend| %>
+    <div class="friend-name"> 
+      <%= link_to friend, data: { turbo_frame: "main" } do %>
+        <%= friend.name %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 
 <%# <div class="friend">
   <div class="pic">Pic</div>

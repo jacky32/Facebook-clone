@@ -12,3 +12,8 @@
   display: grid;
   grid-template-columns: 80px 1fr;
 }
+
+#friend-list {
+  display: grid;
+  grid-auto-rows: 30px;
+}

@@ -8,9 +8,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: :show
 
-  resources :friendships do
-    post :accept_request
-  end
+  resources :friendships, only: %i[create update destroy]
 
   root 'dashboard#show'
 end
