@@ -7,9 +7,6 @@
 <%= turbo_frame_tag "main" do %>
   <%= render template: "posts/index" %>
 <% end %>
-<div id="friends-panel">
-  <div class="friend">
-    <div class="pic">Pic</div>
-    <div class="name">Name</div>
-  </div>
-</div>
+<%= turbo_frame_tag "friends-panel" do %>
+  <%= render 'layouts/friends_panel' %>
+<% end %>

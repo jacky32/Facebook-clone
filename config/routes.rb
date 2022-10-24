@@ -8,5 +8,9 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: :show
 
+  resources :friendships do
+    post :accept_request
+  end
+
   root 'dashboard#show'
 end
