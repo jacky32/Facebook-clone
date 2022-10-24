@@ -5,6 +5,7 @@
   /* justify-content: center; */
   align-items: center;
   gap: 8px;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -135,18 +136,18 @@
 }
 
 .liked-button {
-  color: var(--very-dark-green);
+  color: var(--clicked-buttton);
 }
 
-/* 
-.post-buttons > .post-like-button {
+.liked-button svg {
+  fill: var(--clicked-buttton) !important;
+}
+
+/* .post-buttons > .post-like-button {
 }
 .post-buttons > .post-comment-button {
 }
 .post-buttons > .post-share-button {
-}
-
-.post-comments {
 } */
 
 #new-post {
@@ -272,19 +273,21 @@
   border-radius: 100%;
   width: 20px;
   height: 20px;
-  background-color: var(--dark-green);
+  background-color: var(--like-background);
+  color: #fff;
 }
 
-.form-button {
+.comment-like > form > button {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.form-button svg {
-  width: 28px;
-  height: 28px;
+.comment-like > form > button svg {
+  width: 1em;
+  height: 1em;
   cursor: pointer;
+  margin-right: 2px;
 }
 /* .comment-reply {
 } */

@@ -15,9 +15,11 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(comment_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @comment.save
-        format.turbo_stream
+        format.html { redirect_to post_path, notice: 'Comment created! ' }
+        format.turbo_stream { flash.now[:notice] = 'Comment created!' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, alert: 'Comment was not created!' }
+        format.turbo_stream { flash.now[:alert] = 'Comment was not created!' } # returns status OK
       end
     end
   end

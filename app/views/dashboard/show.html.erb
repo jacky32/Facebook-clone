@@ -1,10 +1,15 @@
 <%= render 'layouts/header'%>
 <div id="left-panel">
-<%= turbo_frame_tag "flash" do %>
-  <%= render "layouts/flash" %>
-<% end %>
+  <%= turbo_frame_tag "flash" do %>
+    <%= render "layouts/flash" %>
+  <% end %>
 </div>
 <%= turbo_frame_tag "main" do %>
   <%= render template: "posts/index" %>
 <% end %>
-<div id="friends-panel"></div>
+<div id="friends-panel">
+  <div class="friend">
+    <div class="pic">Pic</div>
+    <div class="name">Name</div>
+  </div>
+</div>

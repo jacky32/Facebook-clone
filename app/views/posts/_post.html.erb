@@ -31,7 +31,7 @@
     <div class="post-comment-button" data-action="click->post#showComments"><%= show_svg('icons/write.svg') %> Comment</div>
     <div class="post-share-button"><%= show_svg('icons/share-alt.svg') %> Share</div>
   </div>
-  <div class="post-comments hidden" data-post-target="comments">
+  <div class="post-comments hidden slideout" data-post-target="comments">
     <div class="new-comment" >
       <div class="user-pic"><%= show_svg(post.user.get_profile_picture) %></div>
       <%= render partial: 'comments/form', locals: { commentable: post } %>
