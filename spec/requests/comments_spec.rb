@@ -10,18 +10,6 @@ RSpec.describe 'Comments', type: :request do
     sign_in test_user
   end
 
-  describe 'GET new' do
-    it 'succeeds on post' do
-      get new_post_comment_path(test_post)
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'succeeds on comment' do
-      get new_comment_comment_path(test_comment)
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'POST create' do
     context 'with valid params' do
       it 'creates a new comment on a post' do

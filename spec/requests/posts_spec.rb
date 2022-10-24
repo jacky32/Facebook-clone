@@ -8,13 +8,6 @@ RSpec.describe 'Posts', type: :request do
     sign_in test_user
   end
 
-  describe 'GET new' do
-    it 'succeeds' do
-      get new_post_path
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'POST create' do
     context 'with valid params' do
       it 'creates a new post' do

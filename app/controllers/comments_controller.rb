@@ -12,13 +12,14 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @post = helpers.get_parent_post(@commentable)
     @comment = @commentable.comments.new(comment_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to post_path, notice: 'Comment created! ' }
+        format.html { redirect_to post_path(@post), notice: 'Comment created! ' }
         format.turbo_stream { flash.now[:notice] = 'Comment created!' }
       else
-        format.html { render :new, status: :unprocessable_entity, alert: 'Comment was not created!' }
+        format.html { redirect_to post_path(@post), status: :unprocessable_entity, alert: 'Comment was not created!' }
         format.turbo_stream { flash.now[:alert] = 'Comment was not created!' } # returns status OK
       end
     end
