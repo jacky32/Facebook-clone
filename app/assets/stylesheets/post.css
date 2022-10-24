@@ -308,7 +308,7 @@
   top: 100%;
   left: 50%;
   margin-left: -160px;
-  width: 320px;
+  max-width: 320px;
   text-align: center;
   white-space: nowrap;
   padding: 8px;
