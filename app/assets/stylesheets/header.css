@@ -4,6 +4,7 @@ header {
   grid-column: 1 / 4;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px;
   /* position: sticky;
   top: 0;
   z-index: 999; */
@@ -14,6 +15,7 @@ header > div {
   justify-content: center;
   align-items: center;
   gap: 8px;
+  height: 100%;
 }
 
 #header-logo {
@@ -30,13 +32,84 @@ header > div {
 /* #header-middle-options {
 } */
 
+#header-middle-options svg {
+  width: 32px;
+  height: 32px;
+  margin: 0 24px;
+}
+
+#header-middle-options a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background-color 0.25s ease-in;
+}
+
+#header-middle-options a:hover {
+  background-color: rgba(0, 128, 0, 0.192);
+  transition: none;
+}
+
 #header-right-options {
+  position: relative;
   justify-content: right;
   padding-right: 16px;
 }
+
+#header-right-options > div {
+  cursor: pointer;
+}
+
+#header-right-options svg {
+  width: 34px;
+  height: 34px;
+  padding: 2px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+#header-right-profile-dropdown {
+  position: absolute;
+  top: 40px;
+  background-color: rgb(26, 182, 33);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  grid-auto-rows: 40px;
+}
+
+#header-right-profile-dropdown > a {
+  padding: 8px 12px;
+  display: grid;
+  grid-template-columns: 32px auto;
+  transition: background-color 0.25s ease-in;
+  border-radius: 8px;
+}
+
+#header-right-profile-dropdown > a div {
+  display: flex;
+  align-items: center;
+}
+
+#header-right-profile-dropdown > a svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  height: 24px;
+  width: 24px;
+}
+
+#header-right-profile-dropdown > a:hover {
+  background-color: rgba(0, 0, 0, 0.103);
+  transition: none;
+}
+
 /* 
-
-
 <div id="header-logo"></div>
   
 <div id="header-middle-options">

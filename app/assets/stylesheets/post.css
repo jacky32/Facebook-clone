@@ -51,8 +51,13 @@
   align-items: center;
 }
 
+.user-pic svg {
+  border-radius: 50%;
+}
+
 .comment-self > .user-pic {
   align-items: flex-start;
+  margin: 4px;
 }
 
 .post-info > .post-date {
@@ -127,12 +132,13 @@
   text-align: center;
   flex-grow: 1;
   border-radius: 4px;
-  transition: background-color 0.2s ease-out;
+  transition: background-color 0.25s ease-in;
   font-weight: 600;
 }
 
 .post-buttons > *:hover {
   background-color: var(--post-hover-color);
+  transition: none;
 }
 
 .liked-button {

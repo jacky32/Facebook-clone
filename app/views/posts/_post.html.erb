@@ -1,14 +1,14 @@
 <div class="post" id="<%= dom_id post %>" data-controller="post">
   <div class="post-info">
-    <div class="user-pic"><%= show_svg(post.user.get_profile_picture) %></div>
-    <div class="user-name">
-      <%= link_to user_path(post.user) do %>
-        <%= post.user.name %>
-      <% end %>
+    <%= link_to post.user, class: "user-pic" do %>
+      <%= show_svg(post.user.get_profile_picture) %>
+    <% end %>
+    <%= link_to user_path(post.user), class: "user-name" do %>
+      <%= post.user.name %>
+    <% end %>
+    <div class="created-at"><%= post.time_difference %>
+      <span class="created-at-hovered"> <%= post.hover_date %> </span>
     </div>
-      <div class="created-at"><%= post.time_difference %>
-        <span class="created-at-hovered"> <%= post.hover_date %> </span>
-      </div>
     <div class="post-edit clickable-text"><%= show_svg('icons/more-horizontal.svg') %></div>
   </div>
   <div class="post-body">
@@ -18,11 +18,9 @@
     <%= turbo_frame_tag "#{dom_id(post)}_like_count", class: "post-like-number" do %>
       <%= render partial: 'likes/like_count', locals: { likeable: post } %>
     <% end%>
-    <div class="post-comments-number clickable-text" data-action="click->post#toggleComments">
-      <%= turbo_frame_tag "#{dom_id(post)}_comment_count" do %>
-        <%= render partial: 'comments/comment_count', locals: { post: post } %>
-      <% end%>
-    </div>
+    <%= turbo_frame_tag "#{dom_id(post)}_comment_count", class: "post-comments-number clickable-text", data: { action: "click->post#toggleComments" } do %>
+      <%= render partial: 'comments/comment_count', locals: { post: post } %>
+    <% end%>
   </div>
   <div class="post-buttons">
     <%= turbo_frame_tag dom_id(post) + "_like", class: "post-like-button" do %>
@@ -33,7 +31,9 @@
   </div>
   <div class="post-comments hidden slideout" data-post-target="comments">
     <div class="new-comment" >
-      <div class="user-pic"><%= show_svg(post.user.get_profile_picture) %></div>
+      <%= link_to post.user, class: "user-pic" do %>
+        <%= show_svg(post.user.get_profile_picture) %>
+      <% end %>
       <%= render partial: 'comments/form', locals: { commentable: post } %>
     </div>
     <div id="<%= dom_id post %> comments" class="comments" data-post-target="commentOverflow">

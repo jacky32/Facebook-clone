@@ -5,15 +5,72 @@
 
 #friend-requests {
   display: grid;
-  grid-auto-rows: 30px;
+  grid-auto-rows: 32px;
+  padding-top: 4px;
 }
 
 .friend-request {
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 32px 1fr;
+  gap: 4px;
+}
+
+.friend-request > form,
+.friend-request > a,
+.friend {
+  border-radius: 8px;
+  transition: 0.25s background-color ease-in;
+}
+
+.friend-request > form:hover,
+.friend-request > a:hover,
+.friend:hover {
+  background-color: rgba(0, 0, 0, 0.103);
+  transition: none;
+}
+
+.friend-request * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.friend-request > a {
+  padding-left: 3px;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+}
+
+.friend-request > a > div {
+  justify-self: start;
+}
+
+.friend-request > a > svg {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--border-radius-color);
 }
 
 #friend-list {
   display: grid;
-  grid-auto-rows: 30px;
+  grid-auto-rows: 34px;
+  gap: 4px;
+}
+
+.friend {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 6px;
+  border-radius: 8px;
+  align-items: center;
+  padding-left: 2px;
+}
+
+.friend > svg {
+  border-radius: 50%;
+  border: 1px solid var(--border-radius-color);
+  height: 28px;
+  width: 28px;
+  justify-self: center;
 }

@@ -1,9 +1,12 @@
 <div id="friend-requests">
   <% current_user.friend_requests.includes(:user).each do |friend_request| %>
     <%= turbo_frame_tag dom_id(friend_request), class: "friend-request" do %>
-      <%= button_to "Accept", friendship_path(friend_request), method: :patch %>
+      <%= button_to friendship_path(friend_request), method: :patch do %>
+        <%= show_svg('icons/user-plus.svg') %>
+      <% end %>
       <%= link_to friend_request.user, data: { turbo_frame: "main" } do %>
-        <%= friend_request.user.name %>
+        <%= show_svg(friend_request.user.get_profile_picture) %>
+        <div><%= friend_request.user.name %></div>
       <% end %>
     <% end %>
   <% end %>
@@ -12,12 +15,11 @@
 <hr>
 
 <%= turbo_frame_tag "friend-list" do %>
-  <% current_user.friends.each do |friend| %>
-    <div class="friend-name"> 
-      <%= link_to friend, data: { turbo_frame: "main" } do %>
-        <%= friend.name %>
-      <% end %>
-    </div>
+  <% current_user.friends.each do |friend| %> 
+    <%= link_to friend, class:"friend", data: { turbo_frame: "main" } do %>
+      <%= show_svg(friend.get_profile_picture) %>
+      <div><%= friend.name %></div>
+    <% end %>
   <% end %>
 <% end %>
 

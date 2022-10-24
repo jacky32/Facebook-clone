@@ -6,17 +6,37 @@
   </div>
   
   <div id="header-middle-options">
-    <div id="header-middle-posts">
-      <%= link_to 'Home', root_path, data: { turbo_frame: "main" } %>
-    </div>
-    <div id="header-middle-communities">Communities</div>
+    <%= link_to root_path, id: "header-middle-posts", data: { turbo_frame: "main" } do %>
+      <%= show_svg('icons/home-outline.svg')%>
+    <% end %>
+    <%= link_to root_path, id: "header-middle-communities", data: { turbo_frame: "main" } do %>
+      <%= show_svg('icons/people-outline.svg')%>
+    <% end %>
   </div>
 
-  <div id="header-right-options">
-    <div id="header-right-messages">Messages</div>
-    <div id="header-right-notifications">Notifications</div>
-    <div id="header-right-profile">
-      <%= link_to 'Profile', user_path(current_user), data: { turbo_frame: "main" } %>
+  <div id="header-right-options" data-controller="header">
+    <div id="header-right-messages">
+      <%= show_svg('icons/chatbubbles-outline.svg')%>
+    </div>
+    <div id="header-right-notifications">
+      <%= show_svg('icons/notifications-outline.svg')%>
+    </div>
+    <div id="header-right-profile" data-action="click->header#toggleDropdown" data-header-target="profileButton">
+        <%= show_svg(current_user.get_profile_picture) %>
+    </div>
+    <div id="header-right-profile-dropdown" class="hidden" data-header-target="profileDropdown">
+      <%= link_to user_path(current_user), data: { turbo_frame: "main" } do %>
+        <%= show_svg('icons/user.svg') %>
+        <div>Profile</div>
+      <% end %>
+      <%= link_to root_path do %>
+        <%= show_svg('icons/settings-outline.svg') %>
+        <div>Settings</div>
+      <% end %>
+      <%= link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_frame: "_top" } do %>
+        <%= show_svg('icons/log-out-outline.svg') %>
+        <div>Log out</div>
+      <% end %>
     </div>
   </div>
 </header>

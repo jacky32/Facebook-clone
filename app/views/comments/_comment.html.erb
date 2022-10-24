@@ -1,8 +1,12 @@
 <div id="<%= dom_id comment %>" class="comment" data-controller="comment">
   <div class="comment-self">
-    <div class="user-pic"><%= show_svg(comment.user.get_profile_picture) %></div>
+    <%= link_to comment.user, class: "user-pic" do %>
+      <%= show_svg(comment.user.get_profile_picture) %>
+    <% end %>
     <div class="comment-body">
-      <div class="comment-user-name"><%= comment.user.name %></div>
+      <%= link_to comment.user, class: "comment-user-name" do %>
+        <%= comment.user.name %>
+      <% end %>
       <div class="comment-text"><%= comment.text %></div>
     </div>
     <%= turbo_frame_tag "#{dom_id(comment)}_like_count", class: "comment-likes" do %>
