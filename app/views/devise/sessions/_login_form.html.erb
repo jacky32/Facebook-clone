@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { target: "form", action: "turbo:submit-start>login#checkInputValidity" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { controller: "login", target: "form", action: "turbo:submit-start>login#checkInputValidity" }) do |f| %>
   <%= render "layouts/flash" %>
   <div class="field">
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: true, data: { "login-target": "email" }, aria: { label: "Email" } %>
@@ -13,4 +13,6 @@
   </div>
 
   <div class="horizontal-line"></div>
+
+  <%= link_to "Create new account", new_user_registration_path, class: "user-link" %>
 <% end %>

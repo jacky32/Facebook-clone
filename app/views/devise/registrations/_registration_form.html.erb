@@ -1,0 +1,30 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { controller: "registration", target: "form", action: "turbo:submit-start>registration#checkInputValidity" }) do |f| %>
+  <%= render "layouts/flash" %>
+  <div class="field">
+    <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "First name", required: true, data: { "registration-target": "firstName" }, aria: { label: "First name" } %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Last name", required: true, data: { "registration-target": "lastName" }, aria: { label: "Last name" } %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, autocomplete: "email", placeholder: "Email", required: true, data: { "registration-target": "email" }, aria: { label: "Email" } %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "new-password", minlength: "5", placeholder: "Password (#{@minimum_password_length} characters minimum)", required: true, data: { "registration-target": "password" }, aria: { label: "Password" } %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", minlength: "5", placeholder: "Password", data: { "registration-target": "passwordConfirmation" }, aria: { label: "Password Confirmation" } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create account" %>
+  </div>
+
+  <div class="horizontal-line"></div>
+
+  <%= link_to "Log in", new_user_session_path, class: "user-link" %>
+<% end %>

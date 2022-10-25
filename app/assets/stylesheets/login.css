@@ -40,7 +40,6 @@
 
 #login-form .field,
 #login-form .actions {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,4 +85,20 @@
 
 #login-form .flash-message {
   margin: auto;
+}
+
+.user-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  background-color: #42b72a;
+  transition: background-color 0.2s;
+}
+
+.user-link:hover {
+  background-color: #36a420;
 }

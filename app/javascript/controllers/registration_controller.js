@@ -1,7 +1,14 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["email", "password", "form"];
+  static targets = [
+    "email",
+    "password",
+    "form",
+    "firstName",
+    "lastName",
+    "passwordConfirmation",
+  ];
   connect() {
     this.emailTarget.addEventListener("focusout", () =>
       this.checkValid(this.emailTarget, "e-mail")
@@ -9,11 +16,20 @@ export default class extends Controller {
     this.passwordTarget.addEventListener("focusout", () =>
       this.checkValid(this.passwordTarget, "password")
     );
+    this.emailTarget.addEventListener("focusout", () =>
+      this.checkValid(this.firstNameTarget, "first name")
+    );
+    this.passwordTarget.addEventListener("focusout", () =>
+      this.checkValid(this.lastNameTarget, "last name")
+    );
+    this.passwordTarget.addEventListener("focusout", () =>
+      this.checkValid(this.passwordConfirmationTarget, "password confirmation")
+    );
   }
 
   checkInputValidity(e) {
     if (!e.detail.formSubmission.validity.valid) {
-      this.showErrors(e.detail);
+      this.showErrors();
       e.detail.formSubmission.stop();
     }
   }
@@ -21,6 +37,9 @@ export default class extends Controller {
   showErrors() {
     this.checkValid(this.emailTarget, "e-mail");
     this.checkValid(this.passwordTarget, "password");
+    this.checkValid(this.firstNameTarget, "first name");
+    this.checkValid(this.lastNameTarget, "last name");
+    this.checkValid(this.passwordConfirmationTarget, "password confirmation");
   }
 
   checkValid(target, message) {
