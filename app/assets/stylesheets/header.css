@@ -82,7 +82,8 @@ header > div {
   grid-auto-rows: 40px;
 }
 
-#header-right-profile-dropdown > a {
+#header-right-profile-dropdown > a,
+#header-right-profile-dropdown > form > button {
   padding: 8px 12px;
   display: grid;
   grid-template-columns: 32px auto;
@@ -90,12 +91,15 @@ header > div {
   border-radius: 8px;
 }
 
-#header-right-profile-dropdown > a div {
+#header-right-profile-dropdown > a div,
+#header-right-profile-dropdown > form > button div {
   display: flex;
   align-items: center;
+  width: 90px;
 }
 
-#header-right-profile-dropdown > a svg {
+#header-right-profile-dropdown > a svg,
+#header-right-profile-dropdown > form > button svg {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,7 +108,8 @@ header > div {
   width: 24px;
 }
 
-#header-right-profile-dropdown > a:hover {
+#header-right-profile-dropdown > a:hover,
+#header-right-profile-dropdown > form > button:hover {
   background-color: rgba(0, 0, 0, 0.103);
   transition: none;
 }

@@ -1,0 +1,16 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { target: "form", action: "turbo:submit-start>login#checkInputValidity" }) do |f| %>
+  <%= render "layouts/flash" %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: true, data: { "login-target": "email" }, aria: { label: "Email" } %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: true, data: { "login-target": "password" }, aria: { label: "Password" } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+
+  <div class="horizontal-line"></div>
+<% end %>

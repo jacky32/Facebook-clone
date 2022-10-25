@@ -1,12 +1,14 @@
-<%= render 'layouts/header'%>
-<div id="left-panel">
-  <%= turbo_frame_tag "flash" do %>
-    <%= render "layouts/flash" %>
+<div id="dashboard">
+  <%= render 'layouts/header'%>
+  <div id="left-panel">
+    <%= turbo_frame_tag "flash" do %>
+      <%= render "layouts/flash" %>
+    <% end %>
+  </div>
+  <%= turbo_frame_tag "main" do %>
+    <%= render template: "posts/index" %>
+  <% end %>
+  <%= turbo_frame_tag "friends-panel" do %>
+    <%= render 'layouts/friends_panel' %>
   <% end %>
 </div>
-<%= turbo_frame_tag "main" do %>
-  <%= render template: "posts/index" %>
-<% end %>
-<%= turbo_frame_tag "friends-panel" do %>
-  <%= render 'layouts/friends_panel' %>
-<% end %>

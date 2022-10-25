@@ -1,0 +1,11 @@
+<div id="login">
+  <div id="login-info">
+    <h1>facebook clone</h1>
+    <p>Example logins:</p>
+    <p>Email: a@a.cz</p>
+    <p>Password: aaaaaa</p>
+  </div>
+  <%= turbo_frame_tag "login-form", data: { controller: "login" } do %>
+    <%= render "devise/sessions/login_form" %>
+  <% end %>
+</div>

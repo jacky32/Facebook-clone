@@ -33,7 +33,7 @@
         <%= show_svg('icons/settings-outline.svg') %>
         <div>Settings</div>
       <% end %>
-      <%= link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_frame: "_top" } do %>
+      <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false } do %>
         <%= show_svg('icons/log-out-outline.svg') %>
         <div>Log out</div>
       <% end %>

@@ -22,6 +22,7 @@
   --like-background: #757927;
   --very-dark-green: #315811;
   --clicked-buttton: #184f09;
+  --error-color: rgb(175, 46, 46);
 
   --header-size: 40px;
 
@@ -44,10 +45,18 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--body-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dashboard {
+  width: 100vw;
+  height: 100vh;
   display: grid;
   grid-template-rows: var(--header-size) calc(100vh - var(--header-size));
   grid-template-columns: 240px 1fr 240px;
-  background-color: var(--body-background-color);
 }
 
 textarea {
@@ -62,11 +71,19 @@ textarea {
   resize: none;
 }
 
-input[type="submit"] {
+input,
+button {
   all: unset;
+}
+
+input[type="submit"] {
   cursor: pointer;
   width: 30px;
   height: 30px;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
@@ -75,16 +92,11 @@ a {
 }
 
 .error {
-  border: 2px solid rgb(175, 46, 46);
+  border: 2px solid var(--error-color);
 }
 
 .hidden {
   display: none !important;
-}
-
-button {
-  all: unset;
-  cursor: pointer;
 }
 
 .clickable-text {
