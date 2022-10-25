@@ -1,26 +1,21 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["email", "password", "form"];
-  connect() {
-    this.emailTarget.addEventListener("focusout", () =>
-      this.checkValid(this.emailTarget, "e-mail")
-    );
-    this.passwordTarget.addEventListener("focusout", () =>
-      this.checkValid(this.passwordTarget, "password")
-    );
-  }
-
-  checkInputValidity(e) {
+  checkInputValids(e) {
     if (!e.detail.formSubmission.validity.valid) {
-      this.showErrors(e.detail);
+      this.showErrors();
       e.detail.formSubmission.stop();
     }
   }
 
   showErrors() {
-    this.checkValid(this.emailTarget, "e-mail");
-    this.checkValid(this.passwordTarget, "password");
+    document.getElementById("new_user").children.forEach((div) => {
+      this.checkValid(div.firstChild, div.firstChild.placeholder.toLowerCase());
+    });
+  }
+
+  checkSelf(e) {
+    this.checkValid(e.target, e.target.placeholder.toLowerCase());
   }
 
   checkValid(target, message) {

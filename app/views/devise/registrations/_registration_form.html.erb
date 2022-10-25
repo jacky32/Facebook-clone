@@ -1,23 +1,30 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { controller: "registration", target: "form", action: "turbo:submit-start>registration#checkInputValidity" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { controller: "session", action: "turbo:submit-start>session#checkInputValids" }) do |f| %>
   <%= render "layouts/flash" %>
   <div class="field">
-    <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "First name", required: true, data: { "registration-target": "firstName" }, aria: { label: "First name" } %>
+    <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "First name", required: true, data: { action: "focusout->session#checkSelf"  }, aria: { label: "First name" } %>
   </div>
   
   <div class="field">
-    <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Last name", required: true, data: { "registration-target": "lastName" }, aria: { label: "Last name" } %>
+    <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Last name", required: true, data: { action: "focusout->session#checkSelf"  }, aria: { label: "Last name" } %>
   </div>
 
   <div class="field">
-    <%= f.email_field :email, autocomplete: "email", placeholder: "Email", required: true, data: { "registration-target": "email" }, aria: { label: "Email" } %>
+    <div id="new-birthday">
+      <%= f.label :birthday %>
+      <%= f.date_field :birthday, required: true,  data: { action: "focusout->session#checkSelf"  }, aria: { label: "Birthday" } %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: "new-password", minlength: "5", placeholder: "Password (#{@minimum_password_length} characters minimum)", required: true, data: { "registration-target": "password" }, aria: { label: "Password" } %>
+    <%= f.email_field :email, autocomplete: "email", placeholder: "Email", required: true, data: { action: "focusout->session#checkSelf" }, aria: { label: "Email" } %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", minlength: "5", placeholder: "Password", data: { "registration-target": "passwordConfirmation" }, aria: { label: "Password Confirmation" } %>
+    <%= f.password_field :password, autocomplete: "new-password", minlength: 6, required: true, placeholder: "Password (#{@minimum_password_length} characters minimum)", data: { action: "focusout->session#checkSelf"  }, aria: { label: "Password" } %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",  minlength: 6, required: true, placeholder: "Password confirmation", data: { action: "focusout->session#checkSelf"  }, aria: { label: "Password Confirmation" } %>
   </div>
 
   <div class="actions">
