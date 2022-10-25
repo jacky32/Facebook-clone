@@ -5,14 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-@user = User.create!(name: 'Test name1', email: 'a@a.cz', password: 'aaaaaa')
-@user2 = User.create!(name: 'Test name2', email: 'b@a.cz', password: 'aaaaaa')
-@user3 = User.create!(name: 'Test name3', email: 'c@a.cz', password: 'aaaaaa')
-@user4 = User.create!(name: 'Test name4', email: 'd@a.cz', password: 'aaaaaa')
+@user1 = User.create!(first_name: 'Joe', last_name: 'Smith', email: 'a@a.cz', password: 'aaaaaa')
+@user2 = User.create!(first_name: 'Abe', last_name: 'Grimson', email: 'b@a.cz', password: 'aaaaaa')
+@user3 = User.create!(first_name: 'Bob', last_name: 'Adams', email: 'c@a.cz', password: 'aaaaaa')
+@user4 = User.create!(first_name: 'Rick', last_name: 'Griffin', email: 'd@a.cz', password: 'aaaaaa')
 
-@user2.send_friend_request(@user)
-@user3.send_friend_request(@user)
-@user4.send_friend_request(@user)
+@user2.send_friend_request(@user1)
+@user3.send_friend_request(@user1)
+@user4.send_friend_request(@user1)
 
-@post = Post.create(user: @user, text: 'Text text text')
-@comment = Comment.create(user: @user, commentable: @post, text: 'Comment text')
+@post = Post.create(user: @user1, text: 'Text text text')
+@comment = Comment.create(user: @user1, commentable: @post, text: 'Comment text')

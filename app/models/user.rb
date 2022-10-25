@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # has_many :comments, as: :commentable
   has_many :comments
   has_many :likes, dependent: :destroy
-  validates_presence_of :name
+  validates_presence_of :first_name, :last_name
 
   has_many :friendships
   has_many :friend_requests, -> { where accepted: false }, class_name: 'Friendship', foreign_key: 'friend_id'
@@ -25,5 +25,9 @@ class User < ApplicationRecord
 
   def get_profile_picture
     'avatar.svg'
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 end
