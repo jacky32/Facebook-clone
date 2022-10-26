@@ -24,8 +24,12 @@ class User < ApplicationRecord
   end
 
   def mutual_friends(user)
-    mutual_friends = friends.map { |friend| friends.take(friend.id) if user.friends_with?(friend) }
-    mutual_friends[0]
+    other_friends = user.friends.pluck(:id)
+    my_friends = friends.pluck(:id)
+    mutual_friends = other_friends.select { |friend| my_friends.include?(friend) }
+
+    # { |friend| friends.take(friend.id) if user.friends_with?(friend) }
+    User.where(id: mutual_friends)
   end
 
   def send_friend_request(user)

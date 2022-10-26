@@ -20,5 +20,14 @@ LAST_NAMES = %w[Smith Johnson Williams Brown Jones Miller Davis Garcia Rodriguez
   u.send_friend_request(@user)
 end
 
+45.times do |i|
+  u = User.find(i + 1)
+  i.times do |j|
+    fr = u.send_friend_request(User.find(j + 1))
+    fr.accepted = true
+    fr.save
+  end
+end
+
 @post = Post.create(user: @user1, text: 'Text text text')
 @comment = Comment.create(user: @user1, commentable: @post, text: 'Comment text')
