@@ -59,6 +59,8 @@
   display: grid;
   grid-auto-rows: 34px;
   gap: 4px;
+  max-height: calc(100% - 260px);
+  overflow: auto;
 }
 
 .friend {

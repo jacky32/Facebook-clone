@@ -14,7 +14,7 @@ LAST_NAMES = %w[Smith Johnson Williams Brown Jones Miller Davis Garcia Rodriguez
                 Taylor Wilson Thomas Roberts Li Roy Anderson Harris Lewis Baker Matthews Knight Hughes Wright Jenkins
                 Green Bell Cox Armstrong Carter Ford].freeze
 
-16.times do |i|
+50.times do |i|
   u = User.create(first_name: FIRST_NAMES.sample, last_name: LAST_NAMES.sample, email: "t_#{i}@t.t", password: 'aaaaaa')
   p = Post.create(user: u, text: 'Post text text text text text text ')
   u.send_friend_request(@user)
