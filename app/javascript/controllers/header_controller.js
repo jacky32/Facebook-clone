@@ -6,8 +6,11 @@ export default class extends Controller {
   connect() {
     document.addEventListener("click", (e) => {
       if (
-        !this.profileDropdownTarget.contains(e.target) &&
-        !this.profileButtonTarget.contains(e.target)
+        (!this.profileDropdownTarget.contains(e.target) &&
+          !this.profileButtonTarget.contains(e.target)) ||
+        this.profileDropdownTarget.children[0].contains(e.target) ||
+        this.profileDropdownTarget.children[1].contains(e.target) ||
+        this.profileDropdownTarget.children[2].contains(e.target)
       ) {
         this.hideDropdown();
       }
