@@ -1,3 +1,85 @@
 <%= turbo_frame_tag "main" do %>
-  <%= @user.name %>
+  <div id="profile">
+    <div id="user-basic">
+      <div id="user-background">
+        Background picture
+      </div>
+      <div id="user-info">
+        <div id="user-profile-pic"><%= show_svg(@user.get_profile_picture)%></div>
+        <div id="user-instant">
+          <div id="user-name"><%= @user.name %></div>
+          <div id="user-friend-number">
+            <% if @friends_count == 1 %>
+              1 friend
+            <% else %>
+              <%= @friends_count %> friends
+            <% end %>
+            <div id="user-mutual-friends-number">
+              xx mutual friends
+            </div>
+          </div>
+          <div id="user-friend-pics">
+            <% @friends.first(8).each_with_index do |friend, index| %>
+              <% if index < 7 %>
+                <%= link_to friend, style: "z-index: #{20-index}" do %>
+                  <%= show_svg(friend.get_profile_picture)%>
+                <% end %>
+              <% else %>
+                <%= link_to friend, style: "z-index: #{20-index}", id:"user-friend-last-pic" do %>
+                  <%= show_svg(friend.get_profile_picture)%>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div id="user-actions">
+          <div id="user-actions-add-friend">Add friend</div>
+          <div id="user-actions-send-message">Send message</div>
+        </div>
+      </div>
+      <div id="user-header">
+        <div id="user-posts">Posts</div>
+        <div id="user-about">About</div>
+        <div id="user-friends">Friends</div>
+      </div>
+    </div>
+
+    <%= turbo_frame_tag "profile-content" do %>
+      <div id="user-left-intro">
+        <h1>Intro</h1>
+        <div id="user-left-details">
+          <div>From a b</div>
+          <div>Studies at xx</div>
+          <div>12-12-1212</div>
+          <div>Details</div>
+        </div>
+      </div>
+      <div id="user-left-friends">
+        <div id="user-left-friends-header">
+          <div id="user-left-friends-heading">Friends</div>
+          <div id="user-left-friends-count">
+            <% if @friends_count == 1 %>
+              1 friend
+            <% else %>
+              <%= @friends_count %> friends
+            <% end %>
+          </div>
+          <div id="user-see-all-friends">See all friends</div>
+        </div>
+        <div id="user-left-friends-grid">
+          <% @friends.last(9).each do |friend| %>
+            <%= link_to friend do%>
+              <div class="user-friend">
+                <%= show_svg(friend.get_profile_picture)%>
+                <div class="user-friend-name">
+                  <%= friend.name %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="user-posts"></div>
+    <% end %>
+  </div>
 <% end %>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
   end
 
+  get '*path', to: redirect('/')
+
   resource :dashboard, only: :show
 
   resources :friendships, only: %i[create update destroy]
