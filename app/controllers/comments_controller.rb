@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    @post = Post.find(params[:post_id]) if params[:post_id]
+    @post ||= Post.find(params[:post_id]) if params[:post_id]
   end
 
   def create
@@ -33,9 +33,9 @@ class CommentsController < ApplicationController
 
   def decide_commentable
     if params[:comment_id]
-      @commentable = Comment.find(params[:comment_id])
+      @commentable ||= Comment.find(params[:comment_id])
     elsif params[:post_id]
-      @commentable = Post.find(params[:post_id])
+      @commentable ||= Post.find(params[:post_id])
     end
   end
 end

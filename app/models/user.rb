@@ -19,6 +19,15 @@ class User < ApplicationRecord
     User.where(id: friend_ids)
   end
 
+  def friends_with?(user)
+    Friendship.accepted?(id, user.id)
+  end
+
+  def mutual_friends(user)
+    mutual_friends = friends.map { |friend| friends.take(friend.id) if user.friends_with?(friend) }
+    mutual_friends[0]
+  end
+
   def send_friend_request(user)
     friendships.create(friend_id: user.id)
   end

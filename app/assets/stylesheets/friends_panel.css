@@ -59,7 +59,7 @@
   display: grid;
   grid-auto-rows: 34px;
   gap: 4px;
-  max-height: calc(100% - 260px);
+  max-height: calc(100% - 280px);
   overflow: auto;
 }
 

@@ -31,9 +31,9 @@ class LikesController < ApplicationController
 
   def decide_likeable
     if params[:comment_id]
-      @likeable = Comment.find_by_id(params[:comment_id])
+      @likeable ||= Comment.find_by_id(params[:comment_id])
     elsif params[:post_id]
-      @likeable = Post.find_by_id(params[:post_id])
+      @likeable ||= Post.find_by_id(params[:post_id])
     end
   end
 end

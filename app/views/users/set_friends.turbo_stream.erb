@@ -1,0 +1,3 @@
+<%= turbo_stream.update "shown-friends" do %>
+  <%= render partial: "users/selected_friends", locals: {sel_friends: @selected_friends} %>
+<% end %>

@@ -1,0 +1,47 @@
+<div id="post-content">
+  <div id="user-left-intro">
+    <div class="user-heading">About</div>
+    <div id="user-left-details">
+      <div>From a b</div>
+      <div>Studies at xx</div>
+      <div>12-12-1212</div>
+      <div>Details</div>
+    </div>
+  </div>
+  <div id="user-left-friends">
+    <div id="user-left-friends-header">
+      <div class="user-heading">Friends</div>
+      <div id="user-left-friends-count">
+        <% if @friends_count == 1 %>
+          1 friend
+        <% else %>
+          <%= @friends_count %> friends
+        <% end %>
+      </div>
+      <div id="user-see-all-friends" class="clickable-text" data-change="friends" data-user="<%= @user.id %>" data-action="click->user#swap">See all friends</div>
+    </div>
+    <div id="user-left-friends-grid">
+      <% @friends.last(9).each do |friend| %>
+        <%= link_to friend, data: { turbo_frame: "main" } do%>
+          <div class="user-friend">
+            <%= show_svg(friend.get_profile_picture)%>
+            <div class="user-friend-name">
+              <%= friend.name %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div id="user-posts">
+    <% if @user == current_user %>
+      <div id="new-post">
+        <div class="user-pic"><%= show_svg("avatar.svg") %></div>
+        <%= render 'posts/form'%>
+      </div>
+    <% end %>
+    <div id="posts">
+      <%= render @user.posts %>
+    </div>
+  </div>
+</div>

@@ -6,8 +6,7 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = Friendship.find(params[:id])
-    pp @friendship
+    friendship
     @friendship.accepted = true
     respond_to do |format|
       if @friendship.save
@@ -16,5 +15,11 @@ class FriendshipsController < ApplicationController
         format.turbo_stream { flash.now[:alert] = 'Unable to establish the friendship!' }
       end
     end
+  end
+
+  private
+
+  def friendship
+    @friendship ||= Friendship.find(params[:id])
   end
 end

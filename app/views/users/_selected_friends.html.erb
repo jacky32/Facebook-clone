@@ -1,0 +1,24 @@
+<div id="user-friends-grid">
+  <% if sel_friends.nil? %>
+  <% elsif sel_friends.is_a?(User) %>
+    <%= link_to user_path(sel_friends.id), data: { turbo_frame: "main" } do%>
+      <div class="user-friend">
+        <%= show_svg(sel_friends.get_profile_picture)%>
+        <div class="user-friend-name">
+          <%= sel_friends.name %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <% sel_friends.each do |friend_test| %>
+      <%= link_to user_path(friend_test.id), data: { turbo_frame: "main" } do%>
+        <div class="user-friend">
+          <%= show_svg(friend_test.get_profile_picture)%>
+          <div class="user-friend-name">
+            <%= friend_test.name %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
