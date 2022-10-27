@@ -70,54 +70,6 @@ header > div {
   border: 1px solid white;
 }
 
-.dropdown {
-  position: absolute;
-  top: 40px;
-  background-color: rgb(26, 182, 33);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  display: grid;
-  gap: 2px;
-  padding: 8px;
-  grid-auto-rows: 40px;
-}
-
-.dropdown > a,
-.dropdown > div,
-.dropdown > form > button {
-  padding: 8px 12px;
-  display: grid;
-  grid-template-columns: 32px auto;
-  transition: background-color 0.25s ease-in;
-  border-radius: 8px;
-}
-
-.dropdown > a div,
-.dropdown > div div,
-.dropdown > form > button div {
-  display: flex;
-  align-items: center;
-  width: 90px;
-}
-
-.dropdown > a svg,
-.dropdown > div svg,
-.dropdown > form > button svg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  height: 24px;
-  width: 24px;
-}
-
-.dropdown > a:hover,
-.dropdown > div:hover,
-.dropdown > form > button:hover {
-  background-color: rgba(0, 0, 0, 0.103);
-  transition: none;
-}
-
 /* 
 <div id="header-logo"></div>
   
