@@ -1,9 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-
-  def index
-    @posts = current_user.friends_posts
-  end
+  before_action :post, only: %i[update destroy]
 
   def create
     @added = true
@@ -19,27 +16,25 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    post
-  end
-
   def update
-    post
     respond_to do |format|
       if @post.update(post_params)
+        format.html { redirect_to post_path, notice: 'Post edited!' }
         format.turbo_stream { flash.now[:notice] = 'Post edited!' }
       else
+        format.html { redirect_to root_path, status: :unprocessable_entity, alert: 'Post was not edited!' }
         format.turbo_stream { flash.now[:alert] = 'Post was not edited!' }
       end
     end
   end
 
   def destroy
-    post
     respond_to do |format|
       if @post.destroy
+        format.html { redirect_to root_path, notice: 'Post was deleted!' }
         format.turbo_stream { flash.now[:notice] = 'Post deleted!' }
       else
+        format.html { redirect_to post_path(@post), status: :unprocessable_entity, alert: 'Post was not deleted!' }
         format.turbo_stream { flash.now[:alert] = 'Post was not deleted!' }
       end
     end

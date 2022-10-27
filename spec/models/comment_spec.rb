@@ -9,6 +9,8 @@ RSpec.describe Comment, type: :model do
   describe 'Associations' do
     it { should belong_to(:commentable) }
     it { should belong_to(:user) }
+    it { should have_many(:comments) }
+    it { should have_many(:likes) }
   end
 
   describe 'Database' do
