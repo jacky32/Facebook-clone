@@ -103,6 +103,7 @@
   grid-column: 4 / 5;
   display: flex;
   gap: 8px;
+  padding: 4px;
 }
 
 #user-header {
@@ -114,7 +115,8 @@
 }
 
 #user-header > div,
-#user-friends-header > div {
+#user-friends-header > div,
+#user-actions > div {
   cursor: pointer;
   display: flex;
   padding: 8px 16px;
@@ -129,12 +131,14 @@
 }
 
 #user-header > div:hover,
-#user-friends-header > div:hover {
+#user-friends-header > div:hover,
+#user-actions > div:hover {
   background-color: #36a420;
 }
 
 #user-header > div.active,
-#user-friends-header > div.active {
+#user-friends-header > div.active,
+#user-actions > div.active {
   background-color: #36a420;
   border-bottom: 2px solid white;
 }

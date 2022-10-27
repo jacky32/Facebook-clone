@@ -1,4 +1,9 @@
-<div class="post" id="<%= dom_id post %>" data-controller="post">
+<% add = defined?(@added) %>
+<% if add %>
+ <div class="post added" id="<%= dom_id post %>" data-controller="post">
+<% else %>
+ <div class="post" id="<%= dom_id post %>" data-controller="post">
+<% end %>
   <div class="post-info">
     <%= link_to post.user, class: "user-pic" do %>
       <%= show_svg(post.user.get_profile_picture) %>

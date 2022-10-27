@@ -1,3 +1,14 @@
+.spinner-background {
+  background-color: rgba(0, 0, 0, 0.096);
+  min-height: 160px;
+  min-width: 160px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .lds-dual-ring {
   display: inline-block;
   width: 80px;

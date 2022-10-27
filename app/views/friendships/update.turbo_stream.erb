@@ -1,5 +1,4 @@
 <% if notice %>
-  <%# Adds comment to commentable after posting %>
   <%= turbo_stream.remove "#{dom_id @friendship}" %>
   <%= turbo_stream.replace "friend-list" do %>
     <%= turbo_frame_tag "friend-list" do %>

@@ -91,6 +91,24 @@ a {
   color: var(--default-text);
 }
 
+.added {
+  animation: generated 1s;
+}
+
+@keyframes generated {
+  0% {
+    opacity: 0;
+    scale: 0.9;
+  }
+  25% {
+    opacity: 1;
+    scale: 1.05;
+  }
+  50% {
+    scale: 1;
+  }
+}
+
 .error {
   border: 2px solid var(--error-color);
 }

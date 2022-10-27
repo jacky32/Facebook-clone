@@ -2,10 +2,11 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.order('created_at DESC').includes(:user, :comments).max(10)
+    @posts = current_user.friends_posts
   end
 
   def create
+    @added = true
     @post = Post.new(post_params.merge(user: current_user))
     respond_to do |format|
       if @post.save

@@ -10,6 +10,8 @@
     </div>
   </div>
   <%= turbo_frame_tag id="shown-friends", src: get_friends_path(selection:"all", id: @user.id) do %>
-    <div class="lds-dual-ring"></div>
+    <div class="spinner-background">
+      <div class="lds-dual-ring"></div>
+    </div>
   <% end %>
 </div>

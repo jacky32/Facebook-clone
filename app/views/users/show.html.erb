@@ -15,12 +15,14 @@
               <%= @friends_count %> friends
             <% end %>
             <div id="user-mutual-friends-number">
-              <% if current_user.mutual_friends(@user).nil? %>
-                0 mutual friends
-              <% elsif current_user.mutual_friends(@user).count == 1 %>
-                1 mutual friend
-              <% else %>
-                <%= current_user.mutual_friends(@user).count %> mutual friends
+              <% unless current_user == @user %>
+                <% if current_user.mutual_friends(@user).nil? %>
+                  0 mutual friends
+                <% elsif current_user.mutual_friends(@user).count == 1 %>
+                  1 mutual friend
+                <% else %>
+                  <%= current_user.mutual_friends(@user).count %> mutual friends
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -31,7 +33,7 @@
                   <%= show_svg(friend.get_profile_picture)%>
                 <% end %>
               <% else %>
-                <div id="user-friend-last-pic" data-change="friends" data-user="<%= @user.id %>" data-action="click->user#swap" style="z-index: 13">
+                <div id="user-friend-last-pic" data-change="friends" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive" style="z-index: 13">
                   <%= show_svg(friend.get_profile_picture)%>
                 </div>
               <% end %>
@@ -39,8 +41,14 @@
           </div>
         </div>
         <div id="user-actions">
-          <div id="user-actions-add-friend">Add friend</div>
-          <div id="user-actions-send-message">Send message</div>
+          <% if @user == current_user %>
+            <div id="user-actions-edit-info">Edit profile</div>
+          <% else %>
+            <% unless current_user.friends_with?(@user) %>
+              <div id="user-actions-add-friend">Add friend</div>
+            <% end %>
+            <div id="user-actions-send-message">Send message</div>
+          <% end %>
         </div>
       </div>
       <div id="user-header">
@@ -57,7 +65,9 @@
     </div>
 
     <%= turbo_frame_tag id="profile-content", src:get_profile_path(change: "posts", id: @user) do %>
-      <div class="lds-dual-ring"></div>
+      <div class="spinner-background">
+        <div class="lds-dual-ring"></div>
+      </div>
     <% end %>
   </div>
 <% end %>
