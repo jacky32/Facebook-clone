@@ -63,4 +63,75 @@ RSpec.describe 'Comments', type: :request do
       end
     end
   end
+
+  describe 'PATCH update' do
+    context 'with valid params' do
+      it 'does update the comment' do
+        expect do
+          patch comment_path(test_comment), params: {
+            comment: {
+              id: test_comment.id,
+              text: 'text longer'
+            }
+          }
+        end.to change { test_comment.reload.text }.to 'text longer'
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+    context 'without valid params' do
+      it 'does not update the comment' do
+        expect do
+          patch comment_path(test_comment), params: {
+            comment: {
+              id: test_comment.id,
+              text: ''
+            }
+          }
+        end.not_to change { test_comment.reload.text }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'PUT update' do
+    context 'with valid params' do
+      it 'does update the comment' do
+        expect do
+          put comment_path(test_comment), params: {
+            comment: {
+              id: test_comment.id,
+              text: 'text longer'
+            }
+          }
+        end.to change { test_comment.reload.text }.to 'text longer'
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+    context 'without valid params' do
+      it 'does not update the comment' do
+        expect do
+          put comment_path(test_comment), params: {
+            comment: {
+              id: test_comment.id,
+              text: ''
+            }
+          }
+        end.not_to change { test_comment.reload.text }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'DELETE destroy' do
+    it 'deletes the comment' do
+      expect do
+        delete comment_path(test_comment), params: {
+          comment: {
+            id: test_comment.id,
+            text: ''
+          }
+        }
+      end.to change { Comment.count }.by(-1)
+    end
+  end
 end
