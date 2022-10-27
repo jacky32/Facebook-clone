@@ -1,0 +1,8 @@
+<% comment = Comment.find(@id)%>
+<%= form_with model: comment, data: { controller: "modal", action: "turbo:submit-end->modal#hideModal" } do |f| %>
+  <%= f.text_area :text, value: comment.text, data: { controller: "textarea", action: "input->textarea#resize" } %>
+  <div class="buttons">
+    <%= f.submit "Edit", class: "button" %>
+    <div class="cancel button" data-action="click->modal#hideModal">Cancel</div>
+  </div>
+<% end %>

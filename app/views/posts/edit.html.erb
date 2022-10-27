@@ -1,4 +1,4 @@
-<% post = Post.find(params[:id])%>
+<% post = Post.find(@id)%>
 <%= form_with model: post, data: { controller: "modal", action: "turbo:submit-end->modal#hideModal" } do |f| %>
   <%= f.text_area :text, value: post.text, data: { controller: "textarea", action: "input->textarea#resize" } %>
   <div class="buttons">

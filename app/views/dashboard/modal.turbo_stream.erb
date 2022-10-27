@@ -1,1 +1,1 @@
-  <%= turbo_stream.update ("modal-content"), template: "posts/#{@selected}", locals: {post: @post} %>
+<%= turbo_stream.update ("modal-content"), template: "#{@option}/#{@selected}", locals: {post: @id, comment: @id} %>

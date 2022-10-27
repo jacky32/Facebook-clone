@@ -19,7 +19,8 @@ export default class extends Controller {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: e.target.getAttribute("data-post"),
+        post_id: e.target.getAttribute("data-post"),
+        comment_id: e.target.getAttribute("data-comment"),
         selected: e.target.getAttribute("data-button"),
       }),
     })

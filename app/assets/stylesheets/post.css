@@ -218,7 +218,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 240px;
+  /* min-height: 120px; */
+  max-height: 360px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -229,12 +230,17 @@
 }
 
 .comment-self {
+  position: relative;
   display: grid;
   grid-template-columns: 40px 1fr 18px 40px;
   grid-template-rows: auto 10px 20px;
 
   margin-top: 2px;
   margin-bottom: 2px;
+}
+
+.comment-self > .dropdown {
+  right: 0;
 }
 
 .comment-comments {
@@ -323,6 +329,11 @@
   padding: 8px;
   border-radius: 8px;
   background-color: var(--light-yellow);
+}
+
+.comment-actions > .created-at .created-at-hovered {
+  top: auto;
+  bottom: 100%;
 }
 
 .created-at:hover .created-at-hovered {
