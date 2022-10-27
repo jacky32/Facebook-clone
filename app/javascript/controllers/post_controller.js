@@ -6,6 +6,8 @@ export default class extends Controller {
     "commentOverflow",
     "innerCommentElement",
     "displayComments",
+    "editButton",
+    "editDropdown",
   ];
   static values = {
     defaultHeight: "240px",
@@ -14,6 +16,38 @@ export default class extends Controller {
     shownAllCommentsText: "Hide extra comments",
     showAllComments: false,
   };
+
+  connect() {
+    document.addEventListener("click", (e) => {
+      const chld = this.editDropdownTarget.children.length;
+      if (chld == 2) {
+        if (
+          (!this.editDropdownTarget.contains(e.target) &&
+            !this.editButtonTarget.contains(e.target)) ||
+          this.editDropdownTarget.children[0].contains(e.target) ||
+          this.editDropdownTarget.children[1].contains(e.target)
+        ) {
+          this.hideDropdown();
+        }
+      } else if (chld == 1) {
+        if (
+          (!this.editDropdownTarget.contains(e.target) &&
+            !this.editButtonTarget.contains(e.target)) ||
+          this.editDropdownTarget.children[0].contains(e.target)
+        ) {
+          this.hideDropdown();
+        }
+      }
+    });
+  }
+
+  hideDropdown() {
+    this.editDropdownTarget.classList.add("hidden");
+  }
+
+  toggleDropdown() {
+    this.editDropdownTarget.classList.toggle("hidden");
+  }
 
   toggleComments() {
     this.commentsTarget.classList.toggle("hidden");

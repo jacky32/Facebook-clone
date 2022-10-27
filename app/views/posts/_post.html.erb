@@ -14,7 +14,31 @@
     <div class="created-at"><%= post.time_difference %>
       <span class="created-at-hovered"> <%= post.hover_date %> </span>
     </div>
-    <div class="post-edit clickable-text"><%= show_svg('icons/more-horizontal.svg') %></div>
+    <% if post.user == current_user %>
+      <div class="post-edit clickable-text" data-action="click->post#toggleDropdown" data-post-target="editButton">
+        <%= show_svg('icons/more-horizontal.svg') %>
+      </div>
+      <div class="dropdown hidden" data-post-target="editDropdown" data-controller="modal">
+        <div class="clickable-text" data-button="edit" data-post="<%= post.id %>" data-action="click->modal#showModal">
+            <%= show_svg('icons/settings-outline.svg') %>
+            <div>Edit</div>
+        </div>
+        <div class="clickable-text" data-button="delete" data-post="<%= post.id %>" data-action="click->modal#showModal">
+          <%= show_svg('icons/trash.svg') %>
+          <div>Delete</div>
+        </div>
+      </div>
+    <% else %>
+      <div class="post-edit clickable-text" data-action="click->post#toggleDropdown" data-post-target="editButton">
+        <%= show_svg('icons/more-horizontal.svg') %>
+      </div>
+      <div class="dropdown hidden" data-post-target="editDropdown" data-controller="modal">
+        <%= link_to user_path(current_user), data: { turbo_frame: "main" } do %>
+          <%= show_svg('icons/warning-outline.svg') %>
+          <div>Report</div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="post-body">
     <%= post.text %>

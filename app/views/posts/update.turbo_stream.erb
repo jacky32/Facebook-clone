@@ -1,0 +1,6 @@
+<% if notice %>
+  <%= turbo_stream.replace ("#{dom_id @post}"), @post %>
+  <%= render_turbo_stream_flash_messages %>
+<% elsif alert %>
+  <%= render_turbo_stream_flash_messages %>
+<% end %>

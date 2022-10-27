@@ -7,7 +7,7 @@ export default class extends Controller {
   }
 
   swap(e) {
-    fetch("/set_friends", {
+    fetch("/add_friend", {
       method: "POST",
       headers: {
         "X-CSRF-Token": this.token,

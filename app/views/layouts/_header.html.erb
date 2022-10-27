@@ -24,7 +24,7 @@
     <div id="header-right-profile" data-action="click->header#toggleDropdown" data-header-target="profileButton">
         <%= show_svg(current_user.get_profile_picture) %>
     </div>
-    <div id="header-right-profile-dropdown" class="hidden" data-header-target="profileDropdown">
+    <div id="header-right-profile-dropdown" class="dropdown hidden" data-header-target="profileDropdown">
       <%= link_to user_path(current_user), data: { turbo_frame: "main" } do %>
         <%= show_svg('icons/user.svg') %>
         <div>Profile</div>

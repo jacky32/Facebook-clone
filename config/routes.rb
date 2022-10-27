@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'get_friends', to: 'users#get_friends'
 
   resource :dashboard, only: :show
+  post 'modal', to: 'dashboard#modal'
 
   resources :friendships, only: %i[create update destroy]
 

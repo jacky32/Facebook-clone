@@ -19,7 +19,39 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    post
+  end
+
+  def update
+    post
+    respond_to do |format|
+      if @post.update(post_params)
+        format.turbo_stream { flash.now[:notice] = 'Post edited!' }
+      else
+        format.turbo_stream { flash.now[:alert] = 'Post was not edited!' }
+      end
+    end
+  end
+
+  def destroy
+    post
+    respond_to do |format|
+      if @post.destroy
+        format.turbo_stream { flash.now[:notice] = 'Post deleted!' }
+      else
+        format.turbo_stream { flash.now[:alert] = 'Post was not deleted!' }
+      end
+    end
+    # flash.now[:notice] = "Post deleted!"
+    # render turbo_stream: 'posts/destroy'
+  end
+
   private
+
+  def post
+    @post ||= Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:text)

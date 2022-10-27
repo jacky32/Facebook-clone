@@ -1,0 +1,32 @@
+#modal-background {
+  position: absolute;
+  z-index: 5000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(144, 187, 146, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-box {
+  width: calc(var(--post-width) + 40px);
+  height: 460px;
+  background: var(--post-color);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+#modal-content > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.clickable-text > * {
+  pointer-events: none;
+}
