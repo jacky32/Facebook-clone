@@ -36,6 +36,16 @@ class User < ApplicationRecord
     friendships.create(friend_id: user.id)
   end
 
+  def ordered_posts
+    posts.order('created_at ASC').max(10)
+  end
+
+  def friends_posts
+    ids = friends.map(&:id)
+    ids << id
+    Post.includes(:user, :comments, :likes).order('created_at DESC').limit(10).where(user_id: ids)
+  end
+
   def get_profile_picture
     'avatar.svg'
   end
