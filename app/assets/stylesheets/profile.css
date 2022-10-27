@@ -101,9 +101,6 @@
 
 #user-actions {
   grid-column: 4 / 5;
-  display: flex;
-  gap: 8px;
-  padding: 4px;
 }
 
 #user-header {
@@ -114,9 +111,7 @@
   border-top: 1px solid grey;
 }
 
-#user-header > div,
-#user-friends-header > div,
-#user-actions > div {
+.button {
   cursor: pointer;
   display: flex;
   padding: 8px 16px;
@@ -130,17 +125,24 @@
   transition: background-color 0.2s;
 }
 
-#user-header > div:hover,
-#user-friends-header > div:hover,
-#user-actions > div:hover {
+.button:hover {
   background-color: #36a420;
 }
 
 #user-header > div.active,
 #user-friends-header > div.active,
-#user-actions > div.active {
+#user-actions > div.active,
+.button.active {
   background-color: #36a420;
   border-bottom: 2px solid white;
+}
+
+.buttons {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 #profile-content {

@@ -1,8 +1,8 @@
 <%= turbo_frame_tag id="modal-content" do %>
   <% post = Post.find(params[:id])%>
   <div>Are you sure?</div>
-  <div>
-    <%= button_to "Delete", post_path(post), method: :delete, data: { controller: "modal", action: "click->modal#hideModal" } %>
-    <div class="cancel" data-controller="modal" action="click->modal#hideModal">Cancel</div>
+  <div class="buttons">
+    <%= button_to "Delete", post_path(post), class: "button", method: :delete, data: { controller: "modal", action: "click->modal#hideModal" } %>
+    <div class="button cancel" data-controller="modal" data-action="click->modal#hideModal">Cancel</div>
   </div>
 <% end %>

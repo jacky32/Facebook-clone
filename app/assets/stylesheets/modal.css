@@ -14,17 +14,19 @@
 
 #modal-box {
   width: calc(var(--post-width) + 40px);
-  height: 460px;
+  height: auto;
   background: var(--post-color);
   border-radius: 8px;
   padding: 16px;
 }
-
+#modal-content,
 #modal-content > form {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .clickable-text > * {

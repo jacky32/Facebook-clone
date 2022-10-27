@@ -1,11 +1,11 @@
 <div id="user-friends" data-controller="friend">
   <div class="user-heading">Friends</div>
   <div id="user-friends-header">
-    <div id="user-friends-all" data-friend-target="all" class="active" data-selected="all" data-user="<%= @user.id %>" data-action="click->friend#swap click->friend#changeActive">
+    <div id="user-friends-all" data-friend-target="all" class="button active" data-selected="all" data-user="<%= @user.id %>" data-action="click->friend#swap click->friend#changeActive">
       All
     </div>
     
-    <div id="user-friends-mutual" data-friend-target="mutual" data-selected="mutual" data-user="<%= @user.id %>" data-action="click->friend#swap click->friend#changeActive">
+    <div id="user-friends-mutual" data-friend-target="mutual" class="button" data-selected="mutual" data-user="<%= @user.id %>" data-action="click->friend#swap click->friend#changeActive">
       Mutual
     </div>
   </div>

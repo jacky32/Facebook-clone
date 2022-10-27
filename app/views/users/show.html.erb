@@ -40,25 +40,25 @@
             <% end %>
           </div>
         </div>
-        <div id="user-actions">
+        <div id="user-actions" class="buttons">
           <% if @user == current_user %>
-            <div id="user-actions-edit-info">Edit profile</div>
+            <div id="user-actions-edit-info" class="button">Edit profile</div>
           <% else %>
             <% unless current_user.friends_with?(@user) %>
-              <div id="user-actions-add-friend">Add friend</div>
+              <div id="user-actions-add-friend" class="button">Add friend</div>
             <% end %>
-            <div id="user-actions-send-message">Send message</div>
+            <div id="user-actions-send-message" class="button">Send message</div>
           <% end %>
         </div>
       </div>
       <div id="user-header">
-        <div id="user-header-posts" data-user-target="posts" class="active" data-change="posts" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
+        <div id="user-header-posts" data-user-target="posts" class="button active" data-change="posts" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
           Posts
         </div>
-        <div id="user-header-about" data-user-target="about" data-change="about" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
+        <div id="user-header-about" data-user-target="about" class="button" data-change="about" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
           About
         </div>
-        <div id="user-header-friends" data-user-target="friends" data-change="friends" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
+        <div id="user-header-friends" data-user-target="friends" class="button" data-change="friends" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
           Friends
         </div>
       </div>
