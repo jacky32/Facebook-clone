@@ -129,12 +129,17 @@
   background-color: #36a420;
 }
 
-#user-header > div.active,
-#user-friends-header > div.active,
-#user-actions > div.active,
 .button.active {
   background-color: #36a420;
   border-bottom: 2px solid white;
+}
+
+.delete {
+  background-color: #da1717;
+}
+
+.delete:hover {
+  background-color: #f00;
 }
 
 .buttons {

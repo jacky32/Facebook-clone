@@ -20,8 +20,8 @@
       </div>
       <div class="dropdown hidden" data-post-target="editDropdown" data-controller="modal">
         <div class="clickable-text" data-button="edit" data-post="<%= post.id %>" data-action="click->modal#showModal">
-            <%= show_svg('icons/settings-outline.svg') %>
-            <div>Edit</div>
+          <%= show_svg('icons/settings-outline.svg') %>
+          <div>Edit</div>
         </div>
         <div class="clickable-text" data-button="delete" data-post="<%= post.id %>" data-action="click->modal#showModal">
           <%= show_svg('icons/trash.svg') %>
@@ -33,7 +33,7 @@
         <%= show_svg('icons/more-horizontal.svg') %>
       </div>
       <div class="dropdown hidden" data-post-target="editDropdown" data-controller="modal">
-        <%= link_to user_path(current_user), data: { turbo_frame: "main" } do %>
+        <%= link_to user_path(post.user), data: { turbo_frame: "main" } do %>
           <%= show_svg('icons/warning-outline.svg') %>
           <div>Report</div>
         <% end %>
