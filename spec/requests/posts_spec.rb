@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  let(:test_user) { User.new(email: 'abc@dfe.cz', name: 'ete', password: '123456') }
+  let(:test_user) { User.create(email: 'abc@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
 
   before(:each) do
     sign_in test_user

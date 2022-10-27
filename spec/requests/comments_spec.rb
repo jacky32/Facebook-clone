@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Comments', type: :request do
-  let(:test_user) { User.create(email: 'abc@dfe.cz', name: 'ete', password: '123456') }
+  let(:test_user) { User.create(email: 'abc@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
   let(:test_post) { Post.create(user: test_user, text: 'text') }
   let!(:test_comment) { Comment.create(user: test_user, commentable: test_post, text: 'text') }
 
