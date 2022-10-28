@@ -39,14 +39,4 @@ export default class extends Controller {
     this.aboutTarget.classList.remove("active");
     this.friendsTarget.classList.remove("active");
   }
-
-  editProfile() {}
-
-  sendMessage(e) {}
-
-  addFriend(e) {}
-
-  removeFriend(e) {}
-
-  unsendFriendRequest() {}
 }

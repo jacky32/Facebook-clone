@@ -10,15 +10,9 @@
     <%= render template: "posts/index" %>
   <% end %>
   <%= turbo_frame_tag "friends-panel" do %>
-    <%= render 'layouts/friends_panel' %>
+    <%= render 'friendships/friend_requests' %>
+    <hr>
+    <%= render 'friendships/friend_list' %>
   <% end %>
-  <div class="hidden" id="modal-background">
-    <div id="modal-box">
-      <%= turbo_frame_tag id="modal-content" do %>
-        <div class="spinner-background">
-          <div class="lds-dual-ring"></div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'layouts/modal' %>
 </div>

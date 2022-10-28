@@ -41,15 +41,6 @@
           </div>
         </div>
         <%= render partial: "users/user_actions", locals: { user: @user }%>
-        <% if true == false %>
-          <%= button_to friendship_path(friend_request), method: :patch do %>
-            <%= show_svg('icons/user-plus.svg') %>
-          <% end %>
-          <%= link_to friend_request.user, data: { turbo_frame: "main" } do %>
-            <%= show_svg(friend_request.user.get_profile_picture) %>
-            <div><%= friend_request.user.name %></div>
-          <% end %>
-        <% end %>
       </div>
       <div id="user-header">
         <div id="user-header-posts" data-user-target="posts" class="button active" data-change="posts" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive">
