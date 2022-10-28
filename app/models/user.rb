@@ -45,7 +45,7 @@ class User < ApplicationRecord
   end
 
   def ordered_posts
-    posts.order('created_at ASC').max(10)
+    posts.order('created_at ASC').limit(10)
   end
 
   def friends_posts

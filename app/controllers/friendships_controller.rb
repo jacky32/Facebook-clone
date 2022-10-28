@@ -29,19 +29,25 @@ class FriendshipsController < ApplicationController
     @friendship.accepted = true
     respond_to do |format|
       if @friendship.save
+        format.html { redirect_to root_path, notice: 'Friendship established!' }
         format.turbo_stream { flash.now[:notice] = 'Friendship established!' }
       else
+        format.html do
+          redirect_to root_path, status: :unprocessable_entity, alert: 'Unable to establish the friendship!'
+        end
         format.turbo_stream { flash.now[:alert] = 'Unable to establish the friendship!' }
       end
     end
   end
 
   def destroy
-    @friendship = Friendship.find_by_ids(params[:user_id], params[:friend_id])
+    friendship
     respond_to do |format|
       if @friendship.destroy
+        format.html { redirect_to root_path, notice: 'Friendship deleted!' }
         format.turbo_stream { flash.now[:notice] = 'Friendship deleted!' }
       else
+        format.html { redirect_to root_path, status: :unprocessable_entity, alert: 'Unable to delete the friendship!' }
         format.turbo_stream { flash.now[:alert] = 'Unable to delete the friendship!' }
       end
     end
