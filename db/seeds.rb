@@ -20,12 +20,17 @@ LAST_NAMES = %w[Smith Johnson Williams Brown Jones Miller Davis Garcia Rodriguez
   u.send_friend_request(@user)
 end
 
-45.times do |i|
-  u = User.find(i + 1)
-  i.times do |j|
-    fr = u.send_friend_request(User.find(j + 1))
-    fr.accepted = true
-    fr.save
+(5..50).to_a.each do |i|
+  u = User.find(i)
+  (1..50).to_a.each do |j|
+    next if j == i
+
+    fr = u.send_friend_request(User.find(j))
+    next if fr.nil?
+
+    fr.accepted = true if [false, true].sample
+    fr.save!
+    fr.reload
   end
 end
 

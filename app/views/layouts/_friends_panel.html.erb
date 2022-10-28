@@ -16,7 +16,7 @@
 
 <%= turbo_frame_tag "friend-list" do %>
   <% current_user.friends.each do |friend| %> 
-    <%= link_to friend, class:"friend", data: { turbo_frame: "main" } do %>
+    <%= link_to friend, class:"friend", id:"#{dom_id friend}_panel", data: { turbo_frame: "main" } do %>
       <%= show_svg(friend.get_profile_picture) %>
       <div><%= friend.name %></div>
     <% end %>

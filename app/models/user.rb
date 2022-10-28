@@ -19,11 +19,11 @@ class User < ApplicationRecord
     User.where(id: friend_ids)
   end
 
-  def friends_with?(user)
-    Friendship.accepted?(id, user.id)
+  def friends_with?(user:)
+    friends.include?(user)
   end
 
-  def mutual_friends(user)
+  def mutual_friends(user:)
     other_friends = user.friends.pluck(:id)
     my_friends = friends.pluck(:id)
     mutual_friends = other_friends.select { |friend| my_friends.include?(friend) }
@@ -32,8 +32,16 @@ class User < ApplicationRecord
     User.where(id: mutual_friends)
   end
 
-  def send_friend_request(user)
-    friendships.create(friend_id: user.id)
+  def send_friend_request(user_id:)
+    friendships.create(friend_id: user_id) unless Friendship.exists?(id, user_id)
+  end
+
+  def friend_request_sent?(user_id:)
+    Friendship.requested?(id, user_id)
+  end
+
+  def friend_request_received?(user_id:)
+    Friendship.requested?(user_id, id)
   end
 
   def ordered_posts

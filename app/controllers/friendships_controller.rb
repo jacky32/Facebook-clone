@@ -1,12 +1,31 @@
 class FriendshipsController < ApplicationController
+  before_action :friendship, only: %i[update]
+  before_action :user, only: %i[create update destroy]
+
   def accept_request
     @friend_request = Friendship.find(params[:friendship_id])
     @friend_request.accepted = true
     @friend_request.save
   end
 
+  def create
+    current_user_id = params[:user_id]
+    if current_user.friend_request_received?(user_id: @user.id)
+      @friendship = Friendship.where(user_id: @user.id, friend_id: current_user_id).first
+      @friendship.accepted = true
+    else
+      @friendship = Friendship.new(user_id: current_user_id, friend_id: @user.id)
+    end
+    respond_to do |format|
+      if @friendship.save
+        format.turbo_stream { flash.now[:notice] = 'Friend request sent!' }
+      else
+        format.turbo_stream { flash.now[:alert] = 'Unable to send the friend request!' }
+      end
+    end
+  end
+
   def update
-    friendship
     @friendship.accepted = true
     respond_to do |format|
       if @friendship.save
@@ -17,7 +36,22 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def destroy
+    @friendship = Friendship.find_by_ids(params[:user_id], params[:friend_id])
+    respond_to do |format|
+      if @friendship.destroy
+        format.turbo_stream { flash.now[:notice] = 'Friendship deleted!' }
+      else
+        format.turbo_stream { flash.now[:alert] = 'Unable to delete the friendship!' }
+      end
+    end
+  end
+
   private
+
+  def user
+    @user = User.find(params[:friend_id]) if params[:friend_id]
+  end
 
   def friendship
     @friendship ||= Friendship.find(params[:id])

@@ -1,20 +1,20 @@
 <% if notice %>
   <%= turbo_stream.remove "#{dom_id @friendship}" %>
-  <%= turbo_stream.update "friend-list" do %>
-    <% current_user.friends.each do |friend| %> 
-      <%= link_to friend, class:"friend", id:"#{dom_id friend}_panel", data: { turbo_frame: "main" } do %>
-        <%= show_svg(friend.get_profile_picture) %>
-        <div><%= friend.name %></div>
+  <%= turbo_stream.replace "friend-list" do %>
+    <%= turbo_frame_tag "friend-list" do %>
+      <% current_user.friends.each do |friend| %> 
+        <%= link_to friend, class:"friend", id:"#{dom_id friend}_panel",  data: { turbo_frame: "main" } do %>
+          <%= show_svg(friend.get_profile_picture) %>
+          <div><%= friend.name %></div>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
 
-  <%# user/show - profile page %>
-<% if @user %>
   <%= turbo_stream.replace "user-actions" do %>
     <%= render partial: "users/user_actions", locals: { user: @user }%>
   <% end %>
-<% end %>
+
   <%# TODO: show number of friend requests, update ?  %>
 
   <%= render_turbo_stream_flash_messages %>
