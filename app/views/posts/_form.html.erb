@@ -1,5 +1,5 @@
 <%= form_with model: Post.new, data: { controller: "form", action: "turbo:submit-end->form#clear" } do |f| %>
-  <%= f.text_area :text, data: { controller: "textarea", action: "input->textarea#resize" } %>
+  <%= f.text_area :text, data: { controller: "textarea", action: "input->textarea#resize keydown->textarea#send" } %>
   <%= f.button nil do %>
     <%= show_svg('icons/arrow-circle-right.svg') %>
   <% end %>
