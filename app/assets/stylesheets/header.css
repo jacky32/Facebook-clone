@@ -17,16 +17,29 @@ header > div {
   gap: 8px;
   height: 100%;
 }
+#header-left-options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 #header-logo {
   padding-left: 8px;
-  justify-content: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header-logo > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #header-logo svg {
   width: 40px;
   height: 40px;
-  fill: var(--dark-green);
+  fill: white;
 }
 
 /* #header-middle-options {
@@ -70,16 +83,28 @@ header > div {
   border: 1px solid white;
 }
 
-/* 
-<div id="header-logo"></div>
-  
-<div id="header-middle-options">
-  <div id="header-middle-posts">Home</div>
-  <div id="header-middle-communities">Communities</div>
-</div>
+#search-form > form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 16px;
+  padding: 2px 4px;
+  background-color: green;
+}
 
-<div id="header-right-options">
-  <div id="header-right-messages">Messages</div>
-  <div id="header-right-notifications">Notifications</div>
-  <div id="header-right-profile">Profile</div>
-</div> */
+#search-form input {
+  color: white;
+  padding: 2px 8px;
+  font-size: 1.1em;
+}
+
+#search-form svg {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+#search-form svg > line,
+#search-form svg > path {
+  stroke: white !important;
+}
