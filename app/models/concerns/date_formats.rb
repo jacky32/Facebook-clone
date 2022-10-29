@@ -31,8 +31,8 @@ module DateFormats
   end
 
   def today?
-    date = Date.current - created_at_local.to_date
-    date < 1
+    hours = (Time.current - created_at_local.to_time) / 3600
+    hours < 24
   end
 
   def hours
