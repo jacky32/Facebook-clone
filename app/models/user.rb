@@ -12,6 +12,15 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friend_requests, -> { where accepted: false }, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  has_one :user_info, dependent: :destroy
+
+  after_save :build_user_info
+
+  def build_user_info
+    u_i = UserInfo.create(user_id: id)
+    u_i.save
+  end
+
   def friends
     sent_friendships = Friendship.where(user_id: id, accepted: true).pluck(:friend_id)
     received_friendships = Friendship.where(friend_id: id, accepted: true).pluck(:user_id)

@@ -17,7 +17,7 @@ LAST_NAMES = %w[Smith Johnson Williams Brown Jones Miller Davis Garcia Rodriguez
 50.times do |i|
   u = User.create(first_name: FIRST_NAMES.sample, last_name: LAST_NAMES.sample, email: "t_#{i}@t.t", password: 'aaaaaa')
   p = Post.create(user: u, text: 'Post text text text text text text ')
-  u.send_friend_request(@user)
+  u.send_friend_request(user_id: @user.id)
 end
 
 (5..50).to_a.each do |i|
@@ -25,7 +25,7 @@ end
   (1..50).to_a.each do |j|
     next if j == i
 
-    fr = u.send_friend_request(User.find(j))
+    fr = u.send_friend_request(user_id: j)
     next if fr.nil?
 
     fr.accepted = true if [false, true].sample

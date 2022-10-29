@@ -19,8 +19,8 @@ export default class extends Controller {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        post_id: e.target.getAttribute("data-post"),
-        comment_id: e.target.getAttribute("data-comment"),
+        option: this.decideOption(e).option,
+        option_id: this.decideOption(e).id,
         selected: e.target.getAttribute("data-button"),
       }),
     })
@@ -31,6 +31,18 @@ export default class extends Controller {
   showModal(e) {
     this.loadModal(e);
     this.modal.classList.remove("hidden");
+  }
+
+  decideOption(e) {
+    if (e.target.getAttribute("data-post") !== null) {
+      return { option: "posts", id: e.target.getAttribute("data-post") };
+    } else if (e.target.getAttribute("data-comment") !== null) {
+      return { option: "comments", id: e.target.getAttribute("data-comment") };
+    } else if (e.target.getAttribute("data-user") !== null) {
+      return { option: "users", id: e.target.getAttribute("data-user") };
+    } else {
+      return null;
+    }
   }
 
   hideModal() {

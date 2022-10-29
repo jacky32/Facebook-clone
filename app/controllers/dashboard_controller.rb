@@ -31,15 +31,7 @@ class DashboardController < ApplicationController
   end
 
   def decide
-    @option = if params[:post_id]
-                'posts'
-              elsif params[:comment_id]
-                'comments'
-              end
-    @id = if params[:post_id]
-            params[:post_id]
-          elsif params[:comment_id]
-            params[:comment_id]
-          end
+    @option = params[:option]
+    @id = params[:option_id]
   end
 end

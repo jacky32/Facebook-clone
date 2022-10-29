@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "search-form" do %>
   <%= form_with url: "/search", method: :get do |f| %>
-    <%= f.text_field :query, required: true %>
+    <%= f.search_field :query, required: true %>
     <%= f.button do %>
       <%= show_svg('icons/search-outline.svg') %>
     <% end %>

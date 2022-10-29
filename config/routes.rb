@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users
+  resources :users do
+    resources :user_info, only: %i[create update destroy]
+  end
+  
   resources :posts, :comments, only: %i[create update destroy] do
     resources :comments, except: :new
     resources :likes, only: %i[create destroy]

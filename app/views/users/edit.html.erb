@@ -1,0 +1,14 @@
+<%= form_with model: current_user, data: { controller: "modal", action: "turbo:submit-end->modal#hideModal" } do |form| %>
+  <%= fields_for :user_info, current_user.user_info do |f| %>
+    <%= f.text_area :city %>
+    <%= f.text_area :school %>
+    <%= f.text_area :workplace %>
+    <%= f.date_field :birthday %>
+    <%= f.text_area :details %>
+    <%= f.file_field :avatar, accept: 'image/png, image/jpeg, image/jpg' %>
+  <% end %>
+  <div class="buttons">
+    <%= form.submit "Edit", class: "button" %>
+    <div class="cancel button" data-action="click->modal#hideModal">Cancel</div>
+  </div>
+<% end %>

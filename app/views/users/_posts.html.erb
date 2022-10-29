@@ -1,12 +1,7 @@
 <div id="post-content">
   <div id="user-left-intro">
     <div class="user-heading">About</div>
-    <div id="user-left-details">
-      <div>From a b</div>
-      <div>Studies at xx</div>
-      <div>12-12-1212</div>
-      <div>Details</div>
-    </div>
+    <%= render partial: "users/info", locals: { user: @user }%>
   </div>
   <div id="user-left-friends">
     <div id="user-left-friends-header">

@@ -1,6 +1,8 @@
 <%= turbo_frame_tag "user-actions", class: "buttons" do %>
   <% if user == current_user %>
-    <div id="user-actions-edit-info" data-action="click->user#editProfile" class="button">Edit profile</div>
+    <div class="button"  data-controller="modal" data-button="edit" data-user="<%= current_user.id %>" data-action="click->modal#showModal">
+      Edit profile
+    </div>
   <% else %>
     <div id="user-actions-send-message" data-user="<%= user.id %>" data-action="click->user#sendMessage" class="button">Send message</div>
     <% friendship_id = Friendship.find_by_ids(user.id, current_user.id) %>
