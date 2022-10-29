@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def get_friends
-    @selected_friends = @friends
+    @selected_friends = friends
     render formats: :turbo_stream, template: 'users/set_friends'
   end
 

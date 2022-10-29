@@ -243,3 +243,15 @@
   align-items: center;
   gap: 8px;
 }
+
+#modal-content .fields {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 8px;
+  grid-template-columns: 90px 1fr;
+}
+
+#modal-content .fields > label {
+  font-weight: 500;
+}

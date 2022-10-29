@@ -154,7 +154,7 @@ a {
 
 .button.active {
   background-color: var(--button-hover-color);
-  border-bottom: 2px solid var(--post-color);
+  border-bottom: 2px solid var(--like-color);
 }
 
 .delete {
