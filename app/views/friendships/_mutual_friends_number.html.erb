@@ -1,0 +1,11 @@
+<div>
+  <% unless current_user == other_user %>
+    <% if current_user.mutual_friends(user: other_user).nil? %>
+      0 mutual friends
+    <% elsif current_user.mutual_friends(user: other_user).count == 1 %>
+      1 mutual friend
+    <% else %>
+      <%= current_user.mutual_friends(user: other_user).count %> mutual friends
+    <% end %>
+  <% end %>
+</div>

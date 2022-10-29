@@ -14,31 +14,9 @@
             <% else %>
               <%= @friends_count %> friends
             <% end %>
-            <div id="user-mutual-friends-number">
-              <% unless current_user == @user %>
-                <% if current_user.mutual_friends(user: @user).nil? %>
-                  0 mutual friends
-                <% elsif current_user.mutual_friends(user: @user).count == 1 %>
-                  1 mutual friend
-                <% else %>
-                  <%= current_user.mutual_friends(user: @user).count %> mutual friends
-                <% end %>
-              <% end %>
-            </div>
+            <%= render partial: "friendships/mutual_friends_number", locals: { other_user: @user } %>
           </div>
-          <div id="user-friend-pics">
-            <% @friends.first(8).each_with_index do |friend, index| %>
-              <% if index < 7 %>
-                <%= link_to friend, style: "z-index: #{20-index}" do %>
-                  <%= show_svg(friend.get_profile_picture)%>
-                <% end %>
-              <% else %>
-                <div id="user-friend-last-pic" data-change="friends" data-user="<%= @user.id %>" data-action="click->user#swap click->user#changeActive" style="z-index: 13">
-                  <%= show_svg(friend.get_profile_picture)%>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
+            <%= render partial: "friendships/friend_heads", locals: { user: @user, amount: 8} %>
         </div>
         <%= render partial: "users/user_actions", locals: { user: @user }%>
       </div>

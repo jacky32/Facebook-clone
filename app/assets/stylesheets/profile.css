@@ -54,23 +54,23 @@
   font-weight: 600;
 }
 
-#user-friend-pics {
+.user-friend-pics {
   display: grid;
   grid-auto-flow: dense;
   grid-template-rows: 32px;
   grid-auto-columns: 26px;
 }
 
-#user-friend-pics > * {
+.user-friend-pics > * {
   position: relative;
   grid-row: 1;
 }
 
-#user-friend-last-pic svg {
+.user-friend-last-pic svg {
   pointer-events: none;
 }
 
-#user-friend-last-pic::before {
+.user-friend-last-pic::before {
   position: absolute;
   z-index: 50;
   display: block;
@@ -86,12 +86,12 @@
   pointer-events: none;
 }
 
-#user-friend-last-pic:hover::before {
+.user-friend-last-pic:hover::before {
   background-color: rgba(0, 0, 0, 0.25);
   transition: none;
 }
 
-#user-friend-pics svg {
+.user-friend-pics svg {
   position: relative;
   width: 32px;
   height: 32px;

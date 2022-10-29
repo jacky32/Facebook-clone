@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: :show
   post 'modal', to: 'dashboard#modal'
+  get 'search', to: 'dashboard#search'
 
   resources :friendships, only: %i[create update destroy]
 

@@ -1,0 +1,26 @@
+.search {
+  display: grid;
+  grid-auto-rows: 100px;
+  gap: 8px;
+  justify-content: center;
+}
+
+.search-user {
+  background-color: var(--post-color);
+  border-radius: 8px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 72px 1fr 120px;
+  width: var(--post-width);
+  height: 100px;
+}
+
+.search-user-profile-pic svg {
+  width: 64px;
+  border-radius: 50%;
+  height: 64px;
+}
+
+.search-user-mutual-friends svg {
+  background-color: white;
+}

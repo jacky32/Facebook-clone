@@ -1,0 +1,13 @@
+<div class="user-friend-pics">
+  <% user.friends.first(amount).each_with_index do |friend, index| %>
+    <% if index < 7 %>
+      <%= link_to friend, style: "z-index: #{20-index}" do %>
+        <%= show_svg(friend.get_profile_picture)%>
+      <% end %>
+    <% else %>
+      <div class="user-friend-last-pic" data-change="friends" data-user="<%= user.id %>" data-action="click->user#swap click->user#changeActive" style="z-index: 13">
+        <%= show_svg(friend.get_profile_picture)%>
+      </div>
+    <% end %>
+  <% end %>
+</div>
