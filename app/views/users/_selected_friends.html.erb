@@ -3,19 +3,19 @@
   <% elsif sel_friends.is_a?(User) %>
     <%= link_to user_path(sel_friends.id), data: { turbo_frame: "main" } do%>
       <div class="user-friend">
-        <%= show_svg(sel_friends.get_profile_picture)%>
+        <%= image_tag sel_friends.get_profile_picture %>
         <div class="user-friend-name">
           <%= sel_friends.name %>
         </div>
       </div>
     <% end %>
   <% else %>
-    <% sel_friends.each do |friend_test| %>
-      <%= link_to user_path(friend_test.id), data: { turbo_frame: "main" } do%>
+    <% sel_friends.includes(:user_info).each do |friend| %>
+      <%= link_to user_path(friend.id), data: { turbo_frame: "main" } do%>
         <div class="user-friend">
-          <%= show_svg(friend_test.get_profile_picture)%>
+          <%= image_tag friend.get_profile_picture %>
           <div class="user-friend-name">
-            <%= friend_test.name %>
+            <%= friend.name %>
           </div>
         </div>
       <% end %>

@@ -14,6 +14,7 @@
  *= require_self
  */
 :root {
+  color: #1c1e21;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --light-yellow: #f6fedb;
@@ -24,18 +25,29 @@
   --clicked-buttton: #184f09;
   --error-color: rgb(175, 46, 46);
 
+  --button-color: #e4e6eb;
+  --button-text-color: #1d1e24;
+  --button-hover-color: rgba(0, 0, 0, 0.2);
+
+  --like-color: #0570e7;
+
   --header-size: 40px;
 
-  --post-color: #b6c454;
-  --post-hover-color: #c1d158;
+  --post-color: #ffffff;
+  --post-divider-color: #ced0d4;
+  --post-border-color: #dfe0e3;
   --post-width: 460px;
+  --clickable-text-color: #65676b;
+  --shadow-color: #b3b3b3;
 
   --comment-body-color: #dfdb96;
 
-  --body-background-color: #aeab72;
+  --hover-color: #4d4d4d2d;
+
+  --basic-color: #f0f2f5;
   --default-text: rgb(41, 41, 41);
 
-  --border-radius-color: white;
+  --border-radius-color: rgb(122, 122, 122);
 }
 
 * {
@@ -45,7 +57,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--body-background-color);
+  background-color: var(--basic-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +75,7 @@ textarea {
   padding: 6px;
   border: 1x solid var(--dark-green);
   border-radius: 8px;
-  background-color: var(--comment-body-color);
+  background-color: var(--basic-color);
   width: 100%;
   min-height: 40px;
   max-height: 160px;
@@ -122,26 +134,27 @@ a {
 }
 
 .button {
+  user-select: none;
   cursor: pointer;
   display: flex;
   padding: 8px 16px;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  color: white;
+  color: var(--button-text-color);
   text-align: center;
   font-weight: 600;
-  background-color: #42b72a;
+  background-color: var(--button-color);
   transition: background-color 0.2s;
 }
 
 .button:hover {
-  background-color: #36a420;
+  background-color: var(--button-hover-color);
 }
 
 .button.active {
-  background-color: #36a420;
-  border-bottom: 2px solid white;
+  background-color: var(--button-hover-color);
+  border-bottom: 2px solid var(--post-color);
 }
 
 .delete {
@@ -164,9 +177,9 @@ a {
   z-index: 9999;
   position: absolute;
   top: 40px;
-  background-color: rgb(26, 182, 33);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  background-color: var(--basic-color);
+  box-shadow: 0px 0px 20px var(--shadow-color);
+  border-radius: 8px;
   display: grid;
   gap: 2px;
   padding: 8px;

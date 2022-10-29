@@ -5,7 +5,9 @@
         Background picture
       </div>
       <div id="user-info">
-        <div id="user-profile-pic"><%= show_svg(@user.get_profile_picture)%></div>
+        <div id="user-profile-pic">
+          <%= image_tag @user.get_profile_picture %>
+        </div>
         <div id="user-instant">
           <div id="user-name"><%= @user.name %></div>
           <div id="user-friend-number">

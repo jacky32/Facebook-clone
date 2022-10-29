@@ -26,7 +26,7 @@
       <%= show_svg('icons/notifications-outline.svg')%>
     </div>
     <div id="header-right-profile" data-action="click->header#toggleDropdown" data-header-target="profileButton">
-        <%= show_svg(current_user.get_profile_picture) %>
+        <%= image_tag current_user.get_profile_picture %>
     </div>
     <div id="header-right-profile-dropdown" class="dropdown hidden" data-header-target="profileDropdown">
       <%= link_to user_path(current_user), data: { turbo_frame: "main" } do %>

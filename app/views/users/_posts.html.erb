@@ -19,7 +19,7 @@
       <% @friends.last(9).each do |friend| %>
         <%= link_to friend, data: { turbo_frame: "main" } do%>
           <div class="user-friend">
-            <%= show_svg(friend.get_profile_picture)%>
+            <%= image_tag friend.get_profile_picture %>
             <div class="user-friend-name">
               <%= friend.name %>
             </div>
@@ -31,7 +31,7 @@
   <div id="user-posts">
     <% if @user == current_user %>
       <div id="new-post">
-        <div class="user-pic"><%= show_svg("avatar.svg") %></div>
+        <div class="user-pic"><%= image_tag current_user.get_profile_picture %></div>
         <%= render 'posts/form'%>
       </div>
     <% end %>

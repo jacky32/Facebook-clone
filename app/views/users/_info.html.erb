@@ -4,10 +4,4 @@
   <div><%= "Work: #{user.user_info.workplace}" unless user.user_info.workplace.blank? %></div>
   <div><%= "Birthday:#{user.user_info.birthday}" unless user.user_info.birthday.blank? %></div>
   <div><%= user.user_info.details unless user.user_info.details.blank? %></div>
-  <div>
-    <% if user.user_info.avatar.attached? %>
-    test
-      <%= image_tag user.user_info.avatar.variant(resize_to_limit: [100,100]) %>
-    <% end %>
-  </div>
 <% end %>

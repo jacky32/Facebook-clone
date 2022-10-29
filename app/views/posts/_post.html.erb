@@ -6,7 +6,7 @@
 <% end %>
   <div class="post-info">
     <%= link_to post.user, class: "user-pic" do %>
-      <%= show_svg(post.user.get_profile_picture) %>
+      <%= image_tag post.user.get_profile_picture %>
     <% end %>
     <%= link_to user_path(post.user), class: "user-name" do %>
       <%= post.user.name %>
@@ -61,7 +61,7 @@
   <div class="post-comments hidden slideout" data-post-target="comments">
     <div class="new-comment" >
       <%= link_to post.user, class: "user-pic" do %>
-        <%= show_svg(post.user.get_profile_picture) %>
+        <%= image_tag post.user.get_profile_picture %>
       <% end %>
       <%= render partial: 'comments/form', locals: { commentable: post } %>
     </div>

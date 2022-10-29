@@ -64,7 +64,11 @@ class User < ApplicationRecord
   end
 
   def get_profile_picture
-    'avatar.svg'
+    if user_info.avatar.attached?
+      user_info.avatar
+    else
+      'avatar.jpg'
+    end
   end
 
   def name

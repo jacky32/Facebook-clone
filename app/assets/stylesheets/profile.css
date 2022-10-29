@@ -42,7 +42,7 @@
   margin-top: -30px;
 }
 
-#user-profile-pic svg {
+#user-profile-pic img {
   width: 140px;
   height: 140px;
   border-radius: 50%;
@@ -61,12 +61,17 @@
   grid-auto-columns: 26px;
 }
 
+.user-friend img {
+  width: 100%;
+  height: 100%;
+}
+
 .user-friend-pics > * {
   position: relative;
   grid-row: 1;
 }
 
-.user-friend-last-pic svg {
+.user-friend-last-pic img {
   pointer-events: none;
 }
 
@@ -91,7 +96,7 @@
   transition: none;
 }
 
-.user-friend-pics svg {
+.user-friend-pics img {
   position: relative;
   width: 32px;
   height: 32px;
@@ -133,6 +138,10 @@
   grid-column: 1 / 2;
 }
 
+#user-left-intro {
+  padding: 8px;
+}
+
 #user-posts {
   grid-row: 1 / 4;
   grid-column: 2 / 3;
@@ -150,8 +159,9 @@
 }
 
 #user-left-details {
+  padding-top: 8px;
   display: grid;
-  grid-auto-rows: 40px;
+  grid-auto-rows: 20px;
   gap: 8px;
 }
 
@@ -196,7 +206,7 @@
   border-radius: 8px;
 }
 
-.user-friend svg {
+.user-friend img {
   border-radius: 8px;
 }
 

@@ -5,7 +5,7 @@
         <%= show_svg('icons/user-plus.svg') %>
       <% end %>
       <%= link_to friend_request.user, data: { turbo_frame: "main" } do %>
-        <%= show_svg(friend_request.user.get_profile_picture) %>
+        <%= image_tag friend_request.user.get_profile_picture %>
         <div><%= friend_request.user.name %></div>
       <% end %>
     <% end %>

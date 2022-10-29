@@ -1,5 +1,5 @@
 header {
-  background-color: rgb(26, 182, 33);
+  background-color: var(--post-color);
   grid-row: 1;
   grid-column: 1 / 4;
   display: grid;
@@ -39,7 +39,7 @@ header > div {
 #header-logo svg {
   width: 40px;
   height: 40px;
-  fill: white;
+  fill: var(--like-color);
 }
 
 /* #header-middle-options {
@@ -61,7 +61,7 @@ header > div {
 }
 
 #header-middle-options a:hover {
-  background-color: rgba(0, 128, 0, 0.192);
+  background-color: var(--hover-color);
   transition: none;
 }
 
@@ -76,6 +76,16 @@ header > div {
 }
 
 #header-right-options > div > svg {
+  background-color: var(--button-color);
+  transition: background-color 0.25s ease-in;
+}
+
+#header-right-options > div > svg:hover {
+  background-color: var(--hover-color);
+}
+
+#header-right-options > div > svg,
+#header-right-options > div > img {
   width: 34px;
   height: 34px;
   padding: 2px;
@@ -90,13 +100,19 @@ header > div {
   border: 2px solid white;
   border-radius: 16px;
   padding: 2px 4px;
-  background-color: green;
+  background-color: var(--basic-color);
 }
 
 #search-form input {
-  color: white;
+  /* color: white; */
   padding: 2px 8px;
   font-size: 1.1em;
+}
+
+#search-form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #search-form svg {
@@ -106,5 +122,5 @@ header > div {
 
 #search-form svg > line,
 #search-form svg > path {
-  stroke: white !important;
+  stroke: var(--default-text) !important;
 }

@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def set_friends
     @selected_friends = case params[:selected]
                         when 'all' then friends
-                        when 'mutual' then current_user.mutual_friends(@user)
+                        when 'mutual' then current_user.mutual_friends(user: @user)
                         end
     respond_to do |format|
       format.turbo_stream do

@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :friendship, only: %i[update]
+  before_action :friendship, only: %i[update destroy]
   before_action :user, only: %i[create update destroy]
 
   def accept_request
@@ -41,7 +41,6 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    friendship
     respond_to do |format|
       if @friendship.destroy
         format.html { redirect_to root_path, notice: 'Friendship deleted!' }
@@ -56,7 +55,7 @@ class FriendshipsController < ApplicationController
   private
 
   def user
-    @user = User.find(params[:friend_id]) if params[:friend_id]
+    @user ||= User.find(params[:friend_id]) if params[:friend_id]
   end
 
   def friendship
