@@ -8,12 +8,12 @@
     <%= render 'layouts/search_form' %>
   </div>
   
-  
+  <%# TODO: add active %>
   <div id="header-middle-options">
-    <%= link_to root_path, id: "header-middle-posts", data: { turbo_frame: "main" } do %>
+    <%= link_to root_path, id: "header-middle-posts", data: { turbo_frame: "main", turbo_action: "replace"  } do %>
       <%= show_svg('icons/home-outline.svg')%>
     <% end %>
-    <%= link_to root_path, id: "header-middle-communities", data: { turbo_frame: "main" } do %>
+    <%= link_to communities_path, id: "header-middle-communities", data: { turbo_frame: "main", turbo_action: "replace" } do %>
       <%= show_svg('icons/people-outline.svg')%>
     <% end %>
   </div>
@@ -29,7 +29,7 @@
         <%= image_tag current_user.get_profile_picture %>
     </div>
     <div id="header-right-profile-dropdown" class="dropdown hidden" data-header-target="profileDropdown">
-      <%= link_to user_path(current_user), data: { turbo_frame: "main" } do %>
+      <%= link_to user_path(current_user), data: { turbo_frame: "main", turbo_action: "replace" } do %>
         <%= show_svg('icons/user.svg') %>
         <div>Profile</div>
       <% end %>

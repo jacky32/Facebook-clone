@@ -18,11 +18,16 @@ class User < ApplicationRecord
   has_many :joined_communities, through: :memberships, source: :community
   has_many :created_communities, foreign_key: :admin_id, class_name: 'Community', dependent: :destroy
 
-  after_save :build_user_info
+  after_create :build_user_info, :generate_default_avatar
 
   def build_user_info
     u_i = UserInfo.create(user_id: id)
     u_i.save
+  end
+
+  def generate_default_avatar
+    random_number = (1..100).to_a.sample
+    update(default_avatar: "default_avatars/avatar#{random_number}.png")
   end
 
   def friends
@@ -67,11 +72,16 @@ class User < ApplicationRecord
     Post.includes(:user, :comments, :likes).order('created_at DESC').limit(10).where(user_id: ids)
   end
 
+  def community_posts
+    communities = joined_communities + created_communities
+    Post.where(community: communities)
+  end
+
   def get_profile_picture
     if user_info.avatar.attached?
       user_info.avatar
     else
-      'avatar.jpg'
+      default_avatar
     end
   end
 

@@ -6,4 +6,19 @@ class Community < ApplicationRecord
   belongs_to :admin, class_name: 'User'
 
   validates_presence_of :admin
+
+  after_create :generate_default_avatar
+
+  def generate_default_avatar
+    random_number = (1..8).to_a.sample
+    update(default_background: "default_bgs/bg#{random_number}.jpg")
+  end
+
+  def bg_image
+    if background.attached?
+      background
+    else
+      default_background
+    end
+  end
 end

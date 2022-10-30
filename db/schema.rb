@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_162946) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_30_221451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_162946) do
     t.text "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "default_background"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -92,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_162946) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "community_id"
+    t.index ["community_id"], name: "index_posts_on_community_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -118,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_162946) do
     t.date "birthday"
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.string "default_avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -127,6 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_162946) do
   add_foreign_key "comments", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "posts", "communities"
   add_foreign_key "posts", "users"
   add_foreign_key "user_infos", "users"
 end
