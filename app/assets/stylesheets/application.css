@@ -58,12 +58,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--basic-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#dashboard {
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -103,8 +97,18 @@ a {
   color: var(--default-text);
 }
 
+#left-panel {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  overflow: auto;
+}
+
 .added {
   animation: generated 1s;
+}
+
+img {
+  background-color: white;
 }
 
 @keyframes generated {

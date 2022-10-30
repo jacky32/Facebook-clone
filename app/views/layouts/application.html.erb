@@ -11,6 +11,24 @@
   </head>
 
   <body>
+    <%= render 'layouts/header'%>
+
+    <%# Flash panel %>
+    <div id="left-panel">
+      <%= turbo_frame_tag "flash" do %>
+        <%= render "layouts/flash" %>
+      <% end %>
+    </div>
+
+    <%# Content %>
     <%= yield %>
+
+    <%= turbo_frame_tag "friends-panel" do %>
+      <%= render 'friendships/friend_requests' %>
+      <hr>
+      <%= render 'friendships/friend_list' %>
+    <% end %>
+    <%# Edit/delete popup modal %>
+    <%= render 'layouts/modal' %>
   </body>
 </html>

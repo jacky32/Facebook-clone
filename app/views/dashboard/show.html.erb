@@ -1,18 +1,4 @@
-<div id="dashboard">
-  <%= render 'layouts/header'%>
-  <div id="left-panel">
-    <%= turbo_frame_tag "flash" do %>
-      <%= render "layouts/flash" %>
-    <% end %>
-  </div>
-  <%= turbo_frame_tag "main" do %>
-  <%# render content instead of posts, partial: posts xx partial: user %>
-    <%= render template: "posts/index" %>
-  <% end %>
-  <%= turbo_frame_tag "friends-panel" do %>
-    <%= render 'friendships/friend_requests' %>
-    <hr>
-    <%= render 'friendships/friend_list' %>
-  <% end %>
-  <%= render 'layouts/modal' %>
-</div>
+<%= turbo_frame_tag "main" do %>
+<%# ? render content instead of posts, partial: posts xx partial: user %>
+  <%= render template: "posts/index" %>
+<% end %>
