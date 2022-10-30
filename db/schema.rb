@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_093613) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_30_162946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_093613) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "communities", force: :cascade do |t|
+    t.integer "admin_id", null: false
+    t.text "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "friend_id"
@@ -69,6 +76,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_093613) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "member_id"
+    t.bigint "community_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_memberships_on_community_id"
+    t.index ["member_id"], name: "index_memberships_on_member_id"
   end
 
   create_table "posts", force: :cascade do |t|

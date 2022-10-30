@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_info, only: %i[create update destroy]
   end
-  
+
   resources :posts, :comments, only: %i[create update destroy] do
     resources :comments, except: :new
     resources :likes, only: %i[create destroy]
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'search', to: 'dashboard#search'
 
   resources :friendships, only: %i[create update destroy]
+
+  resources :communities, :memberships
 
   root 'dashboard#show'
 end

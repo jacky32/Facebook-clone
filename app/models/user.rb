@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   has_one :user_info, dependent: :destroy
 
+  has_many :memberships, foreign_key: :member_id
+  has_many :joined_communities, through: :memberships, source: :community
+  has_many :created_communities, foreign_key: :admin_id, class_name: 'Community', dependent: :destroy
+
   after_save :build_user_info
 
   def build_user_info
