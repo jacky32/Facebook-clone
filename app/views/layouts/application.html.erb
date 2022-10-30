@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
     <%= render 'layouts/header'%>
 
     <%# Flash panel %>
@@ -30,5 +31,8 @@
     <% end %>
     <%# Edit/delete popup modal %>
     <%= render 'layouts/modal' %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
