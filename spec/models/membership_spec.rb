@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Membership, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Associations' do
+    it { should belong_to(:member).class_name('User') }
+    it { should belong_to(:community).class_name('Community') }
+  end
 end

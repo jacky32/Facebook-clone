@@ -4,4 +4,6 @@ class Community < ApplicationRecord
   has_many :memberships, foreign_key: :community_id
   has_many :members, through: :memberships, source: :member
   belongs_to :admin, class_name: 'User'
+
+  validates_presence_of :admin
 end

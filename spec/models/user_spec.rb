@@ -22,6 +22,11 @@ RSpec.describe User, type: :model do
     it { should have_many(:likes).dependent(:destroy) }
     it { should have_many(:friendships).dependent(:destroy) }
     it { should have_many(:friend_requests) }
+    it { should have_many(:memberships).with_foreign_key(:member_id) }
+    it { should have_many(:joined_communities).through(:memberships).source(:community) }
+    it {
+      should have_many(:created_communities).class_name('Community').with_foreign_key(:admin_id).dependent(:destroy)
+    }
   end
 
   describe 'friends' do
