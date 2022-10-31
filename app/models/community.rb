@@ -25,7 +25,7 @@ class Community < ApplicationRecord
   end
 
   def members_count
-    members.count
+    confirmed_members.count
   end
 
   def private?
@@ -33,12 +33,13 @@ class Community < ApplicationRecord
   end
 
   def pending_requests
-    Membership.where(community_id: id, requested: true, confirmed_by_admin: false)
+    Membership.where(community_id: id, requested: true, confirmed_by_admin: false).limit(10)
   end
 
   def confirmed_members
     member_ids = if private?
-                   Membership.where(community_id: id, requested: true, confirmed_by_admin: true).pluck(:member_id)
+                   Membership.where(community_id: id, requested: true,
+                                    confirmed_by_admin: true).pluck(:member_id)
                  else
                    Membership.where(community_id: id, requested: true).pluck(:member_id)
                  end

@@ -92,8 +92,8 @@ class User < ApplicationRecord
   end
 
   def send_join_request(community)
-    comm = joined_communities.create(community_id: community.id) unless Membership.exists?(member_id: id,
-                                                                                           community_id: community.id)
+    community.members << self unless Membership.exists?(member_id: id, community_id: community.id)
+    comm = Membership.where(member_id: id, community_id: community.id).first
     comm.requested = true
     comm.save
   end

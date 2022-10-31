@@ -14,10 +14,13 @@ LAST_NAMES = %w[Smith Johnson Williams Brown Jones Miller Davis Garcia Rodriguez
                 Taylor Wilson Thomas Roberts Li Roy Anderson Harris Lewis Baker Matthews Knight Hughes Wright Jenkins
                 Green Bell Cox Armstrong Carter Ford].freeze
 
+@community = @user.created_communities.create!(is_private: true)
+
 50.times do |i|
   u = User.create(first_name: FIRST_NAMES.sample, last_name: LAST_NAMES.sample, email: "t_#{i}@t.t", password: 'aaaaaa')
   p = Post.create(user: u, text: 'Post text text text text text text ')
   u.send_friend_request(user_id: @user.id)
+  u.send_join_request(@community)
 end
 
 (5..50).to_a.each do |i|

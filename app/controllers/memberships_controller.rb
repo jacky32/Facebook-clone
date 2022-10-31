@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
-  # before_action :friendship, only: %i[update destroy]
+  before_action :membership, only: %i[update destroy]
+  before_action :community, only: %i[update destroy]
   # before_action :user, only: %i[create update destroy]
 
   # def accept_request
@@ -26,8 +27,6 @@ class MembershipsController < ApplicationController
   # end
 
   def update
-    @membership = Membership.find(params[:id])
-    @community = @membership.community
     @membership.confirmed_by_admin = true
     respond_to do |format|
       if @membership.save
@@ -42,19 +41,25 @@ class MembershipsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   respond_to do |format|
-  #     if @friendship.destroy
-  #       format.html { redirect_to root_path, notice: 'Membership deleted!' }
-  #       format.turbo_stream { flash.now[:notice] = 'Membership deleted!' }
-  #     else
-  #       format.html { redirect_to root_path, status: :unprocessable_entity, alert: 'Unable to delete the membership!' }
-  #       format.turbo_stream { flash.now[:alert] = 'Unable to delete the membership!' }
-  #     end
-  #   end
-  # end
+  def destroy
+    respond_to do |format|
+      if @membership.destroy
+        format.html { redirect_to root_path, notice: 'Member removed!' }
+        format.turbo_stream { flash.now[:notice] = 'Member removed!' }
+      else
+        format.html { redirect_to root_path, status: :unprocessable_entity, alert: 'Unable to remove the member!' }
+        format.turbo_stream { flash.now[:alert] = 'Unable to remove the member!' }
+      end
+    end
+  end
 
-  # def user
-  #   @user ||= User.find(params[:friend_id]) if params[:friend_id]
-  # end
+  private
+
+  def membership
+    @membership ||= Membership.find(params[:id])
+  end
+
+  def community
+    @community ||= @membership.community
+  end
 end
