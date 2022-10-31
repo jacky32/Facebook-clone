@@ -1,0 +1,17 @@
+<div id="member-requests">
+  <div class="user-heading">Pending requests</div>
+  <% community.pending_requests.includes(:member).each do |pending_request| %>
+    <%= turbo_frame_tag dom_id(pending_request), class: "member-request" do %>
+      <%= button_to membership_path(pending_request), method: :patch do %>
+        <%= show_svg('icons/user-plus.svg') %>
+      <% end %>
+      <%= button_to membership_path(pending_request), method: :delete do %>
+        <%= show_svg('icons/close.svg') %>
+      <% end %>
+      <%= link_to pending_request.member, class:"member-details", data: { turbo_frame: "main", action:"click->modal#hideModal" } do %>
+        <%= image_tag pending_request.member.get_profile_picture %>
+        <div><%= pending_request.member.name %></div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
