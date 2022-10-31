@@ -127,3 +127,65 @@ input[type="radio"] {
 input[type="radio"]:checked {
   background-color: var(--like-color);
 }
+
+/* COMMUNITY/SHOW/MEMBERBOARD */
+
+#memberboard {
+  width: 100%;
+  height: 100%;
+}
+
+#member-requests,
+#member-list {
+  display: grid;
+  grid-auto-rows: 40px;
+  width: 100%;
+}
+
+.member-request {
+  display: grid;
+  gap: 4px;
+  align-items: center;
+}
+
+.member-request {
+  grid-template-columns: 30px 30px 1fr;
+}
+
+.member-request > form,
+.member-request > form > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-request > form {
+  padding: 2px;
+}
+
+.member-request > * {
+  border-radius: 8px;
+  transition: 0.25s background-color ease-in;
+}
+
+.member-request > *:hover {
+  background-color: rgba(0, 0, 0, 0.103);
+  transition: none;
+}
+
+.member-details {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 40px 1fr;
+  height: 40px;
+  align-items: center;
+  font-size: 18px;
+  padding: 2px;
+}
+
+.member-details img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-radius-color);
+}

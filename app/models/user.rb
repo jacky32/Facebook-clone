@@ -87,6 +87,17 @@ class User < ApplicationRecord
     joined_communities.include?(community)
   end
 
+  def requested_to_join?(community)
+    Membership.requested?(member: self, community:)
+  end
+
+  def send_join_request(community)
+    comm = joined_communities.create(community_id: community.id) unless Membership.exists?(member_id: id,
+                                                                                           community_id: community.id)
+    comm.requested = true
+    comm.save
+  end
+
   def get_profile_picture
     if user_info.avatar.attached?
       user_info.avatar

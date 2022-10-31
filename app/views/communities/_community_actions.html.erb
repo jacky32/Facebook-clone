@@ -5,8 +5,6 @@
     </div>
     <div class="button" data-button="memberboard" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Dashboard
-      <%# remove member %>
-      <%# accept member/invite user unless public %>
     </div>
   <% end %>
   <% if current_user.member_of?(community) %>

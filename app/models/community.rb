@@ -32,6 +32,19 @@ class Community < ApplicationRecord
     is_private
   end
 
+  def pending_requests
+    Membership.where(community_id: id, requested: true, confirmed_by_admin: false)
+  end
+
+  def confirmed_members
+    member_ids = if private?
+                   Membership.where(community_id: id, requested: true, confirmed_by_admin: true).pluck(:member_id)
+                 else
+                   Membership.where(community_id: id, requested: true).pluck(:member_id)
+                 end
+    User.where(id: member_ids)
+  end
+
   def ordered_posts
     posts.order('created_at ASC').limit(10)
   end
