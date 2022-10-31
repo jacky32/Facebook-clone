@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "community-actions", class: "buttons" do %>
+  <% if @community.admin == current_user %>
+    <div class="button"  data-controller="modal" data-button="edit" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+      Edit
+    </div>
+    <div class="button"  data-controller="modal" data-button="memberboard" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+      Dashboard
+      <%# remove member %>
+      <%# accept member/invite user unless public %>
+    </div>
+  <% end %>
+    <div class="button"  data-controller="modal" data-button="invite" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+      Invite
+    </div>
+    <div class="button delete"  data-controller="modal" data-button="invite" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+      Leave
+    </div>
+<% end %>

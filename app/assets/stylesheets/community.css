@@ -52,3 +52,61 @@
 
 .community-carousel-name {
 }
+
+/* COMMUNITY/SHOW */
+#community-basic {
+  background-color: var(--post-color);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px var(--shadow-color);
+  max-width: 900px;
+  overflow: hidden;
+}
+
+#community-instant {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: 32px 32px;
+  align-items: center;
+}
+
+#community-name {
+  font-size: 24px;
+  font-weight: 600;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  padding-left: 8px;
+  align-self: flex-end;
+}
+
+#community-details {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  gap: 4px;
+  align-self: flex-start;
+  font-size: 14px;
+}
+
+#community-member-count {
+  font-weight: 500;
+}
+
+#community-actions {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+}
+
+#community-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 360px;
+  overflow: hidden;
+}
+
+#community-background img {
+  max-height: 100%;
+  max-width: 100%;
+}

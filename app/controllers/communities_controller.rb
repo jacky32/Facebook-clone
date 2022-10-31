@@ -7,11 +7,16 @@ class CommunitiesController < ApplicationController
 
   def show
     community
+    members_count
   end
 
   private
 
   def community
-    @community = Community.find(params[:id])
+    @community ||= Community.find(params[:id])
+  end
+
+  def members_count
+    @members_count ||= @community.members.count
   end
 end
