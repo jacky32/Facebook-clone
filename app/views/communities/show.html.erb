@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "main" do %>
+  <div id="main-feed">
+    <% if current_user.member_of?(@community) %>
+      <div id="new-post">
+        <div class="user-pic"><%= image_tag current_user.get_profile_picture %></div>
+        <%= render 'posts/form'%>
+      </div>
+    <% end %>
+  </div>
+<% end %>

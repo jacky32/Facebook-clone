@@ -63,18 +63,28 @@ class User < ApplicationRecord
   end
 
   def ordered_posts
-    posts.order('created_at ASC').limit(10)
+    sel_posts = posts.order('created_at ASC').limit(10)
+    sel_posts.select do |post|
+      post.public?
+    end
   end
 
   def friends_posts
     ids = friends.map(&:id)
     ids << id
-    Post.includes(:user, :comments, :likes).order('created_at DESC').limit(10).where(user_id: ids)
+    posts = Post.includes(:user, :comments, :likes).order('created_at DESC').limit(10).where(user_id: ids)
+    posts.select do |post|
+      post.public?
+    end
   end
 
   def community_posts
     communities = joined_communities + created_communities
     Post.where(community: communities)
+  end
+
+  def member_of?(community)
+    joined_communities.include?(community)
   end
 
   def get_profile_picture

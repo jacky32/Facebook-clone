@@ -1,12 +1,12 @@
-<%= turbo_frame_tag "community-carousel" do %>
+<div id="community-carousel">
   <div class="community-carousel-show">
     <% current_user.joined_communities.each do |community| %>
-        <div class="community-carousel-item">
-          <%= image_tag community.bg_image, class: "community-carousel-image" %>
-          <div class="community-carousel-name">
-            <%= community.name %>
-          </div>
+      <%= link_to community_path(community), class: "community-carousel-item" do %>
+        <%= image_tag community.bg_image, class: "community-carousel-image" %>
+        <div class="community-carousel-name">
+          <%= community.name %>
         </div>
+      <% end %>
     <% end %>
   </div>
-<% end %>
+</div>

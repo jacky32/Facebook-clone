@@ -5,6 +5,8 @@ class Community < ApplicationRecord
   has_many :members, through: :memberships, source: :member
   belongs_to :admin, class_name: 'User'
 
+  has_many :posts, dependent: :destroy
+
   validates_presence_of :admin
 
   after_create :generate_default_avatar
@@ -20,5 +22,13 @@ class Community < ApplicationRecord
     else
       default_background
     end
+  end
+
+  def private?
+    is_private
+  end
+
+  def ordered_posts
+    posts.order('created_at ASC').limit(10)
   end
 end
