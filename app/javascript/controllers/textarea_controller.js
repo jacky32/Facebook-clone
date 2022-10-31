@@ -8,7 +8,12 @@ export default class extends Controller {
 
   send(e) {
     if (e.key == "Enter") {
-      e.target.parentNode.children[2].click();
+      const test = e.target.parentNode.children;
+      for (let i = 0; i < test.length; i++) {
+        if (test[i].tagName == "BUTTON") {
+          test[i].click();
+        }
+      }
     }
   }
 }
