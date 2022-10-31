@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   has_one :user_info, dependent: :destroy
 
-  has_many :memberships, foreign_key: :member_id
+  has_many :memberships, foreign_key: :member_id, dependent: :destroy
   has_many :joined_communities, through: :memberships, source: :community
   has_many :created_communities, foreign_key: :admin_id, class_name: 'Community', dependent: :destroy
 
@@ -83,8 +83,18 @@ class User < ApplicationRecord
     Post.where(community: communities).order('created_at DESC').limit(10)
   end
 
+  def friends_not_members_of(community)
+    member_ids = community.confirmed_members
+    friend_ids = friends
+    friend_ids - member_ids
+  end
+
   def member_of?(community)
     joined_communities.include?(community)
+  end
+
+  def received_invite?(community)
+    Membership.invited?(member: self, community:)
   end
 
   def requested_to_join?(community)

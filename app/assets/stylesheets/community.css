@@ -191,3 +191,20 @@ input[type="radio"]:checked {
   border-radius: 50%;
   border: 1px solid var(--border-radius-color);
 }
+
+/* INVITE LIST */
+
+#invite-list {
+  width: 100%;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.invite-received:hover {
+  background-color: transparent;
+}
+
+.invite svg {
+  width: 32px;
+  height: 32px;
+}

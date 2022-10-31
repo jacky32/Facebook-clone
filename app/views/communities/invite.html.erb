@@ -1,0 +1,9 @@
+<% community = Community.find(@id) %>
+      <%# accept member/invite user unless public %>
+<div id="invite-list" data-controller="modal">
+  <div class="user-heading">Friend list</div>
+    <% current_user.friends_not_members_of(community).each do |friend| %>
+      <%= render partial: "communities/invite_friend", locals: { friend: friend, community: community } %>
+    <% end %>
+  </div>
+</div>

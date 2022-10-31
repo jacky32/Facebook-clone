@@ -17,9 +17,9 @@ class Membership < ApplicationRecord
     !Membership.where(member_id: member.id, community_id: community.id, confirmed_by_admin: true).empty?
   end
 
-  # Invited to community but not accepted (requested)
+  # Invited to community
   def self.invited?(member:, community:)
     !Membership.where(member_id: member.id, community_id: community.id, confirmed_by_admin: false,
-                      invited: true, requested: false).empty?
+                      invited: true).empty?
   end
 end

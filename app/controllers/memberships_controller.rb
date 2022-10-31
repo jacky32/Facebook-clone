@@ -9,32 +9,32 @@ class MembershipsController < ApplicationController
   #   @friend_request.save
   # end
 
-  # def create
-  #   current_user_id = params[:user_id]
-  #   if current_user.friend_request_received?(user_id: @user.id)
-  #     @friendship = Friendship.where(user_id: @user.id, friend_id: current_user_id).first
-  #     @friendship.accepted = true
-  #   else
-  #     @friendship = Friendship.new(user_id: current_user_id, friend_id: @user.id)
-  #   end
-  #   respond_to do |format|
-  #     if @friendship.save
-  #       format.turbo_stream { flash.now[:notice] = 'Friend request sent!' }
-  #     else
-  #       format.turbo_stream { flash.now[:alert] = 'Unable to send the friend request!' }
-  #     end
-  #   end
-  # end
+  def create
+    @user = User.find(params[:user_id])
+    @community = Community.find(params[:community_id])
+    @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
+    @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
+
+    respond_to do |format|
+      if @membership.invited == true
+        format.turbo_stream { flash.now[:alert] = 'Already invited!' }
+      else
+        @membership.invited = true
+        @membership.save
+        format.turbo_stream { flash.now[:notice] = 'Friend invited!' }
+      end
+    end
+  end
 
   def update
     @membership.confirmed_by_admin = true
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to root_path, notice: 'Member added!' }
+        format.html { redirect_to community_path(@community), notice: 'Member added!' }
         format.turbo_stream { flash.now[:notice] = 'Member added!' }
       else
         format.html do
-          redirect_to root_path, status: :unprocessable_entity, alert: 'Unable to add the member!'
+          redirect_to community_path(@community), status: :unprocessable_entity, alert: 'Unable to add the member!'
         end
         format.turbo_stream { flash.now[:alert] = 'Unable to add the member!' }
       end

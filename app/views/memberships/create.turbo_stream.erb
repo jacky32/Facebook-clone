@@ -1,0 +1,7 @@
+<% if notice %>
+  <%= turbo_stream.replace "#{dom_id(@user)}_invite", partial: "communities/invite_friend", locals: { friend: @user, community: @community } %>
+
+  <%= render_turbo_stream_flash_messages %>
+<% elsif alert %>
+  <%= render_turbo_stream_flash_messages %>
+<% end %>

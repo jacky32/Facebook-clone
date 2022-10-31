@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "#{dom_id(friend)}_invite", class: "member-request invite" do %>
+  <div class="invite-received">
+    <% if friend.received_invite?(community) %>
+      <%= show_svg('icons/bookmark-f.svg') %>
+    <% else %>
+      <%= show_svg('icons/bookmark.svg') %>
+    <% end %>
+  </div>
+  <%= button_to memberships_path(user_id: friend.id, community_id: community.id)  do %>
+    <%= show_svg('icons/log-in-outline.svg') %>
+  <% end %>
+  <%= link_to friend, class:"member-details", data: { turbo_frame: "main", action:"click->modal#hideModal" } do %>
+    <%= image_tag friend.get_profile_picture %>
+    <div><%= friend.name %></div>
+  <% end %>
+<% end %>
