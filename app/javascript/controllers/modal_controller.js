@@ -40,6 +40,11 @@ export default class extends Controller {
       return { option: "comments", id: e.target.getAttribute("data-comment") };
     } else if (e.target.getAttribute("data-user") !== null) {
       return { option: "users", id: e.target.getAttribute("data-user") };
+    } else if (e.target.getAttribute("data-community") !== null) {
+      return {
+        option: "communities",
+        id: e.target.getAttribute("data-community"),
+      };
     } else {
       return null;
     }

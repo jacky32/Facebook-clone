@@ -1,0 +1,6 @@
+<% if notice %>
+  <%= turbo_stream.replace "community-basic", partial: "communities/community_details", locals: { community: @community } %>
+  <%= render_turbo_stream_flash_messages %>
+<% elsif alert %>
+  <%= render_turbo_stream_flash_messages %>
+<% end %>

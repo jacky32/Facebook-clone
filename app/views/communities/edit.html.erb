@@ -1,0 +1,27 @@
+<% community = Community.find(@id) %>
+<%= form_with model: community , data: { controller: "modal", action: "turbo:submit-end->modal#hideModal" } do |f| %>
+    <div class="fields">
+      <%= f.label :name %>
+      <%= f.text_area :name %>
+    </div>
+    <div class="fields">
+      <%= f.label :is_private_false, "Public" %>
+      <%= f.radio_button :is_private, false %>
+    </div>
+    <div class="fields">
+      <%= f.label :is_private_true, "Private" %>
+      <%= f.radio_button :is_private, true %> 
+    </div>
+    <div class="fields">
+      <%= f.label :info %>
+      <%= f.text_area :info, data: { controller: "textarea", action: "input->textarea#resize" } %>
+    </div>
+    <div class="fields">
+      <%= f.label :background %>
+      <%= f.file_field :background, accept: 'image/png, image/jpeg, image/jpg' %>
+    </div>
+  <div class="buttons">
+    <%= f.submit "Edit", class: "button" %>
+    <div class="cancel button" data-action="click->modal#hideModal">Cancel</div>
+  </div>
+<% end %>

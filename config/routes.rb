@@ -23,7 +23,9 @@ Rails.application.routes.draw do
 
   resources :friendships, only: %i[create update destroy]
 
-  resources :communities, :memberships
+  resources :memberships
+
+  resources :communities
 
   root 'dashboard#show'
 end

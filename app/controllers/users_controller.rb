@@ -10,11 +10,11 @@ class UsersController < ApplicationController
     user_info_params = params.require(:user_info).permit(:avatar, :birthday, :school, :city, :workplace, :details)
     respond_to do |format|
       if @user.user_info.update(user_info_params)
-        format.html { redirect_to user_path(@user), notice: 'Post edited!' }
-        format.turbo_stream { flash.now[:notice] = 'Post edited!' }
+        format.html { redirect_to user_path(@user), notice: 'Profile edited!' }
+        format.turbo_stream { flash.now[:notice] = 'Profile edited!' }
       else
-        format.html { redirect_to user_path(@user), status: :unprocessable_entity, alert: 'Post was not edited!' }
-        format.turbo_stream { flash.now[:alert] = 'Post was not edited!' }
+        format.html { redirect_to user_path(@user), status: :unprocessable_entity, alert: 'Profile was not edited!' }
+        format.turbo_stream { flash.now[:alert] = 'Profile was not edited!' }
       end
     end
   end

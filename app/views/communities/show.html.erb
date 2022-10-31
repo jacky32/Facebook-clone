@@ -1,32 +1,6 @@
 <%= turbo_frame_tag "main" do %>
   <div id="main-feed">
-    <div id="community-basic">
-      <div id="community-background">
-        <%= image_tag @community.bg_image %>
-      </div>
-      <div id="community-info">
-        <div id="community-instant">
-          <div id="community-name"><%= @community.name %></div>
-          <div id="community-details">
-            <div id="community-private">
-              <% if @community.private? %>
-                Private · 
-              <% else %>
-                Public · 
-              <% end %>
-            </div>
-            <div id="community-member-count">
-              <% if @members_count == 1 %>
-                1 member
-              <% else %>
-                <%= @members_count %> members
-              <% end %>
-            </div>
-          </div>
-          <%= render partial: "communities/community_actions", locals: { community: @community }%>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "communities/community_details", locals: { community: @community } %>
     <% if current_user.member_of?(@community) %>
       <div id="new-post">
         <div class="user-pic"><%= image_tag current_user.get_profile_picture %></div>

@@ -1,18 +1,24 @@
-<%= turbo_frame_tag "community-actions", class: "buttons" do %>
-  <% if @community.admin == current_user %>
-    <div class="button"  data-controller="modal" data-button="edit" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+<%= turbo_frame_tag "community-actions", class: "buttons", data: { controller: "modal" } do %>
+  <% if community.admin == current_user %>
+    <div class="button" data-button="edit" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Edit
     </div>
-    <div class="button"  data-controller="modal" data-button="memberboard" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+    <div class="button" data-button="memberboard" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Dashboard
       <%# remove member %>
       <%# accept member/invite user unless public %>
     </div>
   <% end %>
-    <div class="button"  data-controller="modal" data-button="invite" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+  <% if current_user.member_of?(community) %>
+    <div class="button" data-button="invite" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Invite
     </div>
-    <div class="button delete"  data-controller="modal" data-button="invite" data-community="<%= @community.id %>" data-action="click->modal#showModal">
+    <div class="button delete" data-button="leave" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Leave
     </div>
+  <% else %>
+    <div class="button" data-button="join" data-community="<%= community.id %>" data-action="click->modal#showModal">
+      Join
+    </div>
+  <% end %>
 <% end %>

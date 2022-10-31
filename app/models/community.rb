@@ -24,6 +24,10 @@ class Community < ApplicationRecord
     end
   end
 
+  def members_count
+    members.count
+  end
+
   def private?
     is_private
   end
