@@ -3,8 +3,12 @@
     <% if current_user.member_of?(@community) %>
       <div id="new-post">
         <div class="user-pic"><%= image_tag current_user.get_profile_picture %></div>
-        <%= render 'posts/form'%>
+        <%= render 'communities/post_form'%>
       </div>
     <% end %>
+
+    <div id="posts">
+      <%= render current_user.community_posts %>
+    </div>
   </div>
 <% end %>

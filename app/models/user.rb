@@ -80,7 +80,7 @@ class User < ApplicationRecord
 
   def community_posts
     communities = joined_communities + created_communities
-    Post.where(community: communities)
+    Post.where(community: communities).order('created_at DESC').limit(10)
   end
 
   def member_of?(community)
