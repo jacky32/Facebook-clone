@@ -1,0 +1,30 @@
+<div class="chat-header">
+  <div class="friend-avatar">
+    <%= image_tag user.get_profile_picture %>
+  </div>
+  <div class="friend-name">
+    <%= user.name %>
+    <div>
+      <%= turbo_stream_from "#{chat.id}_messages" %>
+    </div>
+  </div>
+  <div class="chat-header-icon" data-controller="chat" data-action="click->chat#minimizeChat">
+    <%= show_svg('icons/remove-outline.svg')%>
+  </div>
+  <div class="chat-header-icon" data-controller="chat" data-action="click->chat#hideChat">
+    <%= show_svg('icons/close.svg')%>
+  </div>
+</div>
+<%= turbo_frame_tag id="messages" do %>
+  <% chat.messages.reverse_order.each do |message| %>
+    <%= render partial: "messages/message", locals: { message: message, c_user: current_user }%>
+  <% end %>
+<% end %>
+<%= form_with model: Message.new, data: { controller: "form", action: "turbo:submit-end->form#clear" }, class: "new-message" do |f| %>
+  <%= f.text_area :body, class: "new-message-text", autocomplete: "off", data: { controller: "textarea", action: "keydown->textarea#send" } %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :chat_id, value: chat.id %>
+  <%= f.button nil, class: "new-message-send" do %>
+    <%= show_svg('icons/arrow-circle-right.svg') %>
+  <% end %>
+<% end %>

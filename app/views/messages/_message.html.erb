@@ -1,12 +1,6 @@
-<% if message.sender == current_user %>
-  <div class="message-sent">
-    <div class="message-body"><%= message.body %></div>
+<div class="message <%= "from-#{message.user.id}"%>">
+  <div class="message-avatar <%= "avt-from-#{message.user.id}" %> ">
+    <%= image_tag message.user.get_profile_picture %>
   </div>
-<% else %>
-  <div class="message-received">
-    <div class="message-received-avatar">
-      <%= image_tag message.sender.get_profile_picture %>
-    </div>
-    <div class="message-body"><%= message.body %></div>
-  </div>
-<% end %>
+  <div class="message-body"><%= message.body %></div>
+</div>

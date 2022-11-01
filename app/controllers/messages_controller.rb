@@ -1,18 +1,10 @@
 class MessagesController < ApplicationController
-  def chat
-    @user = User.find(params[:user_id])
-    @messages = Message.retrieve(current_user, @user)
-    respond_to do |format|
-      format.turbo_stream do
-        render 'messages/chat'
-      end
-    end
-  end
-
   def create
     @message = Message.new(message_params)
     respond_to do |format|
       if @message.save
+        @message.broadcast_prepend_later_to "#{@message.chat.id}_messages",
+                                            locals: { c_user: current_user, message: @message }
         format.html { redirect_to root_path, notice: 'Message sent! ' }
         format.turbo_stream { flash.now[:notice] = 'Message sent!' }
       else
@@ -25,6 +17,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :sender_id, :receiver_id)
+    params.require(:message).permit(:body, :user_id, :chat_id)
   end
 end

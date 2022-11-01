@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   loadChat(e) {
-    fetch("/chat", {
+    fetch("/chats", {
       method: "POST",
       headers: {
         "X-CSRF-Token": this.token,

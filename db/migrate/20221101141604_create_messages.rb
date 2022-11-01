@@ -1,8 +1,8 @@
 class CreateMessages < ActiveRecord::Migration[7.0]
   def change
     create_table :messages do |t|
-      t.belongs_to :sender
-      t.belongs_to :receiver
+      t.belongs_to :chat
+      t.belongs_to :user
       t.text :body
 
       t.timestamps

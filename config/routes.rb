@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :memberships, :communities
 
   resources :messages, only: %i[create]
-  post 'chat', to: 'messages#chat'
+  resources :chats
 
   root 'dashboard#show'
 end

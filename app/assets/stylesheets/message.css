@@ -6,7 +6,7 @@
   height: 380px;
   background-color: var(--post-color);
   display: grid;
-  grid-template-rows: 36px 1fr 52px;
+  grid-template-rows: 36px auto 52px;
   box-shadow: 0 1px 5px var(--shadow-color);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -73,11 +73,17 @@
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: stretch;
   justify-content: stretch;
   gap: 4px;
+  /* overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity; */
 }
+
+/* #messages > div:last-child {
+  scroll-snap-align: end;
+} */
 
 .message-body {
   padding: 6px 8px;
@@ -86,23 +92,19 @@
   word-wrap: anywhere;
 }
 
-.message-sent {
-  margin-left: auto;
-}
-
-.message-received {
+.message {
   margin-right: auto;
   display: grid;
   grid-template-columns: 12px 1fr;
   gap: 4px;
 }
 
-.message-received-avatar {
+.message-avatar {
   align-self: end;
   margin-bottom: 4px;
 }
 
-.message-received-avatar img {
+.message-avatar img {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -120,6 +122,10 @@
   padding-bottom: 6px;
 }
 
+#chat form {
+  position: relative;
+}
+
 .new-message-text {
   margin: 2px;
   border-radius: 8px;
@@ -127,4 +133,5 @@
   width: 90%;
   min-height: 80%;
   height: auto;
+  bottom: 4px;
 }
