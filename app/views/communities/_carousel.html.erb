@@ -1,6 +1,10 @@
 <div id="community-carousel">
   <div class="community-carousel-show">
-    <% current_user.joined_communities.each do |community| %>
+    <div class="community-carousel-item button" data-controller="modal" data-button="actions/new" data-community="new" data-action="click->modal#showModal">
+      <%#= image_tag community.bg_image, class: "community-carousel-image" %>
+      New community
+    </div>
+    <% (current_user.joined_communities + current_user.created_communities).uniq.each do |community| %>
       <%= link_to community_path(community), class: "community-carousel-item", data: { turbo_frame: "main", turbo_action: "replace"  } do %>
         <%= image_tag community.bg_image, class: "community-carousel-image" %>
         <div class="community-carousel-name">

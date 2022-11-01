@@ -6,19 +6,18 @@ class CommunitiesController < ApplicationController
     @community_posts = current_user.community_posts
   end
 
-  # def create
-  #   @added = true
-  #   @post = Post.new(post_params.merge(user: current_user))
-  #   respond_to do |format|
-  #     if @post.save
-  #       format.html { redirect_to post_path, notice: 'Post created! ' }
-  #       format.turbo_stream { flash.now[:notice] = 'Post created!' }
-  #     else
-  #       format.html { redirect_to root_path, status: :unprocessable_entity, alert: 'Post was not created' }
-  #       format.turbo_stream { flash.now[:alert] = 'Post was not created' } # returns status OK
-  #     end
-  #   end
-  # end
+  def create
+    @community = current_user.created_communities.create(community_params.merge(admin_id: current_user.id))
+    respond_to do |format|
+      if @community.save
+        format.html { redirect_to community_path(@community), notice: 'Community created!' }
+        format.turbo_stream { flash.now[:notice] = 'Community created!' }
+      else
+        format.html { redirect_to communities_path, status: :unprocessable_entity, alert: 'Community was not created' }
+        format.turbo_stream { flash.now[:alert] = 'Community was not created' } # returns status OK
+      end
+    end
+  end
 
   def show; end
 

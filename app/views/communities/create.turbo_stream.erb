@@ -1,0 +1,6 @@
+<% if notice %>
+  <%= turbo_stream.replace "main", template: "communities/show"%>
+  <%= render_turbo_stream_flash_messages %>
+<% elsif alert %>
+  <%= render_turbo_stream_flash_messages %>
+<% end %>
