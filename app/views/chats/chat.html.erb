@@ -1,17 +1,17 @@
 <div class="chat-header">
-  <div class="friend-avatar">
+  <%= link_to user_path(user), class: "friend-avatar", data: { turbo_frame: "main", turbo_action: "replace" } do %>
     <%= image_tag user.get_profile_picture %>
-  </div>
-  <div class="friend-name">
+  <% end %>
+  <%= link_to user_path(user), class: "friend-name", data: { turbo_frame: "main", turbo_action: "replace" } do %>
     <%= user.name %>
     <div>
       <%= turbo_stream_from "#{chat.id}_messages" %>
     </div>
-  </div>
-  <div class="chat-header-icon" data-controller="chat" data-action="click->chat#minimizeChat">
+  <% end %>
+  <div class="chat-header-icon clickable-text" data-controller="chat" data-action="click->chat#minimizeChat">
     <%= show_svg('icons/remove-outline.svg')%>
   </div>
-  <div class="chat-header-icon" data-controller="chat" data-action="click->chat#hideChat">
+  <div class="chat-header-icon clickable-text" data-controller="chat" data-action="click->chat#hideChat">
     <%= show_svg('icons/close.svg')%>
   </div>
 </div>

@@ -1,12 +1,14 @@
 class ChatsController < ApplicationController
-  def chat
-    @user = User.find(params[:user_id])
-    @messages = Message.retrieve(current_user, @user)
-    respond_to do |format|
-      format.turbo_stream do
-        render 'chats/chat'
-      end
+  def show
+    if params[:id]
+      @chat = Chat.find(params[:id])
+      @messages = @chat.messages
+      @user = @chat.sender == current_user ? @chat.receiver : @chat.sender
+    else
+      @user = User.find(params[:user_id])
+      @messages = Message.retrieve(current_user, @user)
     end
+    render formats: :turbo_stream, template: 'chats/chat', locals: { user: @user, chat: @chat }
   end
 
   def create
@@ -16,6 +18,7 @@ class ChatsController < ApplicationController
 
     respond_to do |format|
       if @chat.save
+        current_user.set_last_chat_active(@chat)
         format.turbo_stream do
           render 'chats/chat'
         end

@@ -34,6 +34,10 @@ class User < ApplicationRecord
     update(default_avatar: "default_avatars/avatar#{random_number}.png")
   end
 
+  def set_last_chat_active(chat)
+    update(last_chat_id_opened: chat.id)
+  end
+
   def friends
     sent_friendships = Friendship.where(user_id: id, accepted: true).pluck(:friend_id)
     received_friendships = Friendship.where(friend_id: id, accepted: true).pluck(:user_id)
