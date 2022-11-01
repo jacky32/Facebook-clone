@@ -9,13 +9,6 @@
   </div>
 
   <div class="field">
-    <div id="new-birthday">
-      <%= f.label :birthday %>
-      <%= f.date_field :birthday, required: true,  data: { action: "focusout->session#checkSelf"  }, aria: { label: "Birthday" } %>
-    </div>
-  </div>
-
-  <div class="field">
     <%= f.email_field :email, autocomplete: "email", placeholder: "Email", required: true, data: { action: "focusout->session#checkSelf" }, aria: { label: "Email" } %>
   </div>
 
