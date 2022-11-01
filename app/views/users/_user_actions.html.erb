@@ -4,7 +4,7 @@
       Edit profile
     </div>
   <% else %>
-    <div id="user-actions-send-message" data-user="<%= user.id %>" data-action="click->user#sendMessage" class="button">Send message</div>
+    <div id="user-actions-send-message" data-controller="chat" data-user="<%= user.id %>" data-action="click->chat#showChat" class="button">Send message</div>
     <% friendship_id = Friendship.find_by_ids(user.id, current_user.id) %>
     <% if current_user.friends_with?(user: user) %>
       <%= button_to "Remove friend", friendship_path(friendship_id, friend_id: user.id), method: :delete, class:"button delete" %>

@@ -1,28 +1,71 @@
-.chat {
+#chat {
   position: fixed;
   bottom: 0;
-  right: 10vw;
+  right: 248px;
   width: 280px;
   height: 380px;
   background-color: var(--post-color);
   display: grid;
-  grid-template-rows: 40px 1fr 52px;
+  grid-template-rows: 36px 1fr 52px;
   box-shadow: 0 1px 5px var(--shadow-color);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  animation: showHeight 0.5s;
+}
+
+#chat.minimized {
+  height: 36px;
+  animation: hideHeight 0.5s;
+}
+
+@keyframes hideHeight {
+  from {
+    height: 380px;
+  }
+  to {
+    height: 36px;
+  }
+}
+
+@keyframes showHeight {
+  from {
+    height: 36px;
+  }
+
+  to {
+    height: 380px;
+  }
 }
 
 .chat-header {
   border-bottom: 1px solid var(--border-radius-color);
   display: grid;
-  grid-template-columns: 1fr 40px 40px;
+  grid-template-columns: 40px 1fr 40px 40px;
   justify-items: center;
+  align-items: center;
+}
+
+.chat-header svg,
+.chat-header img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.chat-header > .friend-name {
+  justify-self: start;
+}
+
+.chat-header-icon,
+.friend-avatar {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 /* MSGS */
 
-.messages {
+#messages {
   margin-left: 4px;
   margin-right: 4px;
   padding: 4px 8px;
@@ -37,9 +80,9 @@
 }
 
 .message-body {
-  padding: 4px 8px;
+  padding: 6px 8px;
   background-color: var(--basic-color);
-  border-radius: 16px;
+  border-radius: 8px;
   word-wrap: anywhere;
 }
 
@@ -50,13 +93,20 @@
 .message-received {
   margin-right: auto;
   display: grid;
-  grid-template-columns: 10px 1fr;
+  grid-template-columns: 12px 1fr;
   gap: 4px;
 }
 
 .message-received-avatar {
   align-self: end;
   margin-bottom: 4px;
+}
+
+.message-received-avatar img {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--border-radius-color);
 }
 
 /* NEW MSG */
