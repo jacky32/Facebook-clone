@@ -1,21 +1,13 @@
 class MembershipsController < ApplicationController
-  before_action :membership, only: %i[update destroy]
-  before_action :community, only: %i[update destroy]
-  # before_action :user, only: %i[create update destroy]
-
-  # def accept_request
-  #   @friend_request = Friendship.find(params[:friendship_id])
-  #   @friend_request.accepted = true
-  #   @friend_request.save
-  # end
+  before_action :membership, only: %i[request_unsend update destroy]
+  before_action :community
+  before_action :user, only: %i[create invite]
 
   def create
     return request_join if params[:request_send]
     return request_unsend if params[:request_unsend]
     return invite if params[:invite]
 
-    @user = User.find(params[:user_id])
-    @community = Community.find(params[:community_id])
     @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
     @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
 
@@ -32,7 +24,6 @@ class MembershipsController < ApplicationController
 
   def request_join
     @user = current_user
-    @community = Community.find(params[:community_id])
     @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
     @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
     @membership.requested = true
@@ -48,8 +39,6 @@ class MembershipsController < ApplicationController
 
   def request_unsend
     @user = current_user
-    @community = Community.find(params[:community_id])
-    @membership = Membership.find(params[:membership_id])
     @membership.requested = false
 
     respond_to do |format|
@@ -62,8 +51,6 @@ class MembershipsController < ApplicationController
   end
 
   def invite
-    @user = User.find(params[:user_id])
-    @community = Community.find(params[:community_id])
     @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
     @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
 
@@ -85,9 +72,7 @@ class MembershipsController < ApplicationController
         format.html { redirect_to community_path(@community), notice: 'Member added!' }
         format.turbo_stream { flash.now[:notice] = 'Member added!' }
       else
-        format.html do
-          redirect_to community_path(@community), status: :unprocessable_entity, alert: 'Unable to add the member!'
-        end
+        format.html { redirect_to community_path(@community), status: :unprocessable_entity, alert: 'Unable to add!' }
         format.turbo_stream { flash.now[:alert] = 'Unable to add the member!' }
       end
     end
@@ -107,11 +92,19 @@ class MembershipsController < ApplicationController
 
   private
 
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
   def membership
-    @membership ||= Membership.find(params[:id])
+    @membership ||= Membership.find(params[:membership_id] || params[:id])
   end
 
   def community
-    @community ||= @membership.community
+    @community ||= if params[:community_id]
+                     Community.find(params[:community_id])
+                   else
+                     @membership.community
+                   end
   end
 end
