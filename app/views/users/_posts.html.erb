@@ -17,7 +17,7 @@
     </div>
     <div id="user-left-friends-grid">
       <% @friends.last(9).each do |friend| %>
-        <%= link_to friend, data: { turbo_frame: "main" } do%>
+        <%= link_to friend, data: { turbo_frame: "main", turbo_action: "replace" } do%>
           <div class="user-friend">
             <%= image_tag friend.get_profile_picture %>
             <div class="user-friend-name">

@@ -4,7 +4,7 @@
       <%= button_to friendship_path(friend_request), method: :patch do %>
         <%= show_svg('icons/user-plus.svg') %>
       <% end %>
-      <%= link_to friend_request.user, data: { turbo_frame: "main" } do %>
+      <%= link_to friend_request.user, data: { turbo_frame: "main", turbo_action: "replace" } do %>
         <%= image_tag friend_request.user.get_profile_picture %>
         <div><%= friend_request.user.name %></div>
       <% end %>

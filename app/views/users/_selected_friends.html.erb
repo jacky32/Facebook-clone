@@ -1,7 +1,7 @@
 <div id="user-friends-grid">
   <% if sel_friends.nil? %>
   <% elsif sel_friends.is_a?(User) %>
-    <%= link_to user_path(sel_friends.id), data: { turbo_frame: "main" } do%>
+    <%= link_to user_path(sel_friends.id), data: { turbo_frame: "main", turbo_action: "replace" } do%>
       <div class="user-friend">
         <%= image_tag sel_friends.get_profile_picture %>
         <div class="user-friend-name">
@@ -11,7 +11,7 @@
     <% end %>
   <% else %>
     <% sel_friends.includes(:user_info).each do |friend| %>
-      <%= link_to user_path(friend.id), data: { turbo_frame: "main" } do%>
+      <%= link_to user_path(friend.id), data: { turbo_frame: "main", turbo_action: "replace"} do%>
         <div class="user-friend">
           <%= image_tag friend.get_profile_picture %>
           <div class="user-friend-name">

@@ -5,11 +5,11 @@
  <div class="post" id="<%= dom_id post %>" data-controller="post">
 <% end %>
   <div class="post-info">
-    <%= link_to post.user, class: "user-pic" do %>
+    <%= link_to post.user, class: "user-pic", data: { turbo_action: "replace" } do %>
       <%= image_tag post.user.get_profile_picture %>
     <% end %>
     <div class="user-name">
-      <%= link_to user_path(post.user) do %>
+      <%= link_to post.user, data: { turbo_action: "replace" } do %>
         <%= post.user.name %>
       <% end %>
       <% if post.community%>

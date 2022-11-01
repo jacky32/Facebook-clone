@@ -1,10 +1,10 @@
 <div id="<%= dom_id comment %>" class="comment" data-controller="comment">
   <div class="comment-self">
-    <%= link_to comment.user, class: "user-pic" do %>
+    <%= link_to comment.user, class: "user-pic", data: { turbo_action: "replace" } do %>
       <%= image_tag comment.user.get_profile_picture %>
     <% end %>
     <div class="comment-body">
-      <%= link_to comment.user, class: "comment-user-name" do %>
+      <%= link_to comment.user, class: "comment-user-name", data: { turbo_action: "replace" } do %>
         <%= comment.user.name %>
       <% end %>
       <div class="comment-text"><%= comment.text %></div>
