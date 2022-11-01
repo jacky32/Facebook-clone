@@ -2,7 +2,7 @@
 <%= form_with model: community , data: { controller: "modal", action: "turbo:submit-end->modal#hideModal" } do |f| %>
     <div class="fields">
       <%= f.label :name %>
-      <%= f.text_area :name %>
+      <%= f.text_area :name, required: true %>
     </div>
     <div class="fields">
       <%= f.label :is_private_false, "Public" %>

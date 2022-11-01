@@ -8,9 +8,17 @@
     <%= link_to post.user, class: "user-pic" do %>
       <%= image_tag post.user.get_profile_picture %>
     <% end %>
-    <%= link_to user_path(post.user), class: "user-name" do %>
-      <%= post.user.name %>
-    <% end %>
+    <div class="user-name">
+      <%= link_to user_path(post.user) do %>
+        <%= post.user.name %>
+      <% end %>
+      <% if post.community%>
+        >
+        <%= link_to community_path(post.community) do %>
+          <%= post.community.name %>
+        <% end %>
+      <% end %>
+    </div>
     <div class="created-at"><%= post.time_difference %>
       <span class="created-at-hovered"> <%= post.hover_date %> </span>
     </div>

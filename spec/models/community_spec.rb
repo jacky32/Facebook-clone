@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Community, type: :model do
   describe 'Validations' do
     it { should validate_presence_of(:admin) }
+    it { should validate_presence_of(:name) }
   end
 
   describe 'Associations' do

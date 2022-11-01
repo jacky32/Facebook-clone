@@ -7,7 +7,7 @@ class Community < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
-  validates_presence_of :admin
+  validates_presence_of :admin, :name
 
   after_create :generate_default_avatar
 

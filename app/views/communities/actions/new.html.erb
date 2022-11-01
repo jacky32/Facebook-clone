@@ -2,7 +2,7 @@
   <div class="user-heading">Create a new community</div>
   <div class="fields">
     <%= f.label :name %>
-    <%= f.text_area :name %>
+    <%= f.text_area :name, required: true %>
   </div>
   <div class="fields">
     <%= f.label :is_private_false, "Public" %>
