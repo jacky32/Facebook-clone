@@ -1,4 +1,5 @@
 <% if notice %>
+  <%= turbo_stream.replace "main", template: "communities/show", locals: { community: @community } %>
   <%= turbo_stream.replace "member-requests", partial: "communities/member_requests", locals: { community: @community } %>
   <%= turbo_stream.replace "member-list", partial: "communities/member_list", locals: { community: @community } %>
 

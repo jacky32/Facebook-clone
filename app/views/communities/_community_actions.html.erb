@@ -1,22 +1,35 @@
 <%= turbo_frame_tag "community-actions", class: "buttons", data: { controller: "modal" } do %>
   <% if community.admin == current_user %>
-    <div class="button" data-button="edit" data-community="<%= community.id %>" data-action="click->modal#showModal">
+    <div class="button" data-button="actions/edit" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Edit
     </div>
-    <div class="button" data-button="memberboard" data-community="<%= community.id %>" data-action="click->modal#showModal">
+    <div class="button" data-button="actions/memberboard" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Dashboard
     </div>
   <% end %>
-  <% if current_user.member_of?(community) %>
-    <div class="button" data-button="invite" data-community="<%= community.id %>" data-action="click->modal#showModal">
+  <% if community.admin == current_user %>
+    <div class="button" data-button="actions/invite" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Invite
     </div>
-    <div class="button delete" data-button="leave" data-community="<%= community.id %>" data-action="click->modal#showModal">
+    <div class="button delete" data-button="actions/delete" data-community="<%= community.id %>" data-action="click->modal#showModal">
+      Delete
+    </div>
+  <% elsif current_user.member_of?(community) %>
+    <div class="button" data-button="actions/invite" data-community="<%= community.id %>" data-action="click->modal#showModal">
+      Invite
+    </div>
+    <div class="button delete" data-button="actions/leave" data-community="<%= community.id %>" data-action="click->modal#showModal">
       Leave
     </div>
   <% else %>
-    <div class="button" data-button="join" data-community="<%= community.id %>" data-action="click->modal#showModal">
-      Join
-    </div>
+    <% if current_user.requested_to_join?(community) %>
+      <div class="button" data-button="actions/unsend_request" data-community="<%= community.id %>" data-action="click->modal#showModal">
+        Unsend request
+      </div>
+    <% else %>
+      <div class="button" data-button="actions/send_request" data-community="<%= community.id %>" data-action="click->modal#showModal">
+        Send request
+      </div>
+    <% end %>
   <% end %>
 <% end %>

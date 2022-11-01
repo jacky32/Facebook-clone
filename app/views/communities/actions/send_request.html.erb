@@ -1,0 +1,7 @@
+<% community = Community.find(@id)%>
+<div class="user-heading">Do you want to join this community?</div>
+<div><%= community.info %></div>
+<div class="buttons">
+  <%= button_to "Send request", memberships_path(community_id: @id, request_send: true), class: "button", data: { controller: "modal", action: "click->modal#hideModal" } %>
+  <div class="button cancel" data-controller="modal" data-action="click->modal#hideModal">Cancel</div>
+</div>

@@ -6,7 +6,7 @@
       <%= show_svg('icons/bookmark.svg') %>
     <% end %>
   </div>
-  <%= button_to memberships_path(user_id: friend.id, community_id: community.id)  do %>
+  <%= button_to memberships_path(user_id: friend.id, community_id: community.id, invite: true), disabled: friend.received_invite?(community) do %>
     <%= show_svg('icons/log-in-outline.svg') %>
   <% end %>
   <%= link_to friend, class:"member-details", data: { turbo_frame: "main", action:"click->modal#hideModal" } do %>

@@ -90,7 +90,7 @@ class User < ApplicationRecord
   end
 
   def member_of?(community)
-    joined_communities.include?(community)
+    created_communities.include?(community) || community.confirmed_members.include?(self)
   end
 
   def received_invite?(community)

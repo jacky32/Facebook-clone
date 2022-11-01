@@ -1,5 +1,6 @@
 class CommunitiesController < ApplicationController
   before_action :authenticate_user!
+  before_action :community, only: %i[show update destroy]
 
   def index
     @community_posts = current_user.community_posts
@@ -19,12 +20,9 @@ class CommunitiesController < ApplicationController
   #   end
   # end
 
-  def show
-    community
-  end
+  def show; end
 
   def update
-    community
     respond_to do |format|
       if @community.update(community_params)
         format.html { redirect_to community_path(@community), notice: 'Community edited!' }
@@ -40,12 +38,14 @@ class CommunitiesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if @post.destroy
-        format.html { redirect_to root_path, notice: 'Post was deleted!' }
-        format.turbo_stream { flash.now[:notice] = 'Post deleted!' }
+      if @community.destroy
+        format.html { redirect_to root_path, notice: 'Community deleted!' }
+        format.turbo_stream { flash.now[:notice] = 'Community deleted!' }
       else
-        format.html { redirect_to post_path(@post), status: :unprocessable_entity, alert: 'Post was not deleted!' }
-        format.turbo_stream { flash.now[:alert] = 'Post was not deleted!' }
+        format.html do
+          redirect_to community_path(@community), status: :unprocessable_entity, alert: 'Community was not deleted!'
+        end
+        format.turbo_stream { flash.now[:alert] = 'Community was not deleted!' }
       end
     end
   end

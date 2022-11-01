@@ -10,6 +10,58 @@ class MembershipsController < ApplicationController
   # end
 
   def create
+    return request_join if params[:request_send]
+    return request_unsend if params[:request_unsend]
+    return invite if params[:invite]
+
+    @user = User.find(params[:user_id])
+    @community = Community.find(params[:community_id])
+    @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
+    @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
+
+    respond_to do |format|
+      if @membership.invited == true
+        format.turbo_stream { flash.now[:alert] = 'Already invited!' }
+      else
+        @membership.invited = true
+        @membership.save
+        format.turbo_stream { flash.now[:notice] = 'Friend invited!' }
+      end
+    end
+  end
+
+  def request_join
+    @user = current_user
+    @community = Community.find(params[:community_id])
+    @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
+    @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
+    @membership.requested = true
+
+    respond_to do |format|
+      if @membership.save
+        format.turbo_stream { flash.now[:notice] = 'Requested to join the community!' }
+      else
+        format.turbo_stream { flash.now[:alert] = 'You already requested to join the community!' }
+      end
+    end
+  end
+
+  def request_unsend
+    @user = current_user
+    @community = Community.find(params[:community_id])
+    @membership = Membership.find(params[:membership_id])
+    @membership.requested = false
+
+    respond_to do |format|
+      if @membership.save
+        format.turbo_stream { flash.now[:notice] = 'Request to join the community removed!' }
+      else
+        format.turbo_stream { flash.now[:alert] = 'Unable to unsend the request!' }
+      end
+    end
+  end
+
+  def invite
     @user = User.find(params[:user_id])
     @community = Community.find(params[:community_id])
     @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)

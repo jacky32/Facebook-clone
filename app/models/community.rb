@@ -25,7 +25,7 @@ class Community < ApplicationRecord
   end
 
   def members_count
-    confirmed_members.count
+    confirmed_members.count + 1 # +1 -> admin
   end
 
   def private?

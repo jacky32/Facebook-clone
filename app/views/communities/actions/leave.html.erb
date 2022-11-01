@@ -1,0 +1,7 @@
+<% community = Community.find(@id)%>
+<% membership = Membership.where(community_id: community.id, member_id: current_user.id).first %>
+<div>Are you sure?</div>
+<div class="buttons">
+  <%= button_to "Leave", membership_path(membership.id), method: :delete, class: "button delete", method: :delete, data: { controller: "modal", action: "click->modal#hideModal" } %>
+  <div class="button cancel" data-controller="modal" data-action="click->modal#hideModal">Cancel</div>
+</div>

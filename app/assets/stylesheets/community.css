@@ -204,6 +204,12 @@ input[type="radio"]:checked {
   background-color: transparent;
 }
 
+.invite button:disabled {
+  cursor: default;
+  background-color: #b3b1b1;
+  border-radius: 8px;
+}
+
 .invite svg {
   width: 32px;
   height: 32px;
