@@ -90,6 +90,17 @@ header > div {
   padding: 2px;
   border-radius: 50%;
   border: 1px solid white;
+  pointer-events: none;
+}
+
+#header-right-notifications-dropdown {
+  right: 50px;
+  width: 240px;
+}
+
+#header-right-messages-dropdown {
+  right: 75px;
+  width: 240px;
 }
 
 #search-form > form {

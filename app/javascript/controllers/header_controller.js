@@ -1,7 +1,14 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["profileDropdown", "profileButton"];
+  static targets = [
+    "profileDropdown",
+    "profileButton",
+    "messagesDropdown",
+    "messagesButton",
+    "notificationsDropdown",
+    "notificationsButton",
+  ];
 
   connect() {
     document.addEventListener("click", (e) => {
@@ -12,16 +19,62 @@ export default class extends Controller {
         this.profileDropdownTarget.children[1].contains(e.target) ||
         this.profileDropdownTarget.children[2].contains(e.target)
       ) {
-        this.hideDropdown();
+        this.hideDropdown("profile");
+      }
+      if (
+        !this.notificationsDropdownTarget.contains(e.target) &&
+        !this.notificationsButtonTarget.contains(e.target) //||
+        // this.notificationsDropdownTarget.children[0].contains(e.target) ||
+        // this.notificationsDropdownTarget.children[1].contains(e.target) ||
+        // this.notificationsDropdownTarget.children[2].contains(e.target)
+      ) {
+        this.hideDropdown("notifications");
+      }
+      if (
+        !this.messagesDropdownTarget.contains(e.target) &&
+        !this.messagesButtonTarget.contains(e.target) //||
+        // this.messagesDropdownTarget.children[0].contains(e.target) ||
+        // this.messagesDropdownTarget.children[1].contains(e.target) ||
+        // this.messagesDropdownTarget.children[2].contains(e.target)
+      ) {
+        this.hideDropdown("messages");
       }
     });
   }
 
-  hideDropdown() {
-    this.profileDropdownTarget.classList.add("hidden");
+  hideDropdown(option) {
+    switch (option) {
+      case "profile":
+        this.profileDropdownTarget.classList.add("hidden");
+        break;
+      case "messages":
+        this.messagesDropdownTarget.classList.add("hidden");
+        break;
+      case "notifications":
+        this.notificationsDropdownTarget.classList.add("hidden");
+        break;
+
+      default:
+        break;
+    }
   }
 
-  toggleDropdown() {
-    this.profileDropdownTarget.classList.toggle("hidden");
+  toggleDropdown(e) {
+    console.log(e.target.getAttribute("data-dropdown"));
+    const dropdown = e.target.getAttribute("data-dropdown");
+    switch (dropdown) {
+      case "profile":
+        this.profileDropdownTarget.classList.toggle("hidden");
+        break;
+      case "messages":
+        this.messagesDropdownTarget.classList.toggle("hidden");
+        break;
+      case "notifications":
+        this.notificationsDropdownTarget.classList.toggle("hidden");
+        break;
+
+      default:
+        break;
+    }
   }
 }

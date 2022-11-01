@@ -19,13 +19,21 @@
   </div>
 
   <div id="header-right-options" data-controller="header">
-    <div id="header-right-messages">
+    <div id="header-right-messages" data-dropdown="messages" data-action="click->header#toggleDropdown" data-header-target="messagesButton">
       <%= show_svg('icons/chatbubbles-outline.svg')%>
     </div>
-    <div id="header-right-notifications">
+    <div id="header-right-messages-dropdown" class="dropdown hidden" data-header-target="messagesDropdown">
+      <div>aaa</div>
+      <div>aaa</div>
+    </div>
+    <div id="header-right-notifications" data-dropdown="notifications" data-action="click->header#toggleDropdown" data-header-target="notificationsButton">
       <%= show_svg('icons/notifications-outline.svg')%>
     </div>
-    <div id="header-right-profile" data-action="click->header#toggleDropdown" data-header-target="profileButton">
+    <div id="header-right-notifications-dropdown" class="dropdown hidden" data-header-target="notificationsDropdown">
+      <div>aaa</div>
+      <div>aaa</div>
+    </div>
+    <div id="header-right-profile" data-dropdown="profile" data-action="click->header#toggleDropdown" data-header-target="profileButton">
         <%= image_tag current_user.get_profile_picture %>
     </div>
     <div id="header-right-profile-dropdown" class="dropdown hidden" data-header-target="profileDropdown">
