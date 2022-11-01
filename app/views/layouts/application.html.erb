@@ -29,6 +29,12 @@
       <hr>
       <%= render 'friendships/friend_list' %>
     <% end %>
+
+    <%# Chat %>
+    <%= turbo_frame_tag "active_chat" do %>
+      <%= render "messages/active_chat" %>
+    <% end %>
+
     <%# Edit/delete popup modal %>
     <%= render 'layouts/modal' %>
     <% else %>

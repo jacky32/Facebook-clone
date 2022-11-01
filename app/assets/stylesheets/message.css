@@ -1,0 +1,80 @@
+.chat {
+  position: fixed;
+  bottom: 0;
+  right: 10vw;
+  width: 280px;
+  height: 380px;
+  background-color: var(--post-color);
+  display: grid;
+  grid-template-rows: 40px 1fr 52px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.chat-header {
+  border-bottom: 1px solid var(--border-radius-color);
+  display: grid;
+  grid-template-columns: 1fr 40px 40px;
+  justify-items: center;
+  align-items: center;
+}
+
+/* MSGS */
+
+.messages {
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 4px 8px;
+  background-color: var(--post-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 4px;
+}
+
+.message-body {
+  padding: 4px 8px;
+  background-color: var(--basic-color);
+  border-radius: 16px;
+  word-wrap: anywhere;
+}
+
+.message-sent {
+  margin-left: auto;
+}
+
+.message-received {
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 4px;
+}
+
+.message-received-avatar {
+  align-self: end;
+  margin-bottom: 4px;
+}
+
+/* NEW MSG */
+
+.new-message {
+  display: grid;
+  grid-template-columns: 1fr 30px;
+  justify-items: center;
+  align-items: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.new-message-text {
+  margin: 2px;
+  border-radius: 8px;
+  background-color: var(--basic-color);
+  width: 90%;
+  min-height: 80%;
+  height: auto;
+}

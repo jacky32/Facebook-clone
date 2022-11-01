@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :joined_communities, through: :memberships, source: :community
   has_many :created_communities, foreign_key: :admin_id, class_name: 'Community', dependent: :destroy
 
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy
+  has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id', dependent: :destroy
+
   after_create :build_user_info, :generate_default_avatar
 
   def build_user_info
