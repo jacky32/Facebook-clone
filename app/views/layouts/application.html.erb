@@ -8,18 +8,20 @@
 
     <%# Workaround for broadcasting messages %>
     <style>
-      <%= ".from-#{current_user.id}" %> {
-        margin-left: auto !important;
-        margin-right: 0 !important;
-        display: block !important;
-      }
-      <%= ".from-#{current_user.id} .message-body" %> {
-        background-color: var(--like-color) !important;
-      }
+      <% if user_signed_in? %>
+        <%= ".from-#{current_user.id}" %> {
+          margin-left: auto !important;
+          margin-right: 0 !important;
+          display: block !important;
+        }
+        <%= ".from-#{current_user.id} .message-body" %> {
+          background-color: var(--like-color) !important;
+        }
 
-      <%= ".avt-from-#{current_user.id}" %> {
-        display: none !important;
-      }
+        <%= ".avt-from-#{current_user.id}" %> {
+          display: none !important;
+        }
+      <% end %>
     </style>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
