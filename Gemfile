@@ -5,20 +5,19 @@ ruby '3.1.2'
 
 gem 'bootsnap', require: false
 gem 'devise'
-gem "image_processing", "~> 1.2"
+gem 'hiredis'
+gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'
-gem "sassc-rails"
+gem 'redis', '~> 4.0'
+gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-# Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
