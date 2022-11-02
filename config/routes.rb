@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :user_info, only: %i[create update destroy]
   end
 
-  resources :posts, :comments, only: %i[create update destroy] do
+  resources :posts, :comments, only: %i[show create update destroy] do
     resources :comments, except: :new
     resources :likes, only: %i[create destroy]
   end

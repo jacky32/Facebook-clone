@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :post, only: %i[update destroy]
+  before_action :post, only: %i[show update destroy]
+
+  def show
+    @post = Post.find(params[:id])
+    render formats: :turbo_stream, template: 'posts/show'
+  end
 
   def create
     @added = true

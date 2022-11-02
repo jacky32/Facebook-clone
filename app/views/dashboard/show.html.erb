@@ -1,4 +1,15 @@
 <%= turbo_frame_tag "main" do %>
-<%# ? render content instead of posts, partial: posts xx partial: user %>
-  <%= render template: "posts/index" %>
+  <div id="main-feed">
+    <div id="new-post">
+      <div class="user-pic"><%= image_tag current_user.get_profile_picture %></div>
+      <%= render 'posts/form'%>
+    </div>
+    <div id="posts">
+      <% @posts.each do |post| %>
+        <%= turbo_frame_tag id="#{dom_id post}", src: post_path(post.id), loading: :lazy do %>
+          <span class="loader"></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

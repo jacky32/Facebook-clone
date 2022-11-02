@@ -71,7 +71,7 @@ class User < ApplicationRecord
   end
 
   def ordered_posts
-    sel_posts = posts.order('created_at ASC').limit(10)
+    sel_posts = posts.order('created_at ASC')
     sel_posts.select do |post|
       post.public?
     end
@@ -80,7 +80,7 @@ class User < ApplicationRecord
   def friends_posts
     ids = friends.map(&:id)
     ids << id
-    posts = Post.includes(:user, :comments, :likes).order('created_at DESC').limit(10).where(user_id: ids)
+    posts = Post.includes(:user, :comments, :likes).order('created_at DESC').where(user_id: ids)
     posts.select do |post|
       post.public?
     end
@@ -88,7 +88,7 @@ class User < ApplicationRecord
 
   def community_posts
     communities = joined_communities + created_communities
-    Post.where(community: communities).order('created_at DESC').limit(10)
+    Post.where(community: communities).order('created_at DESC')
   end
 
   def friends_not_members_of(community)
