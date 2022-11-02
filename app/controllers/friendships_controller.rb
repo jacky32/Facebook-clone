@@ -8,6 +8,12 @@ class FriendshipsController < ApplicationController
     @friend_request.save
   end
 
+  def show
+    @friendship = Friendship.find(params[:id])
+    @friend = @friendship.user == current_user ? @friendship.friend : @friendship.user
+    render formats: :turbo_stream, template: 'friendships/show'
+  end
+
   def create
     current_user_id = params[:user_id]
     if current_user.friend_request_received?(user_id: @user.id)

@@ -1,8 +1,8 @@
 <%= turbo_frame_tag "friend-list" do %>
-  <% current_user.friends.order(:first_name).each do |friend| %> 
-    <%= link_to friend, class:"friend", id:"#{dom_id friend}_panel", data: { turbo_frame: "main", turbo_action: "replace" } do %>
-      <%= image_tag friend.get_profile_picture %>
-      <div><%= friend.name %></div>
+  <% current_user.friends.each do |friend| %> 
+    <% friendship = Friendship.find_by_ids(friend.id, current_user.id) %>
+    <%= turbo_frame_tag id="#{dom_id friendship}_panel", src: friendship_path(friendship.id), loading: :lazy, class: "comment" do %>
+      <span class="friend-loader"></span>
     <% end %>
   <% end %>
 <% end %>

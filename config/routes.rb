@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
   end
 
-  resources :friendships, only: %i[create update destroy]
+  resources :friendships, only: %i[show create update destroy]
 
   resources :memberships, only: %i[create update destroy]
   resources :communities, except: %i[new edit]

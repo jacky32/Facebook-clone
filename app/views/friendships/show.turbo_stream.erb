@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id @friendship}_panel" do %>
+  <%= render partial: "friendships/friend", locals: { friend: @friend } %>
+<% end %>

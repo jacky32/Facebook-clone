@@ -78,7 +78,7 @@
 
 .comment-loader {
   width: calc(var(--post-width) - 40px);
-  height: 100px;
+  height: 60px;
   display: block;
   background-image: linear-gradient(
       100deg,
@@ -104,5 +104,34 @@
   100% {
     background-position: 100% 0, 0 0, 120px 0, 120px 40px, 120px 80px,
       120px 120px;
+  }
+}
+
+.friend-loader {
+  width: 240px;
+  height: 32px;
+  display: block;
+  background-image: linear-gradient(
+      100deg,
+      transparent,
+      rgba(38, 50, 56, 0.5) 50%,
+      transparent 80%
+    ),
+    radial-gradient(circle 10px at 10px 10px, #fff 99%, transparent 0),
+    linear-gradient(#fff 16px 10px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 40px 26px, 30px 30px, 120px 12px;
+  background-position: -50% 0, 10px 10px, -60px 20px;
+  box-sizing: border-box;
+  margin: 8px;
+  animation: animloader 1s linear infinite;
+}
+
+@keyframes friend-animloader {
+  0% {
+    background-position: 0% 0, 10px 10px, -20px 0;
+  }
+  100% {
+    background-position: 100% 0, 10px 10px, -20px 0;
   }
 }

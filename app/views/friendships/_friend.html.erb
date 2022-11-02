@@ -1,0 +1,4 @@
+<%= link_to friend, class:"friend", id:"#{dom_id friend}_panel", data: { turbo_frame: "main", turbo_action: "replace" } do %>
+  <%= image_tag friend.get_profile_picture %>
+  <div><%= friend.name %></div>
+<% end %>
