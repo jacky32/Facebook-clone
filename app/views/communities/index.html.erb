@@ -1,6 +1,15 @@
 <%= turbo_frame_tag "main" do %>
   <div id="main-feed">
     <%= render "communities/carousel" %>
-    <%= render "communities/posts" %>
+    
+    <div id="community-posts">
+      <div id="posts">
+        <% current_user.community_posts.each do |post| %>
+          <%= turbo_frame_tag id="#{dom_id post}", src: post_path(post.id), loading: :lazy do %>
+            <span class="loader"></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% end %>

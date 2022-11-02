@@ -9,7 +9,11 @@
     <% end %>
 
     <div id="posts">
-      <%= render @community.ordered_posts %>
+      <% @community.ordered_posts.each do |post| %>
+        <%= turbo_frame_tag id="#{dom_id post}", src: post_path(post.id), loading: :lazy do %>
+          <span class="loader"></span>
+        <% end %>
+      <% end %>
     </div>
   </div>
 <% end %>
