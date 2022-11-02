@@ -13,6 +13,11 @@ class ChatsController < ApplicationController
     render formats: :turbo_stream, template: 'chats/chat', locals: { user: @user, chat: @chat }
   end
 
+  def show_recent_chat
+    @chat = Chat.find(params[:id])
+    render formats: :turbo_stream, template: 'chats/show'
+  end
+
   def create
     decide_chat(current_user, @user)
     @messages = @chat.messages

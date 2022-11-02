@@ -24,17 +24,9 @@
     </div>
     <div id="header-right-messages-dropdown" class="hidden" data-header-target="messagesDropdown">
       <% current_user.chats.joins(:messages).group('chats.id').order("MAX(messages.created_at) DESC").each do |chat| %>
-        <div data-controller="chat" data-user="<%= chat.other_user(current_user).id %>" data-action="click->chat#showChat" class="dropdown-chat">
-          <div class="dropdown-chat-name">
-            <%= chat.other_user(current_user).name %>
-          </div>
-          <div class="dropdown-chat-date">
-            <%= chat.messages.last.created_at.strftime("%H:%M, %d/%m")unless chat.messages.last.nil? %>
-          </div>
-          <div class="dropdown-chat-last-message">
-            <%= chat.messages.last.body unless chat.messages.last.nil? %>
-          </div>
-        </div>
+        <%= turbo_frame_tag id="#{dom_id chat}", src: "show_recent_chat/#{chat.id}", loading: :lazy, class: "comment" do %>
+          <span class="chat-loader"></span>
+        <% end %>
       <% end %>
     </div>
     <div id="header-right-notifications" data-dropdown="notifications" data-action="click->header#toggleDropdown" data-header-target="notificationsButton">
