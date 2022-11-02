@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: :show
   post 'modal', to: 'dashboard#modal'
   get 'search', to: 'dashboard#search'
+  get 'search_results', to: 'dashboard#search_results'
 
   root 'dashboard#show'
 end

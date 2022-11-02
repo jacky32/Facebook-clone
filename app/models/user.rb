@@ -139,8 +139,8 @@ class User < ApplicationRecord
     query = query.split(' ')
     answers = []
     query.each do |q|
-      first_name = where('lower(first_name) LIKE ?', "%#{q.downcase}%").limit(6)
-      last_name = where('lower(last_name) LIKE ?', "%#{q.downcase}%").limit(6)
+      first_name = where('lower(first_name) LIKE ?', "%#{q.downcase}%")
+      last_name = where('lower(last_name) LIKE ?', "%#{q.downcase}%")
       answers = answers + first_name + last_name
     end
     answers.uniq

@@ -1,26 +1,27 @@
-<div class="search">
+<div id="search-results">
   <h1>User search results:</h1>
-  <% if users.nil? || users.empty? %>
-    <div>No users found</div>
-  <% else %>
-    <% users.each do |user| %>
-      <div class="search-user">
-        <div class="search-user-profile-pic"><%= image_tag(user.get_profile_picture) %></div>
-        <div class="search-user-details">
-          <div class="search-user-name">
-            <%= link_to user_path(user), data: { turbo_action: "advance" } do %>
-              <%= user.name %>
-            <% end %>
-          </div>
-          <div class="search-user-mutual-friends">
-            <%= render partial: "friendships/mutual_friends_number", locals: { other_user: user } %>
-            <%= render partial: "friendships/friend_heads", locals: { user: user, amount: 6} %>
-          </div>
-        </div>
-        <div class="search-user-actions">
-          <%= render partial: "users/user_actions", locals: { user: user }%>
-        </div>
-      </div>
+  <div class="search-users">
+    <% if users.nil? || users.empty? %>
+      <div>No users found</div>
+    <% else %>
+      <% users.each do |user| %>
+        <%= turbo_frame_tag id="#{dom_id user}_search", src: search_results_path(user_id: user.id), loading: :lazy, class: "comment" do %>
+          <span class="comment-loader"></span>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  
+  <h1>Community search results:</h1>
+  <div class="search-communities">
+    <% if communities.nil? || communities.empty? %>
+      <div>No communities found</div>
+    <% else %>
+      <% communities.each do |community| %>
+        <%= turbo_frame_tag id="#{dom_id community}_search", src: search_results_path(community_id: community.id), loading: :lazy, class: "comment" do %>
+          <span class="comment-loader"></span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

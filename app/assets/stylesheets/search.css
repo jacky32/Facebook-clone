@@ -1,8 +1,15 @@
-.search {
+#search-results {
+  max-height: 100%;
+  overflow: auto;
+}
+/* Users */
+.search-users {
   display: grid;
   grid-auto-rows: 100px;
   gap: 8px;
   justify-content: center;
+  overflow: auto;
+  max-height: 360px;
 }
 
 .search-user {
@@ -42,4 +49,48 @@
 
 .search-user-actions > * {
   font-size: 0.9em;
+}
+
+/* Communities */
+
+.search-communities {
+  display: grid;
+  grid-template-columns: calc(var(--post-width) / 2) calc(var(--post-width) / 2);
+  grid-auto-rows: 160px;
+  gap: 8px;
+  justify-content: center;
+}
+
+.search-community {
+  padding: 2px;
+  width: calc(var(--post-width) / 2);
+  background-color: var(--post-color);
+  border-radius: 8px;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 1fr 40px;
+}
+
+.search-community:hover {
+  background-color: rgba(65, 65, 65, 0.116);
+}
+
+.search-community-profile-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-community-profile-pic img {
+  max-width: 100%;
+  max-height: 120px;
+  border-radius: 8px;
+}
+
+.search-community-name {
+  font-size: 1.1em;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
 }

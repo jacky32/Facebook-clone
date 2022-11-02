@@ -20,8 +20,20 @@ class DashboardController < ApplicationController
       'No results'
     else
       @result_users = User.search(@query)
+      @result_communities = Community.search(@query)
     end
     render formats: :turbo_stream, template: 'dashboard/search'
+  end
+
+  def search_results
+    if params[:user_id]
+      @option = 'user'
+      @user = User.find(params[:user_id])
+    elsif params[:community_id]
+      @option = 'community'
+      @community = Community.find(params[:community_id])
+    end
+    render formats: :turbo_stream, template: 'dashboard/search_results'
   end
 
   private

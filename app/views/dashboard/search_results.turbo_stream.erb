@@ -1,0 +1,10 @@
+
+<% if @option == 'user' %>
+  <%= turbo_stream.replace "#{dom_id @user}_search" do %>
+    <%= render partial: "dashboard/search/user", locals: { user: @user } %>
+  <% end %>
+<% elsif @option == 'community' %>
+  <%= turbo_stream.replace "#{dom_id @community}_search" do %>
+    <%= render partial: "dashboard/search/community", locals: { community: @community } %>
+  <% end %>
+<% end %>

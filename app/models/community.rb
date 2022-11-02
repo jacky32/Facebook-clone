@@ -49,4 +49,13 @@ class Community < ApplicationRecord
   def ordered_posts
     posts.order('created_at ASC').limit(10)
   end
+
+  def self.search(query)
+    query = query.split(' ')
+    answers = []
+    query.each do |q|
+      answers = where('lower(name) LIKE ?', "%#{q.downcase}%")
+    end
+    answers.uniq
+  end
 end

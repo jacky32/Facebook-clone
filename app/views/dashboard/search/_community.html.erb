@@ -1,0 +1,6 @@
+<%= link_to community_path(community.id), class:"search-community", data: { turbo_action: "advance" } do%>
+  <div class="search-community-profile-pic"><%= image_tag(community.bg_image) %></div>
+  <div class="search-community-name">
+    <%= community.name %>
+  </div>
+<% end %>
