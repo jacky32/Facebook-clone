@@ -1,13 +1,13 @@
 class MembershipsController < ApplicationController
   before_action :membership, only: %i[request_unsend update destroy]
   before_action :community
-  before_action :user, only: %i[create invite]
 
   def create
     return request_join if params[:request_send]
     return request_unsend if params[:request_unsend]
     return invite if params[:invite]
 
+    @user = current_user
     @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
     @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
 
@@ -51,6 +51,7 @@ class MembershipsController < ApplicationController
   end
 
   def invite
+    @user = User.find(params[:user_id])
     @community.members << @user unless Membership.exists?(member_id: @user.id, community_id: @community.id)
     @membership = Membership.where(member_id: @user.id, community_id: @community.id).first
 
@@ -91,10 +92,6 @@ class MembershipsController < ApplicationController
   end
 
   private
-
-  def user
-    @user ||= User.find(params[:user_id])
-  end
 
   def membership
     @membership ||= Membership.find(params[:membership_id] || params[:id])
