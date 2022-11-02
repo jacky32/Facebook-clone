@@ -7,6 +7,11 @@ class CommentsController < ApplicationController
     @comments = Comments.all.order('created_at DESC').includes(:user, :comments)
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+    render formats: :turbo_stream, template: 'comments/show'
+  end
+
   def new
     @comment = Comment.new
     @post ||= Post.find(params[:post_id]) if params[:post_id]

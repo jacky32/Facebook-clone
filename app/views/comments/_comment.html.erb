@@ -55,6 +55,10 @@
     <%= render partial: 'comments/form', locals: { commentable: comment } %>
   </div>
   <div id="<%= dom_id comment%> comments" class="comment-comments">
-    <%= render partial: 'comments/comment', collection: comment.comments.includes(:comments, :user, :likes) %>
+    <% comment.comments.includes(:comments, :user, :likes).each do |comment| %>
+      <%= turbo_frame_tag id="#{dom_id comment}", src: comment_path(comment.id), loading: :lazy, class: "comment" do %>
+        <span class="comment-loader"></span>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -74,7 +74,11 @@
       <%= render partial: 'comments/form', locals: { commentable: post } %>
     </div>
     <div id="<%= dom_id post %> comments" class="comments" data-post-target="commentOverflow">
-      <%= render partial: 'comments/comment', collection: post.comments.includes(:comments, :user, :likes) %>
+      <% post.comments.includes(:comments, :user, :likes).each do |comment| %>
+        <%= turbo_frame_tag id="#{dom_id comment}", src: comment_path(comment.id), loading: :lazy, class: "comment" do %>
+          <span class="comment-loader"></span>
+        <% end %>
+      <% end %>
     </div>
     
     <div class="post-comments-display-all clickable-text" data-action="click->post#toggleOverflow" data-post-target="displayComments">Display all comments</div>
