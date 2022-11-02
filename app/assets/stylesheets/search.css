@@ -10,17 +10,36 @@
   border-radius: 8px;
   display: grid;
   align-items: center;
-  grid-template-columns: 72px 1fr 120px;
+  grid-template-columns: 72px 1fr 200px;
   width: var(--post-width);
   height: 100px;
 }
 
-.search-user-profile-pic svg {
+.search-user-name {
+  font-weight: 500;
+}
+
+.search-user-mutual-friends {
+  font-size: 0.9em;
+}
+
+.search-user-profile-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-user-profile-pic img {
   width: 64px;
   border-radius: 50%;
   height: 64px;
+  border: 1px solid var(--border-radius-color);
 }
 
-.search-user-mutual-friends svg {
+.search-user-mutual-friends img {
   background-color: white;
+}
+
+.search-user-actions > * {
+  font-size: 0.9em;
 }

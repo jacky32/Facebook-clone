@@ -5,20 +5,21 @@
   <% else %>
     <% users.each do |user| %>
       <div class="search-user">
-        <div class="search-user-profile-pic"><%= show_svg(user.get_profile_picture) %></div>
+        <div class="search-user-profile-pic"><%= image_tag(user.get_profile_picture) %></div>
         <div class="search-user-details">
           <div class="search-user-name">
-            <%= link_to user_path(user) do %>
+            <%= link_to user_path(user), data: { turbo_action: "advance" } do %>
               <%= user.name %>
             <% end %>
           </div>
-          <div class="search-user-info">Info</div>
           <div class="search-user-mutual-friends">
             <%= render partial: "friendships/mutual_friends_number", locals: { other_user: user } %>
             <%= render partial: "friendships/friend_heads", locals: { user: user, amount: 6} %>
           </div>
         </div>
-        <div class="search-user-actions">Add friend/Message</div>
+        <div class="search-user-actions">
+          <%= render partial: "users/user_actions", locals: { user: user }%>
+        </div>
       </div>
     <% end %>
   <% end %>
