@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   # get '*path', to: redirect('/')
 
+  get '*path/show_recent_chat/:id', to: 'chats#show_recent_chat'
   get 'show_recent_chat/:id', to: 'chats#show_recent_chat'
 
   post 'set_profile', to: 'users#set_profile'
