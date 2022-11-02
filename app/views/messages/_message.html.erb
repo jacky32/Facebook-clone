@@ -2,5 +2,7 @@
   <div class="message-avatar <%= "avt-from-#{message.user.id}" %> ">
     <%= image_tag message.user.get_profile_picture %>
   </div>
-  <div class="message-body"><%= message.body %></div>
+  <div class="message-body">
+      <%= message.body %>
+  </div>
 </div>

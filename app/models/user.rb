@@ -34,6 +34,13 @@ class User < ApplicationRecord
     update(default_avatar: "default_avatars/avatar#{random_number}.png")
   end
 
+  def chats
+    started_chats = Chat.where(sender_id: id).pluck(:id)
+    received_chats = Chat.where(receiver_id: id).pluck(:id)
+    ids = started_chats + received_chats
+    Chat.where(id: ids)
+  end
+
   def set_last_chat_active(chat)
     update(last_chat_id_opened: chat.id)
   end

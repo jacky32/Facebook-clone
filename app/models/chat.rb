@@ -19,4 +19,12 @@ class Chat < ApplicationRecord
       Chat.where(sender_id: sender.id, receiver_id: receiver.id).first
     end
   end
+
+  def other_user(user)
+    if user == sender
+      receiver
+    else
+      sender
+    end
+  end
 end

@@ -60,7 +60,6 @@ export default class extends Controller {
   }
 
   toggleDropdown(e) {
-    console.log(e.target.getAttribute("data-dropdown"));
     const dropdown = e.target.getAttribute("data-dropdown");
     switch (dropdown) {
       case "profile":
