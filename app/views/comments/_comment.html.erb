@@ -1,10 +1,10 @@
 <div id="<%= dom_id comment %>" class="comment" data-controller="comment">
   <div class="comment-self">
-    <%= link_to comment.user, class: "user-pic", data: { turbo_action: "replace" } do %>
+    <%= link_to comment.user, class: "user-pic", data: { turbo_action: "advance" } do %>
       <%= image_tag comment.user.get_profile_picture %>
     <% end %>
     <div class="comment-body">
-      <%= link_to comment.user, class: "comment-user-name", data: { turbo_action: "replace" } do %>
+      <%= link_to comment.user, class: "comment-user-name", data: { turbo_action: "advance" } do %>
         <%= comment.user.name %>
       <% end %>
       <div class="comment-text"><%= comment.text %></div>
@@ -32,7 +32,7 @@
         <%= show_svg('icons/more-horizontal.svg') %>
       </div>
       <div class="dropdown hidden" data-comment-target="editDropdown" data-controller="modal">
-        <%= link_to user_path(comment.user), data: { turbo_frame: "main" } do %>
+        <%= link_to user_path(comment.user), data: { turbo_frame: "main", turbo_action: "advance" } do %>
           <%= show_svg('icons/warning-outline.svg') %>
           <div>Report</div>
         <% end %>

@@ -1,7 +1,7 @@
 <div class="user-friend-pics">
   <% user.friends.first(amount).each_with_index do |friend, index| %>
     <% if index < 7 %>
-      <%= link_to friend, style: "z-index: #{20-index}" do %>
+      <%= link_to friend, style: "z-index: #{20-index}", data: { turbo_action: "advance" } do %>
         <%= image_tag friend.get_profile_picture %>
       <% end %>
     <% else %>

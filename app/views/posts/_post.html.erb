@@ -5,16 +5,16 @@
  <div class="post" id="<%= dom_id post %>" data-controller="post">
 <% end %>
   <div class="post-info">
-    <%= link_to post.user, class: "user-pic", data: { turbo_action: "replace" } do %>
+    <%= link_to post.user, class: "user-pic", data: { turbo_action: "advance" } do %>
       <%= image_tag post.user.get_profile_picture %>
     <% end %>
     <div class="user-name">
-      <%= link_to post.user, data: { turbo_action: "replace" } do %>
+      <%= link_to post.user, data: { turbo_action: "advance" } do %>
         <%= post.user.name %>
       <% end %>
       <% if post.community%>
         >
-        <%= link_to community_path(post.community) do %>
+        <%= link_to community_path(post.community), data: { turbo_action: "advance" } do %>
           <%= post.community.name %>
         <% end %>
       <% end %>
@@ -41,7 +41,7 @@
         <%= show_svg('icons/more-horizontal.svg') %>
       </div>
       <div class="dropdown hidden" data-post-target="editDropdown" data-controller="modal">
-        <%= link_to user_path(post.user), data: { turbo_frame: "main" } do %>
+        <%= link_to user_path(post.user), data: { turbo_frame: "main", turbo_action: "advance" } do %>
           <%= show_svg('icons/warning-outline.svg') %>
           <div>Report</div>
         <% end %>
@@ -68,7 +68,7 @@
   </div>
   <div class="post-comments hidden slideout" data-post-target="comments">
     <div class="new-comment" >
-      <%= link_to post.user, class: "user-pic" do %>
+      <%= link_to post.user, class: "user-pic", turbo: { turbo_frame: "main", turbo_action: "advance" } do %>
         <%= image_tag post.user.get_profile_picture %>
       <% end %>
       <%= render partial: 'comments/form', locals: { commentable: post } %>
