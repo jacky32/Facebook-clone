@@ -8,9 +8,12 @@ export default class extends Controller {
     "messagesButton",
     "notificationsDropdown",
     "notificationsButton",
+    "root",
+    "community",
   ];
 
   connect() {
+    this.currentPage = window.location.pathname;
     document.addEventListener("click", (e) => {
       if (
         (!this.profileDropdownTarget.contains(e.target) &&
@@ -39,7 +42,27 @@ export default class extends Controller {
       ) {
         this.hideDropdown("messages");
       }
+      this.changeActive();
     });
+  }
+
+  changeActive() {
+    setTimeout(() => {
+      const path = window.location.pathname;
+      if (this.currentPage !== path) {
+        this.rootTarget.classList.remove("active");
+        this.communityTarget.classList.remove("active");
+        if (path == "/") {
+          this.rootTarget.classList.add("active");
+          this.currentPage = path;
+        } else if (path.slice(0, 12) == "/communities") {
+          this.communityTarget.classList.add("active");
+          this.currentPage = path;
+        } else {
+          this.currentPage = path;
+        }
+      }
+    }, 200);
   }
 
   hideDropdown(option) {

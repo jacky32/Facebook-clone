@@ -9,6 +9,29 @@ header {
   border-bottom: 1px solid var(--shadow-color);
 }
 
+.active {
+  position: relative;
+}
+
+.active::after {
+  background-color: var(--like-color);
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  bottom: 0;
+  content: "";
+  animation: slideactive 0.2s ease-out;
+}
+
+@keyframes slideactive {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 header > div {
   display: flex;
   justify-content: center;

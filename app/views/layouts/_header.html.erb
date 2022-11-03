@@ -1,4 +1,4 @@
-<header>
+<header data-controller="header">
   <div id="header-left-options">
     <div id="header-logo">
         <%= link_to root_path, data: { turbo_frame: "main", turbo_action: "advance" } do %>
@@ -8,17 +8,16 @@
     <%= render 'layouts/search_form' %>
   </div>
   
-  <%# TODO: add active %>
   <div id="header-middle-options">
-    <%= link_to root_path, id: "header-middle-posts", data: { turbo_frame: "main", turbo_action: "advance"  } do %>
+    <%= link_to root_path, id: "header-middle-posts", class: "#{active_class('/')}", data: { "header-target": "root", turbo_frame: "main", turbo_action: "advance"  } do %>
       <%= show_svg('icons/home-outline.svg')%>
     <% end %>
-    <%= link_to communities_path, id: "header-middle-communities", data: { turbo_frame: "main", turbo_action: "advance" } do %>
+    <%= link_to communities_path, id: "header-middle-communities", class: "#{active_class('/communities')}", data: { "header-target": "community", turbo_frame: "main", turbo_action: "advance" } do %>
       <%= show_svg('icons/people-outline.svg')%>
     <% end %>
   </div>
 
-  <div id="header-right-options" data-controller="header">
+  <div id="header-right-options">
     <div id="header-right-messages" data-dropdown="messages" data-action="click->header#toggleDropdown" data-header-target="messagesButton">
       <%= show_svg('icons/chatbubbles-outline.svg')%>
     </div>
