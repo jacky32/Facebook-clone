@@ -42,8 +42,8 @@
       </div>
       <div class="dropdown hidden" data-post-target="editDropdown" data-controller="modal">
         <%= link_to user_path(post.user), data: { turbo_frame: "main", turbo_action: "advance" } do %>
-          <%= show_svg('icons/warning-outline.svg') %>
-          <div>Report</div>
+          <%= show_svg('icons/user.svg') %>
+          <div>User profile</div>
         <% end %>
       </div>
     <% end %>
