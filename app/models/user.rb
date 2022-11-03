@@ -131,6 +131,14 @@ class User < ApplicationRecord
     end
   end
 
+  def bg_image
+    if user_info.background.attached?
+      user_info.background
+    else
+      'default_bgs/bg6.jpg'
+    end
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

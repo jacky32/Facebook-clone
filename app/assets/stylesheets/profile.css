@@ -25,8 +25,16 @@
 }
 
 #user-background {
-  background-color: aliceblue;
-  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 280px;
+  overflow: hidden;
+}
+
+#user-background img {
+  max-height: 150%;
+  max-width: 100%;
 }
 
 #user-info {
