@@ -17,11 +17,14 @@
   <% end %>
   <div class="horizontal-line"></div>
   <div class="actions">
-    
     <%= link_to "Create new account", new_user_registration_path, class: "user-link" %>
-    
+  </div>
+  <div class="horizontal-line"></div>
+  <div class="actions">
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post, data: { turbo: "false" } %><br />
+      <%= button_to omniauth_authorize_path(resource_name, provider), method: :post, class:"omni-button", data: { turbo: "false" } do %>
+      <%= show_svg('icons/github.svg') %>
+      <% end %>
     <% end %>
   </div>
 </div>

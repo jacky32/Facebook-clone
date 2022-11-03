@@ -1,6 +1,6 @@
 #login {
-  width: 80vw;
-  height: 80vh;
+  width: 90vw;
+  height: 90vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
@@ -65,12 +65,28 @@
   background-color: #36a420;
 }
 
+.omni-button {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background-color: lightgrey;
+}
+
+.omni-button svg {
+  width: 32px;
+  height: 32px;
+}
+
+.omni-button:hover {
+  background-color: rgb(190, 190, 190);
+}
+
 #login-form input {
   width: 90%;
 }
 
 #login-form .actions > input {
-  width: 50%;
+  width: auto;
+  padding: 0px 12px;
 }
 
 #login-form .field,
