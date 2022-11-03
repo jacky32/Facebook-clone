@@ -20,11 +20,11 @@
     <%= f.text_area :details %>
   </div>
   <div class="fields">
-    <%= f.label :avatar %>
+    <%= f.label :avatar, "Avatar (max 1MB)" %>
     <%= f.file_field :avatar, accept: 'image/png, image/jpeg, image/jpg' %>
   </div>
   <div class="fields">
-    <%= f.label :background %>
+    <%= f.label :background, "Background (max 1MB)" %>
     <%= f.file_field :background, accept: 'image/png, image/jpeg, image/jpg' %>
   </div>
   <div class="buttons">

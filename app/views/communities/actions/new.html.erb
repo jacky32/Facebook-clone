@@ -17,7 +17,7 @@
     <%= f.text_area :info, data: { controller: "textarea", action: "input->textarea#resize" } %>
   </div>
   <div class="fields">
-    <%= f.label :background %>
+    <%= f.label :background, "Background (max 1MB)" %>
     <%= f.file_field :background, accept: 'image/png, image/jpeg, image/jpg' %>
   </div>
   <div class="buttons">

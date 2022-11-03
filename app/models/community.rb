@@ -1,5 +1,6 @@
 class Community < ApplicationRecord
-  has_one_attached :background
+  has_one_attached :background, dependent: :destroy
+  validates :background, size: { less_than: 1.megabyte, message: 'too large' }
 
   has_many :memberships, foreign_key: :community_id
   has_many :members, through: :memberships, source: :member
