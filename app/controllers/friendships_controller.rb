@@ -10,7 +10,7 @@ class FriendshipsController < ApplicationController
 
   def show
     @friendship = Friendship.find(params[:id])
-    @friend = @friendship.user == current_user ? @friendship.friend : @friendship.user
+    @friend = @friendship.user == current_user ? User.find(@friendship.friend_id) : @friendship.user
     render formats: :turbo_stream, template: 'friendships/show'
   end
 

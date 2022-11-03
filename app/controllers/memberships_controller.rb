@@ -30,6 +30,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
+        @membership.send_join_request_notification(sender: current_user)
         format.turbo_stream { flash.now[:notice] = 'Requested to join the community!' }
       else
         format.turbo_stream { flash.now[:alert] = 'You already requested to join the community!' }
@@ -38,11 +39,13 @@ class MembershipsController < ApplicationController
   end
 
   def request_unsend
+    @membership ||= Membership.find(params[:membership_id] || params[:id])
     @user = current_user
     @membership.requested = false
 
     respond_to do |format|
       if @membership.save
+        @membership.unsend_join_request_notification(sender: current_user)
         format.turbo_stream { flash.now[:notice] = 'Request to join the community removed!' }
       else
         format.turbo_stream { flash.now[:alert] = 'Unable to unsend the request!' }
@@ -61,6 +64,7 @@ class MembershipsController < ApplicationController
       else
         @membership.invited = true
         @membership.save
+        @membership.send_invite_notification(sender: current_user, receiver: @user)
         format.turbo_stream { flash.now[:notice] = 'Friend invited!' }
       end
     end
