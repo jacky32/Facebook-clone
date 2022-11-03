@@ -1,13 +1,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:github]
   has_many :posts, dependent: :destroy
   # has_many :comments, as: :commentable
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  validates_presence_of :first_name, :last_name
+  # validates_presence_of :first_name, :last_name
 
   has_many :friendships, dependent: :destroy
   has_many :friend_requests, -> { where accepted: false }, class_name: 'Friendship', foreign_key: 'friend_id'
@@ -152,5 +153,13 @@ class User < ApplicationRecord
       answers = answers + first_name + last_name
     end
     answers.uniq
+  end
+
+  def self.create_from_provider_data(provider_data)
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
+      user.last_name = provider_data.info.name
+      user.email = provider_data.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
   end
 end

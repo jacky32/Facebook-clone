@@ -30,31 +30,59 @@
   gap: 8px;
 }
 
-#login-form > form {
+#user-form {
+  background-color: var(--post-color);
+  padding: 30px;
+  border-radius: 8px;
   min-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#user-form > form {
   display: grid;
   grid-auto-rows: 40px;
   grid-template-columns: 380px;
   gap: 10px;
-  background-color: var(--post-color);
-  padding: 20px;
+}
+
+#login-form .actions > a {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-weight: 600;
+  text-align: center;
   border-radius: 8px;
+  padding: 12px;
+  background-color: #42b72a;
+  transition: background-color 0.2s;
+}
+
+#login-form .actions > a:hover {
+  background-color: #36a420;
 }
 
 #login-form input {
-  width: 100%;
+  width: 90%;
+}
+
+#login-form .actions > input {
+  width: 50%;
 }
 
 #login-form .field,
-#login-form .actions,
-#new-birthday {
+#login-form .actions {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
-#login-form .field > input,
-#new-birthday > input {
+#login-form .field > input {
   height: 100%;
   padding: 0px 12px;
   border-radius: 8px;
@@ -62,20 +90,17 @@
   border: 1px solid grey;
 }
 
-#login-form .field > input:focus,
-#new-birthday > input:focus {
+#login-form .field > input:focus {
   border: 1px solid #1877f2;
   box-shadow: 0px 0px 5px #1877f2;
 }
 
-#login-form .field > input.error,
-#new-birthday > input.error {
+#login-form .field > input.error {
   box-shadow: 0px 0px 5px var(--error-color);
   border: 1px solid var(--error-color);
 }
 
-#login-form .field > input.error:focus,
-#new-birthday > input.error:focus {
+#login-form .field > input.error:focus {
   box-shadow: 0px 0px 5px #1877f2;
   border: 1px solid #1877f2;
 }
@@ -86,7 +111,6 @@
   font-weight: 600;
   text-align: center;
   border-radius: 8px;
-  padding: 0px 12px;
   background-color: #1877f2;
   transition: background-color 0.2s;
 }

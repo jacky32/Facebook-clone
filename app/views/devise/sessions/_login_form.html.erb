@@ -1,18 +1,27 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { controller: "session", target: "form", action: "turbo:submit-start>session#checkInputValids" }) do |f| %>
-  <%= render "layouts/flash" %>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: true, data: { action: "focusout->session#checkSelf" }, aria: { label: "Email" } %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: true, data: { action: "focusout->session#checkSelf" }, aria: { label: "Password" } %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-
+<div id="user-form">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { controller: "session", target: "form", action: "turbo:submit-start>session#checkInputValids" }) do |f| %>
+    <%= render "layouts/flash" %>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: true, data: { action: "focusout->session#checkSelf" }, aria: { label: "Email" } %>
+    </div>
+  
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: true, data: { action: "focusout->session#checkSelf" }, aria: { label: "Password" } %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Log in" %>
+    </div>
+  
+  
+  <% end %>
   <div class="horizontal-line"></div>
-
-  <%= link_to "Create new account", new_user_registration_path, class: "user-link" %>
-<% end %>
+  <div class="actions">
+    
+    <%= link_to "Create new account", new_user_registration_path, class: "user-link" %>
+    
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post, data: { turbo: "false" } %><br />
+    <% end %>
+  </div>
+</div>
