@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-@user = User.create(first_name: 'Joe', last_name: 'Smith', email: 'a@a.cz', password: 'aaaaaa')
+@user = User.create(first_name: 'Joe', last_name: 'Smith', email: 'aabca@a.cz', password: 'aaaaaa')
 
 FIRST_NAMES = %w[Joe Richard Jack Rick Abe Homer Bob Kate Lisa Bart Mary John Michael Linda Susan Sarah Karen Nancy
                  Betty Margaret Carol Dorothy George Kevin Andrew Donald Paul Helen Anna Angela Amy Scott Justin Larry
