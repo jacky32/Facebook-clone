@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :messages, only: %i[create]
   resources :chats, only: %i[create show]
 
+  resources :notifications, only: %i[create show destroy]
+
   # get '*path', to: redirect('/')
 
   get '*path/show_recent_chat/:id', to: 'chats#show_recent_chat'

@@ -1,0 +1,13 @@
+<div class="notification" id="<%= dom_id notification %>">
+  <div class="notification-time">
+    <%= notification.created_at.strftime("%H:%M, %d/%m") %>
+  </div>
+  <div class="notification-delete">
+    <%= button_to notification_path(notification.id), method: :delete do %>
+        <%= show_svg('icons/close.svg') %>
+    <% end %>
+  </div>
+  <%= link_to notification.url, class:"notification-message", data: { turbo_frame: "main", turbo_action: "advance" } do %>
+    <%= notification.title %>
+  <% end %>
+</div>

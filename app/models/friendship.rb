@@ -1,5 +1,18 @@
 class Friendship < ApplicationRecord
   belongs_to :user
+  after_create :send_friend_request_notification
+
+  def send_friend_request_notification
+    new_notification = Notification.create(
+      sender_id: user_id,
+      receiver_id: friend_id,
+      title: "#{User.find(user_id).name} has sent you a friend request!",
+      url: "/users/#{user_id}"
+    )
+    new_notification.save
+
+    pp new_notification
+  end
 
   def self.requested?(id1, id2)
     !Friendship.where(user_id: id1, friend_id: id2, accepted: false).empty?

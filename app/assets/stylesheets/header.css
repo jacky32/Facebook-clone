@@ -119,6 +119,70 @@ header > div {
 #header-right-notifications-dropdown {
   right: 50px;
   width: 240px;
+
+  z-index: 9999;
+  position: absolute;
+  top: 40px;
+  background-color: var(--basic-color);
+  box-shadow: 0px 0px 20px var(--shadow-color);
+  border-radius: 8px;
+  display: grid;
+  grid-auto-rows: 90px;
+  gap: 2px;
+  padding: 8px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.notification {
+  display: grid;
+  grid-template-rows: 30px auto;
+  grid-template-columns: auto 30px;
+  background-color: var(--post-color);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: default;
+}
+
+.notification-message {
+  grid-column: 1 / 3;
+  cursor: pointer;
+  transition: background-color 0.25s ease-in;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.notification-message:hover {
+  background-color: rgba(0, 0, 0, 0.103);
+  transition: none;
+}
+
+.notification-time {
+  align-self: center;
+}
+
+.notification-delete {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.notification-delete,
+.notification-delete svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-delete svg {
+  pointer-events: none;
+}
+
+.notification-delete:hover {
+  background-color: rgb(255, 32, 32);
 }
 
 #header-right-messages-dropdown {
