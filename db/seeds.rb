@@ -13,29 +13,34 @@ FIRST_NAMES = %w[Joe Richard Jack Rick Abe Homer Bob Kate Lisa Bart Mary John Mi
 LAST_NAMES = %w[Smith Johnson Williams Brown Jones Miller Davis Garcia Rodriguez Wilsom O'Neill O'Ryan Byrne Murphy
                 Taylor Wilson Thomas Roberts Li Roy Anderson Harris Lewis Baker Matthews Knight Hughes Wright Jenkins
                 Green Bell Cox Armstrong Carter Ford].freeze
+TEXTS = ['Luiz Inácio da Silva was born on 27 October 1945 (registered with a date of birth of 6 October 1945) in Caetés (then a district of Garanhuns), located 250 km (150 miles) from Recife, capital of Pernambuco, a state in the Northeast of Brazil.',
+         'Originally a fishing village and market town, Shanghai grew in importance in the 19th century due to both domestic and foreign trade and its favorable port location. The city was one of five treaty ports forced to open to European trade after the First Opium War. The Shanghai International Settlement and the French Concession were subsequently established.',
+         'What a game today!', 'Animals in space originally served to test the survivability of spaceflight, before human spaceflights were attempted', 'Alpout-Udzhar is a village in the Ujar Rayon of Azerbaijan.']
 
-@community = @user.created_communities.create!(is_private: true)
+@community = @user.created_communities.create!(name: 'Kangaroos', is_private: true)
 
-50.times do |i|
-  u = User.create(first_name: FIRST_NAMES.sample, last_name: LAST_NAMES.sample, email: "t_#{i}@t.t", password: 'aaaaaa')
-  p = Post.create(user: u, text: 'Post text text text text text text ')
+10.times do |_i|
+  id = ('A'..'X').to_a.sample + ('A'..'X').to_a.sample + ('A'..'X').to_a.sample + ('A'..'X').to_a.sample
+  u = User.create(first_name: FIRST_NAMES.sample, last_name: LAST_NAMES.sample, email: "#{id}@test.test",
+                  password: 'aaaaaa')
+  p = Post.create(user: u, text: TEXTS.sample)
   u.send_friend_request(user_id: @user.id)
   u.send_join_request(@community)
 end
 
-(5..50).to_a.each do |i|
-  u = User.find(i)
-  (1..50).to_a.each do |j|
-    next if j == i
+# (5..50).to_a.each do |i|
+#   u = User.find(i)
+#   (1..50).to_a.each do |j|
+#     next if j == i
 
-    fr = u.send_friend_request(user_id: j)
-    next if fr.nil?
+#     fr = u.send_friend_request(user_id: j)
+#     next if fr.nil?
 
-    fr.accepted = true if [false, true].sample
-    fr.save!
-    fr.reload
-  end
-end
+#     fr.accepted = true if [false, true].sample
+#     fr.save!
+#     fr.reload
+#   end
+# end
 
-@post = Post.create(user: @user1, text: 'Text text text')
-@comment = Comment.create(user: @user1, commentable: @post, text: 'Comment text')
+@post = Post.create(user: @user, text: 'Text text text')
+@comment = Comment.create(user: @user, commentable: @post, text: 'Comment text')
