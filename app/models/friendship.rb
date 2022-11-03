@@ -1,6 +1,7 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   after_create :send_friend_request_notification
+  before_destroy :delete_friend_request_notification
 
   def send_friend_request_notification
     new_notification = Notification.create(
@@ -10,8 +11,16 @@ class Friendship < ApplicationRecord
       url: "/users/#{user_id}"
     )
     new_notification.save
+  end
 
-    pp new_notification
+  def delete_friend_request_notification
+    notification = Notification.where(
+      sender_id: user_id,
+      receiver_id: friend_id,
+      title: "#{User.find(user_id).name} has sent you a friend request!",
+      url: "/users/#{user_id}"
+    ).first
+    notification&.destroy
   end
 
   def self.requested?(id1, id2)

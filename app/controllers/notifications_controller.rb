@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = 'Notification deleted!' }
+      format.turbo_stream { flash.now[:notice] = 'Notification deleted!' } if @notification.destroy
     end
   end
 

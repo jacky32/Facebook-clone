@@ -116,7 +116,7 @@ header > div {
   pointer-events: none;
 }
 
-#header-right-notifications-dropdown {
+#notifications {
   right: 50px;
   width: 240px;
 
