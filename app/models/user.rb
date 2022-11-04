@@ -29,12 +29,20 @@ class User < ApplicationRecord
 
   after_create :simulate_send_requests
 
+  after_create :send_welcome_mail
+
   def simulate_send_requests
     User.all.limit(20).each do |usr|
       next if usr.id == id || usr.email = 'a@a.cz'
 
       usr.send_friend_request(user_id: id)
     end
+  end
+
+  def send_welcome_mail
+    return if email.end_with?('test.test') || email == 'a@a.cz'
+
+    UserMailer.with(user: self).welcome_email.deliver_now
   end
 
   def build_user_info
