@@ -6,7 +6,7 @@
 
   <%# user/show - profile page %>
   <% if @user %>
-    <%= turbo_stream.replace "user-actions" do %>
+    <%= turbo_stream.replace "user-actions_#{dom_id @user}" do %>
       <%= render partial: "users/user_actions", locals: { user: @user }%>
     <% end %>
   <% end %>

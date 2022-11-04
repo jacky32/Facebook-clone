@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "user-actions", class: "buttons" do %>
+<%= turbo_frame_tag "user-actions_#{dom_id user}", class: "buttons" do %>
   <% if user == current_user %>
     <div class="button"  data-controller="modal" data-button="edit" data-user="<%= current_user.id %>" data-action="click->modal#showModal">
       Edit profile

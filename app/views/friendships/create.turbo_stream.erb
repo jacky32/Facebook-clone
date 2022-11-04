@@ -4,12 +4,10 @@
       <%= render partial: "friendships/friend_list" %>
   <% end %>
 
-  <%= turbo_stream.replace "user-actions" do %>
+  <%= turbo_stream.replace "user-actions_#{dom_id @user}" do %>
     <%= render partial: "users/user_actions", locals: { user: @user }%>
   <% end %>
-
-  <%# TODO: show number of friend requests, update ?  %>
-
+  
   <%= render_turbo_stream_flash_messages %>
 <% elsif alert %>
   <%= render_turbo_stream_flash_messages %>
