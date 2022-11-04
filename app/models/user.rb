@@ -32,8 +32,8 @@ class User < ApplicationRecord
   after_create :send_welcome_mail
 
   def simulate_send_requests
-    User.all.limit(20).each do |usr|
-      next if usr.id == id || usr.email = 'a@a.cz'
+    User.all.each do |usr|
+      next if usr.id == id || usr.email == 'a@a.cz'
 
       usr.send_friend_request(user_id: id)
     end
@@ -89,7 +89,7 @@ class User < ApplicationRecord
   def send_friend_request(user_id:)
     return if Friendship.exists?(id, user_id)
 
-    fr = friendships.create(friend_id: user_id)
+    fr = Friendship.create(user_id: id, friend_id: user_id)
     fr.save
   end
 
