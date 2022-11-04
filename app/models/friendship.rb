@@ -40,9 +40,11 @@ class Friendship < ApplicationRecord
   end
 
   def self.find_by_ids(id1, id2)
-    option1 = Friendship.where(user_id: id1, friend_id: id2)[0]
-    option2 = Friendship.where(user_id: id2, friend_id: id1)[0]
-    return option2 if option1.nil?
-    return option1 if option2.nil?
+    option1 = Friendship.where(user_id: id1, friend_id: id2).first
+    option2 = Friendship.where(user_id: id2, friend_id: id1).first
+    [option1, option2].each do |opt|
+      return opt unless opt.nil?
+    end
+    false
   end
 end

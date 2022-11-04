@@ -113,7 +113,7 @@
   border: 1px solid black;
 }
 
-#user-actions {
+.user-actions {
   grid-column: 4 / 5;
 }
 

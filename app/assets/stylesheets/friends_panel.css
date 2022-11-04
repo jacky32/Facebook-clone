@@ -1,15 +1,16 @@
 #friends-panel {
   grid-row: 2 / 3;
   grid-column: 3 / 4;
+  display: grid;
+  grid-template-rows: 1fr 2px 3fr;
 }
 
 #friend-requests {
   display: grid;
   grid-auto-rows: 32px;
   padding-top: 4px;
-  min-height: 66px;
-  max-height: 260px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .friend-request {
@@ -59,8 +60,8 @@
   display: grid;
   grid-auto-rows: 34px;
   gap: 4px;
-  max-height: calc(100% - 280px);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .friend {

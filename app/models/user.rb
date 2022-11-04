@@ -5,10 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
   has_many :posts, dependent: :destroy
-  # has_many :comments, as: :commentable
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  # validates_presence_of :first_name, :last_name
+  validates_presence_of :last_name
 
   has_many :friendships, dependent: :destroy
   has_many :friend_requests, -> { where accepted: false }, class_name: 'Friendship', foreign_key: 'friend_id'
@@ -27,6 +26,16 @@ class User < ApplicationRecord
   has_many :received_notifications, class_name: 'Notification', foreign_key: 'receiver_id', dependent: :destroy
 
   after_create :build_user_info, :generate_default_avatar
+
+  after_create :simulate_send_requests
+
+  def simulate_send_requests
+    User.all.limit(20).each do |usr|
+      next if usr.id == id || usr.email = 'a@a.cz'
+
+      usr.send_friend_request(user_id: id)
+    end
+  end
 
   def build_user_info
     u_i = UserInfo.create(user_id: id)
@@ -70,7 +79,10 @@ class User < ApplicationRecord
   end
 
   def send_friend_request(user_id:)
-    friendships.create(friend_id: user_id) unless Friendship.exists?(id, user_id)
+    return if Friendship.exists?(id, user_id)
+
+    fr = friendships.create(friend_id: user_id)
+    fr.save
   end
 
   def friend_request_sent?(user_id:)

@@ -1,7 +1,8 @@
 <%= turbo_frame_tag "friend-list" do %>
   <% current_user.friends.each do |friend| %> 
     <% friendship = Friendship.find_by_ids(friend.id, current_user.id) %>
-    <%= turbo_frame_tag id="#{dom_id friendship}_panel", src: friendship_path(friendship.id), loading: :lazy, class: "comment" do %>
+    <% next if friendship.nil? %>
+    <%= turbo_frame_tag id="#{dom_id friendship}_panel", src: friendship_path(friendship.id), loading: :lazy, class: "friend" do %>
       <span class="friend-loader"></span>
     <% end %>
   <% end %>
