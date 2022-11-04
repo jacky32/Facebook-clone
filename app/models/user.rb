@@ -42,7 +42,7 @@ class User < ApplicationRecord
   def send_welcome_mail
     return if email.end_with?('test.test') || email == 'a@a.cz'
 
-    UserMailer.welcome_email(self).deliver_now
+    UserMailer.with(user: self).welcome_email.deliver_later
   end
 
   def build_user_info
