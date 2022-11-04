@@ -5,8 +5,8 @@
       <div>No users found</div>
     <% else %>
       <% users.each do |user| %>
-        <%= turbo_frame_tag id="#{dom_id user}_search", src: search_results_path(user_id: user.id), loading: :lazy, class: "comment" do %>
-          <span class="comment-loader"></span>
+        <%= turbo_frame_tag id="#{dom_id user}_search", src: search_results_path(user_id: user.id), loading: :lazy, class: "search-user" do %>
+          <span class="search-user-loader"></span>
         <% end %>
       <% end %>
     <% end %>
@@ -18,8 +18,8 @@
       <div>No communities found</div>
     <% else %>
       <% communities.each do |community| %>
-        <%= turbo_frame_tag id="#{dom_id community}_search", src: search_results_path(community_id: community.id), loading: :lazy, class: "comment" do %>
-          <span class="comment-loader"></span>
+        <%= turbo_frame_tag id="#{dom_id community}_search", src: search_results_path(community_id: community.id), loading: :lazy, class: "search-community" do %>
+          <span class="community-loader"></span>
         <% end %>
       <% end %>
     <% end %>
