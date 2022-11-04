@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :notification
 
   def show

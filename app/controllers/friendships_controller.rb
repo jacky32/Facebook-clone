@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+  before_action :authenticate_user!
   before_action :friendship, only: %i[update destroy]
   before_action :user, only: %i[create update destroy]
 
@@ -25,8 +26,10 @@ class FriendshipsController < ApplicationController
     respond_to do |format|
       if @friendship.save
         format.turbo_stream { flash.now[:notice] = 'Friend request sent!' }
+        format.html { redirect_to root_path }
       else
         format.turbo_stream { flash.now[:alert] = 'Unable to send the friend request!' }
+        format.html { redirect_to root_path }
       end
     end
   end

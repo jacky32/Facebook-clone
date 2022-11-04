@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
   before_action :decide_likeable
   before_action :authenticate_user!
 
@@ -10,8 +11,10 @@ class LikesController < ApplicationController
           flash.now[:notice] = "#{@likeable.class.name} liked!"
           render 'likes/update_buttons'
         end
+        format.html { redirect_to root_path }
       else
         format.turbo_stream { flash.now[:alert] = "Like wasn't successful!" }
+        format.html { redirect_to root_path }
       end
     end
   end
@@ -24,6 +27,7 @@ class LikesController < ApplicationController
         flash.now[:notice] = "#{@likeable.class.name} unliked!"
         render 'likes/update_buttons'
       end
+      format.html { redirect_to root_path }
     end
   end
 

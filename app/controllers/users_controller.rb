@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :user, except: :get_friends
   before_action :friends, only: %i[show set_profile get_profile]
   before_action :friends_count, only: %i[show set_profile get_profile]
 
   def show; end
 
+  # For swapping posts/about/friends on user profile
   def set_profile
     @change = params[:change]
     respond_to do |format|

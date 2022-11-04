@@ -1,7 +1,10 @@
 class UserInfosController < ApplicationController
+  before_action :authenticate_user!
   before_action :user
 
   def update
+    return unless current_user == @user
+
     respond_to do |format|
       if @user.user_info.update(user_info_params)
         format.html { redirect_to user_path(@user), notice: 'Profile edited!' }

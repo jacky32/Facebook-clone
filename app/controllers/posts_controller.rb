@@ -43,8 +43,6 @@ class PostsController < ApplicationController
         format.turbo_stream { flash.now[:alert] = 'Post was not deleted!' }
       end
     end
-    # flash.now[:notice] = "Post deleted!"
-    # render turbo_stream: 'posts/destroy'
   end
 
   private

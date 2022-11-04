@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_user!
   before_action :user, only: :create
 
   def show
@@ -10,9 +11,12 @@ class ChatsController < ApplicationController
       @user = User.find(params[:user_id])
       @messages = Message.retrieve(current_user, @user)
     end
+    return redirect_to root_path unless [@chat.sender, @chat.receiver].any?(current_user)
+
     render formats: :turbo_stream, template: 'chats/chat', locals: { user: @user, chat: @chat }
   end
 
+  # Header message bubble
   def show_recent_chat
     @chat = Chat.find(params[:id])
     render formats: :turbo_stream, template: 'chats/show'

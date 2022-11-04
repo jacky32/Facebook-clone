@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :user_infos, only: %i[update]
 
   resources :posts, :comments, only: %i[show create update destroy] do
-    resources :comments, except: :new
+    resources :comments, only: %i[show create update destroy]
     resources :likes, only: %i[create destroy]
   end
 
@@ -17,8 +17,6 @@ Rails.application.routes.draw do
   resources :chats, only: %i[create show]
 
   resources :notifications, only: %i[create show destroy]
-
-  # get '*path', to: redirect('/')
 
   get '*path/show_recent_chat/:id', to: 'chats#show_recent_chat'
   get 'show_recent_chat/:id', to: 'chats#show_recent_chat'
@@ -35,4 +33,6 @@ Rails.application.routes.draw do
   get 'search_results', to: 'dashboard#search_results'
 
   root 'dashboard#show'
+
+  get '*path', to: redirect('/')
 end

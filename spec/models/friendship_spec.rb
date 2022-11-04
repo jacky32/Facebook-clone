@@ -9,7 +9,17 @@ RSpec.describe Friendship, type: :model do
     it { should belong_to(:user) }
   end
 
+  before(:each) do
+    Friendship.all.each { |tst| tst.destroy }
+  end
+
   describe 'self.requested?' do
+    context 'when request not sent' do
+      it 'returns false' do
+        response = Friendship.requested?(test_user1.id, test_user2.id)
+        expect(response).to be_falsey
+      end
+    end
     context 'when request sent' do
       before do
         test_user1.friendships.create(friend_id: test_user2.id)
@@ -18,12 +28,6 @@ RSpec.describe Friendship, type: :model do
       it 'returns true' do
         response = Friendship.requested?(test_user1.id, test_user2.id)
         expect(response).to be_truthy
-      end
-    end
-    context 'when request not sent' do
-      it 'returns false' do
-        response = Friendship.requested?(test_user1.id, test_user2.id)
-        expect(response).to be_falsey
       end
     end
   end
@@ -99,7 +103,7 @@ RSpec.describe Friendship, type: :model do
     context 'when request does not exist' do
       it 'returns false' do
         response = Friendship.find_by_ids(test_user1.id, test_user2.id)
-        expect(response.is_a?(Friendship)).to be_falsey
+        expect(response).to be_falsey
       end
     end
   end

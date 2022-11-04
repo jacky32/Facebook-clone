@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  before_action :authenticate_user!
   before_action :membership, only: %i[request_unsend update destroy]
   before_action :community
 
@@ -14,10 +15,12 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       if @membership.invited == true
         format.turbo_stream { flash.now[:alert] = 'Already invited!' }
+        format.html { redirect_to root_path }
       else
         @membership.invited = true
         @membership.save
         format.turbo_stream { flash.now[:notice] = 'Friend invited!' }
+        format.html { redirect_to root_path }
       end
     end
   end
@@ -32,8 +35,10 @@ class MembershipsController < ApplicationController
       if @membership.save
         @membership.send_join_request_notification(sender: current_user)
         format.turbo_stream { flash.now[:notice] = 'Requested to join the community!' }
+        format.html { redirect_to root_path }
       else
         format.turbo_stream { flash.now[:alert] = 'You already requested to join the community!' }
+        format.html { redirect_to root_path }
       end
     end
   end
@@ -47,8 +52,10 @@ class MembershipsController < ApplicationController
       if @membership.save
         @membership.unsend_join_request_notification(sender: current_user)
         format.turbo_stream { flash.now[:notice] = 'Request to join the community removed!' }
+        format.html { redirect_to root_path }
       else
         format.turbo_stream { flash.now[:alert] = 'Unable to unsend the request!' }
+        format.html { redirect_to root_path }
       end
     end
   end
@@ -61,11 +68,13 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       if @membership.invited == true
         format.turbo_stream { flash.now[:alert] = 'Already invited!' }
+        format.html { redirect_to root_path }
       else
         @membership.invited = true
         @membership.save
         @membership.send_invite_notification(sender: current_user, receiver: @user)
         format.turbo_stream { flash.now[:notice] = 'Friend invited!' }
+        format.html { redirect_to root_path }
       end
     end
   end
