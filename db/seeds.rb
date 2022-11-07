@@ -40,19 +40,19 @@ COMMENTS = ['Wow!', 'No way!', 'Insane!', 'Yes, I agree', 'lol', 'yes', 'Why?'].
   u.send_join_request(@community)
 end
 
-(5..15).to_a.each do |i|
-  u = User.find(i)
-  (1..20).to_a.each do |j|
-    next if j == i || j == 1
+# (5..15).to_a.each do |i|
+#   u = User.find(i)
+#   (1..20).to_a.each do |j|
+#     next if j == i || j == 1
 
-    fr = u.send_friend_request(user_id: j)
-    next if fr.nil?
+#     fr = u.send_friend_request(user_id: j)
+#     next if fr.nil?
 
-    fr.accepted = true if [false, true].sample
-    fr.save!
-    fr.reload
-  end
-end
+#     fr.accepted = true if [false, true].sample
+#     fr.save!
+#     fr.reload
+#   end
+# end
 
 User.find(3).created_communities.create!(name: 'Dogs')
 
