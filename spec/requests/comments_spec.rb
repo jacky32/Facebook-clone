@@ -10,6 +10,20 @@ RSpec.describe 'Comments', type: :request do
     sign_in test_user
   end
 
+  describe 'GET show' do
+    context 'with valid comment id' do
+      it 'succeeds' do
+        get comment_path(test_comment)
+        expect(response).to be_successful
+      end
+    end
+    context 'with invalid comment id' do
+      it 'fails' do
+        expect { get comment_path(0) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
   describe 'POST create' do
     context 'with valid params' do
       it 'creates a new comment on a post' do

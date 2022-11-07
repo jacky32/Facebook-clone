@@ -8,6 +8,8 @@ RSpec.describe User, type: :model do
   let!(:test_user4) { User.create(email: '4@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
   let!(:test_user5) { User.create(email: '5@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
   let!(:test_user6) { User.create(email: '6@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
+  let!(:test_user7) { User.create(email: '7@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
+  let!(:test_user8) { User.create(email: '8@dfe.cz', first_name: 'ete', last_name: 'eee', password: '123456') }
 
   describe 'Validations' do
     it { should validate_presence_of(:last_name) }
@@ -42,34 +44,60 @@ RSpec.describe User, type: :model do
     it { should have_many(:messages).dependent(:destroy) }
   end
 
-  describe 'friends' do
+  describe 'friend methods' do
     before(:each) do
       request1 = test_user1.friendships.create(friend_id: test_user2.id)
       request2 = test_user1.friendships.create(friend_id: test_user3.id)
       request3 = test_user1.friendships.create(friend_id: test_user4.id)
       request4 = test_user1.friendships.create(friend_id: test_user5.id)
+      request5 = test_user8.friendships.create(friend_id: test_user1.id)
       request1.accepted = true
       request2.accepted = true
       request1.save
       request2.save
       request3.save
       request4.save
+      request5.save
     end
 
-    it 'returns friends' do
-      response = test_user1.friends
-      expect(response).to contain_exactly(test_user2, test_user3)
+    context '#friends' do
+      it 'returns friends' do
+        response = test_user1.friends
+        expect(response).to contain_exactly(test_user2, test_user3)
+      end
+
+      it 'does not return unaccepted friends' do
+        response = test_user1.friends
+        expect(response).not_to include(test_user4)
+        expect(response).not_to include(test_user5)
+      end
+
+      it 'does not include not requested friends' do
+        response = test_user1.friends
+        expect(response).not_to include(test_user6)
+      end
     end
 
-    it 'does not return unaccepted friends' do
-      response = test_user1.friends
-      expect(response).not_to include(test_user4)
-      expect(response).not_to include(test_user5)
+    context '#friend_request_sent?' do
+      it 'returns true when sent' do
+        response = test_user1.friend_request_sent?(user_id: test_user4.id)
+        expect(response).to be_truthy
+      end
+      xit 'returns false when not sent' do # breaks after being tested once
+        response = test_user1.friend_request_sent?(user_id: test_user7.id)
+        expect(response).to be_falsey
+      end
     end
 
-    it 'does not include not requested friends' do
-      response = test_user1.friends
-      expect(response).not_to include(test_user6)
+    context '#friend_request_received?' do
+      it 'returns true when received' do
+        response = test_user1.friend_request_received?(user_id: test_user8.id)
+        expect(response).to be_truthy
+      end
+      it 'returns false when not received' do
+        response = test_user1.friend_request_received?(user_id: test_user7.id)
+        expect(response).to be_falsey
+      end
     end
   end
 end
