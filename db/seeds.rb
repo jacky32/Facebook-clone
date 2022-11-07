@@ -30,31 +30,30 @@ COMMENTS = ['Wow!', 'No way!', 'Insane!', 'Yes, I agree', 'lol', 'yes', 'Why?'].
   id = ('A'..'X').to_a.sample + ('A'..'X').to_a.sample + ('A'..'X').to_a.sample + ('A'..'X').to_a.sample
   u = User.create(first_name: FIRST_NAMES.sample, last_name: LAST_NAMES.sample, email: "#{id}@test.test",
                   password: 'aaaaaa')
-  2.times do
-    Post.create(user: u, text: TEXTS.sample)
-    commentable = [Post.all.sample, Comment.all.sample].sample
-    Comment.create(commentable:, user: u, text: COMMENTS.sample)
-  end
+  Post.create(user: u, text: TEXTS.sample)
+  commentable = [Post.all.sample, Comment.all.sample].sample
+  Comment.create(commentable:, user: u, text: COMMENTS.sample)
+  Post.create(user: u, text: TEXTS.sample)
+  commentable = [Post.all.sample, Comment.all.sample].sample
+  Comment.create(commentable:, user: u, text: COMMENTS.sample)
 
   u.send_friend_request(user_id: @user.id)
   u.send_join_request(@community)
 end
 
-# (5..15).to_a.each do |i|
-#   u = User.find(i)
-#   (1..20).to_a.each do |j|
-#     next if j == i || j == 1
+(5..15).to_a.each do |i|
+  u = User.find(i)
+  (1..20).to_a.each do |j|
+    next if j == i || j == 1
 
-#     fr = u.send_friend_request(user_id: j)
-#     next if fr.nil?
+    fr = u.send_friend_request(user_id: j)
+    next if fr.nil?
 
-#     fr.accepted = true if [false, true].sample
-#     fr.save!
-#     fr.reload
-#   end
-# end
-
-User.find(3).created_communities.create!(name: 'Dogs')
+    fr.accepted = true if [false, true].sample
+    fr.save!
+    fr.reload
+  end
+end
 
 @post = Post.create(user: @user, text: 'Sample post')
 @comment = Comment.create(user: @user, commentable: @post, text: 'Sample comment')
