@@ -65,6 +65,36 @@ body {
   grid-template-columns: 240px 1fr 240px;
 }
 
+@media screen and (max-width: 960px) {
+  #left-panel {
+    display: none;
+  }
+  #friends-panel {
+    grid-column: 2 / 3;
+  }
+  body {
+    grid-template-columns: 1fr 240px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #friends-panel {
+    display: none;
+  }
+  #search-form {
+    display: none;
+  }
+  body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  :root {
+    --post-width: 100vw;
+  }
+}
+
 textarea {
   padding: 6px;
   border: 1x solid var(--dark-green);
