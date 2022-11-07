@@ -34,5 +34,5 @@ Rails.application.routes.draw do
 
   root 'dashboard#show'
 
-  get '*path', to: redirect('/')
+  # get '*path', to: redirect('/')
 end
