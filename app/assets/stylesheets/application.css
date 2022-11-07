@@ -157,10 +157,10 @@ img {
   background-color: var(--button-hover-color);
 }
 
-.button.active {
+/* .button.active {
   background-color: var(--button-hover-color);
   border-bottom: 2px solid var(--like-color);
-}
+} */
 
 .delete {
   background-color: #da1717;
